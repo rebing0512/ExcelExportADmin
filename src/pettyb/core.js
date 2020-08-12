@@ -785,7 +785,7 @@
 
     //登录处理
     $.UserLogin = function (data,success,fail) {
-        DebugLog("****UserLogin*****");
+        DebugLog("****UserLogin*****");console.log('****UserLogin*****');return false;
         var thisData =  $.extend(data,{});
         //基础成功处理函数
         var baseSuccessFun = function (res,callback) {
