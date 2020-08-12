@@ -94,12 +94,12 @@
         });
         $("#login-btn").click(function () {
             console.log('Partner Login click');
+            return false;
             $.UserLogin({
                 'username':$("#name").val(),
                 'password':$("#password").val()
             },function(res) {
                 console.log(res);
-                return false;
                 layer.msg(res.result.msg);
                 if(res.code == 1){
                     var userInfo = res.result.admin;
