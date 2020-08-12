@@ -1,5 +1,5 @@
 /**
- * Created by fengquanju on 2019/10/5.
+ * Created by wangjian on 2020/08/12.
  */
 
 var domainConfig = {
@@ -27,9 +27,9 @@ var Config = {
 var AppUrl = {
     Index:domainConfig.baseUrl + 'PartnerAdmin/index.html',
     Login:domainConfig.baseUrl+'PartnerAdmin/login.html',
-}
+};
 
-//用户中心接口
+// Token、图片以及登录接口
 var ApiUrl = {
     // 接口
     'getAccessToken': domainConfig.pmCore +'core/oauth/getAccessToken',

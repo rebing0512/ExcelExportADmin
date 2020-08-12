@@ -1,9 +1,9 @@
 /**
- * Created by fengquanju on 2019/10/5.
+ * Created by wangjian on 2020/08/12.
  */
 var baseUrl = domainConfig.baseUrl;
 var pmCore = domainConfig.pmCore;
-var TplDefaults = domainConfig.baseUrl + 'CityPartnersAdmin/';
+var TplDefaults = domainConfig.baseUrl + 'PartnerAdmin/';
 var api = {
     menuIndex:baseUrl+'admin/menu/index',//后台菜单
     adminLogout:baseUrl+'admin/logout',//退出登录
