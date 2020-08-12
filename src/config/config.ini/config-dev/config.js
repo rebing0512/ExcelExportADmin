@@ -18,8 +18,8 @@ var Config = {
     'Mode':'development',/*默认是开发模式，如果是prodect即是产品模式*/
     /*Api*/
     'GrantTypeAccessToken':'client_credential',  //grant_type
-    'AppAppid':'nbesmh3CsHhkoBq5cpjh0sqJD40pn7Vg',  //appid oZokhz16Eh2ckYFIghxGsBPdkAuoSnSp
-    'AppSecret':'JPFMhjzO0iZwPXb29b50cevvNwqUUd9U', //secret 1THIf7WQhlyTPpjxdYRnwbWDx0TkaPPO
+    'AppAppid':'oZokhz16Eh2ckYFIghxGsBPdkAuoSnSp',  //appid oZokhz16Eh2ckYFIghxGsBPdkAuoSnSp
+    'AppSecret':'1THIf7WQhlyTPpjxdYRnwbWDx0TkaPPO', //secret 1THIf7WQhlyTPpjxdYRnwbWDx0TkaPPO
     'AppChannel':'pcadmin',  // channel
     'AppGroupId':'8' //group_id
 };
