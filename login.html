@@ -93,13 +93,13 @@
             keyup_submit(event);
         });
         $("#login-btn").click(function () {
-            console.log('Partner Login click');
+            // console.log('Partner Login click');
             // return false;
             $.UserLogin({
                 'username':$("#name").val(),
                 'password':$("#password").val()
             },function(res) {
-                console.log(res);
+                // console.log(res);
                 layer.msg(res.result.msg);
                 if(res.code == 1){
                     var userInfo = res.result.admin;

@@ -790,8 +790,8 @@
         //基础成功处理函数
         var baseSuccessFun = function (res,callback) {
             DebugLog("***baseSuccessFun****");
-            console.log("***baseSuccessFun****");
-            console.log(res);
+            // console.log("***baseSuccessFun****");
+            // console.log(res);
             if(res.code == 1){
                 //存储auth_token
                 var auth_token_value = res.result.auth_token;
@@ -830,11 +830,11 @@
         DebugLog(is_successfun_exist);
         var successFun;
         if(is_successfun_exist){
-            console.log("***is_successfun_exist****");
+            // console.log("***is_successfun_exist****");
             var thisSuccessFun = success;
             successFun = function (res) {
-                console.log(res);
-                return false;
+                // console.log(res);
+                // return false;
                 baseSuccessFun(res,thisSuccessFun);
             }
         }else{
