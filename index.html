@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta name="referrer" content="always">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>加一手城市合伙人后台管理系统</title>
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1449947_dbbtexodu3p.css">
+    <link rel="stylesheet" href="css/dependencies.min.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="./css/pageTopBar.css">
+    <link rel="stylesheet" href="css/pageTopBar.css">
+    <link rel="stylesheet" href="css/auctionsGoodsRelease.css">
+    <style>
+        .control-label{
+            font-size: 14px;
+            text-align: right;
+        }
+    </style>
+</head>
+<body class="hide-help">
+<aside id="shared-sidebar" class="">
+    <nav role="main" id="shared-first-sidebar">
+        <div id="shared-team-logo">
+            <a class="shared-team-logo-wrap" href="javascript:;">
+                <div class="team-logo"  style="background-image: url(./img/jiayishou.png);"></div>
+            </a>
+        </div>
+        <ul id="shared-first-sidebar-nav">
+            <!--<li class="first-sidebar-nav-item">-->
+                <!--<a href="javascript:;">-->
+                    <!--<i class="sidebar-icon sidebar-icon-dashboard"></i>概况-->
+                <!--</a>-->
+            <!--</li>-->
+            <!--<li class="first-sidebar-nav-item active">-->
+                <!--<a href="javascript:;">-->
+                    <!--<i class="sidebar-icon sidebar-icon-shop"></i>店铺-->
+                <!--</a>-->
+            <!--</li>-->
+            <!--<li class="first-sidebar-nav-item">-->
+                <!--<a href="javascript:;">-->
+                    <!--<i class="sidebar-icon sidebar-icon-goods"></i>商品-->
+                <!--</a>-->
+            <!--</li>-->
+            <!--<li class="first-sidebar-nav-item">-->
+                <!--<a href="javascript:;">-->
+                    <!--<i class="sidebar-icon sidebar-icon-order"></i>订单-->
+                <!--</a>-->
+            <!--</li>-->
+            <!--<li class="first-sidebar-nav-item">-->
+                <!--<a href="javascript:;">-->
+                    <!--<i class="sidebar-icon sidebar-icon-fans"></i>客户-->
+                <!--</a>-->
+            <!--</li>-->
+            <!--<li class="first-sidebar-nav-item" >-->
+                <!--<a href="javascript:;">-->
+                    <!--<i class="sidebar-icon sidebar-icon-stat"></i>数据-->
+                <!--</a>-->
+            <!--</li>-->
+            <!--<li class="first-sidebar-nav-item" >-->
+                <!--<a href="javascript:;">-->
+                    <!--<i class="sidebar-icon sidebar-icon-asset"></i>资产-->
+                <!--</a>-->
+            <!--</li>-->
+            <!--<li class="first-sidebar-nav-item" style="margin-top: 80px;">-->
+                <!--<a href="javascript:;">-->
+                    <!--<i class="sidebar-icon sidebar-icon-app"></i>应用-->
+                <!--</a>-->
+            <!--</li>-->
+            <!--<li class="first-sidebar-nav-item">-->
+                <!--<a href="javascript:;">-->
+                    <!--<i class="sidebar-icon sidebar-icon-setting"></i>设置-->
+                <!--</a>-->
+            <!--</li>-->
+        </ul>
+        <div id="shared-corner">
+            <div id="wsc-search-wrap">
+                <a id="js-wsc-search" class="bottom-icon search-icon"></a>
+            </div>
+            <div id="notice-center" class=""></div>
+        </div>
+    </nav>
+
+</aside>
+<!--头部-->
+<div id="app-third-sidebar" class="js-app-third-sidebar" style="padding-right: 20px">
+    <div class="zent-breadcrumb js-page-breadcrumb">
+        <div class="header-bread-crumbs" id="header-bread-crumbs">
+        </div>
+        <div class="js-app-help-button">
+            <a href="javascript:;">
+                <span id="avatar_common_"></span>
+            </a>
+            <a  href="javascript:;" style="margin: 0 10px">
+                <span  id="username"></span>
+            </a><i class="caret-custome"></i>
+            <ul class="loaded-menu_">
+                <li onmouseover="passwordOver(this)" onmouseout="passwordOut(this)" id="setPassword"><a href="javascript:;">修改密码</a></li>
+                <li onmouseover="logoutOver(this)" onmouseout="logoutOut(this)" id="logout"><a href="javascript:;">退出登录</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script>
+    // 修改密码
+    function passwordOver() {
+        $("#setPassword a").attr("style","color:#155bd4;");
+    }
+    function passwordOut() {
+        $("#setPassword a").attr("style","color:black;");
+    }
+
+    // 退出登录
+    function logoutOver() {
+        $("#logout a").attr("style","color:#155bd4;");
+    }
+    function logoutOut() {
+        $("#logout a").attr("style","color:black;");
+        // obj.innerHTML = "请把鼠标移上来"
+    }
+</script>
+<!--面包屑导航模版-->
+<script type="text/html" id="tpl_breadCrumbs">
+    {{each}}
+    {{if $value.isLink == '1'}}
+    <a href="javascript:;" class="bread-crumb-item link" data-url="{{$value.url}}">{{$value.title}}</a>
+    {{else}}
+    <div class="bread-crumb-item" data-url="{{$value.url}}">{{$value.title}}</div>
+    {{/if}}
+    {{/each}}
+</script>
+<!--<nav role="sub"  class="shared-second-sidebar" data-pc-shared="">-->
+<!--<h2 class="second-sidebar-title" data-pc-shared="">店铺管理</h2>-->
+<!--<ul class="shared-second-sidebar-nav" data-pc-shared="" style="visibility: visible;">-->
+<!--<li class="second-group-nav" data-pc-shared="" style="max-height: 160px;">-->
+<!--<div class="second-group-title" data-pc-shared="">-->
+<!--<i class="dashboard-arrow-icon" data-pc-shared=""></i>店铺管理-->
+<!--</div>-->
+<!--<ul class="second-group-body" data-pc-shared="">-->
+<!--<li class="active second-nav-item" data-pc-shared="">-->
+<!--<a href="//www.youzan.com/v2/showcase/shop/dashboard/index" class="" target="_self" data-pc-shared="">移动店铺</a>-->
+<!--</li>-->
+<!--<li class="second-nav-item" data-pc-shared="">-->
+<!--<a href="//www.youzan.com/v2/showcase/weapp/dashboard/index" class="" target="_self" data-pc-shared="">小程序店铺</a>-->
+<!--</li>-->
+<!--</ul>-->
+<!--</li>-->
+<!--<li class="second-group-nav" data-pc-shared="" style="max-height: 320px;">-->
+<!--<div class="second-group-title" data-pc-shared="">-->
+<!--<i class="dashboard-arrow-icon" data-pc-shared=""></i>内容创作-->
+<!--</div>-->
+<!--<ul class="second-group-body" data-pc-shared="">-->
+<!--<li class="second-nav-item" data-pc-shared="">-->
+<!--<a href="//www.youzan.com/v2/showcase/feature/list#/" class="" target="_self" data-pc-shared="">微页面</a>-->
+<!--</li>-->
+<!--<li class="second-nav-item" data-pc-shared="">-->
+<!--<a href="//www.youzan.com/v4/shop/shopnote#/" class="" target="_self" data-pc-shared="">店铺笔记</a>-->
+<!--</li>-->
+<!--<li class="second-nav-item" data-pc-shared="">-->
+<!--<a href="//www.youzan.com/v2/showcase/component/index" class="" target="_self" data-pc-shared="">自定义模块</a>-->
+<!--</li>-->
+<!--<li class="second-nav-item" data-pc-shared="">-->
+<!--<a href="//www.youzan.com/v4/shop/showcase/custom_component_suspension_window" class="" target="_self" data-pc-shared="">悬浮窗</a>-->
+<!--</li>-->
+<!--<li class="second-nav-item" data-pc-shared="">-->
+<!--<a href="//www.youzan.com/v2/showcase/ad/index" class="" target="_self" data-pc-shared="">公共广告</a>-->
+<!--</li>-->
+<!--<li class="second-nav-item" data-pc-shared="">-->
+<!--<a href="//www.youzan.com/v2/showcase/attachment/index" class="" target="_self" data-pc-shared="">素材中心</a>-->
+<!--</li>-->
+<!--</ul>-->
+<!--</li>-->
+<!--<li class="second-group-nav" data-pc-shared="" style="max-height: 160px;">-->
+<!--<div class="second-group-title" data-pc-shared="">-->
+<!--<i class="dashboard-arrow-icon" data-pc-shared=""></i>店铺主题-->
+<!--</div>-->
+<!--<ul class="second-group-body" data-pc-shared="">-->
+<!--<li class="second-nav-item" data-pc-shared="">-->
+<!--<a href="//www.youzan.com/v2/showcase/GlobalTemplate/index" class="" target="_self" data-pc-shared="">全店风格</a>-->
+<!--</li>-->
+<!--<li class="second-nav-item" data-pc-shared="">-->
+<!--<a href="//www.youzan.com/v2/apps/templatemarket/index" class="" target="_self" data-pc-shared="">店铺模板</a>-->
+<!--</li>-->
+<!--</ul>-->
+<!--</li>-->
+<!--<li class="second-group-nav" data-pc-shared="" style="max-height: 120px;">-->
+<!--<div class="second-group-title" data-pc-shared="">-->
+<!--<i class="dashboard-arrow-icon" data-pc-shared=""></i>店铺工具-->
+<!--</div>-->
+<!--<ul class="second-group-body" data-pc-shared="">-->
+<!--<li class="second-nav-item" data-pc-shared="">-->
+<!--<a href="//www.youzan.com/v4/assistant" class="" target="_self" data-pc-shared="">智能助手</a>-->
+<!--</li>-->
+<!--</ul>-->
+<!--</li>-->
+<!--<div class="has-more-indicator visible" data-pc-shared=""></div>-->
+<!--</ul>-->
+<!--</nav>-->
+<div id="app-container" class="container">
+    <iframe class="app_iframe" id="app_iframe" name="iframe0" width="100%" height="100%" src="overview.html" frameborder="0" data-path='store/mobileStore.html' ></iframe>
+</div>
+<!--右侧帮助框-->
+
+<!--二级悬浮导航的容器-->
+<div class="hover-second-slide">
+
+</div>
+
+<!--修改密码的modal-->
+<div class="modal fade bs-example-modal-lg" id="setPasswordModal" tabindex="-1" role="dialog" aria-labelledby="setPasswordModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">修改密码</h4>
+            </div>
+            <div class="modal-body">
+                <div class="sections">
+                    <div class="messageItem row">
+                        <div class="col-sm-4 control-label"><i class="xing">*</i>原始密码：</div>
+                        <div class="formControls  col-sm-8"><input type="password" class="start_price" placeholder="请输入原始密码" id="old-pass"></div>
+                    </div>
+                    <div class="messageItem row">
+                        <div class="col-sm-4 control-label"><i class="xing">*</i>新密码：</div>
+                        <div class="formControls  col-sm-8"><input type="password" class="start_price" placeholder="请输入新密码" id="new-pass"></div>
+                    </div>
+                    <div class="messageItem row">
+                        <div class="col-sm-4 control-label"><i class="xing">*</i>确认密码：</div>
+                        <div class="formControls  col-sm-8"><input type="password" placeholder="请再次输入新密码" class="start_price" id="re-pass"></div>
+                    </div>
+                </div>
+                <div class="preserved">
+                    <button type="button" id="set-password-btn" class="zent-btn-primary zent-btn">保存</button>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+<script src="js/dependencies.min.js"></script>
+<script src="js/pettyb.min.js"></script>
+<script src="config/api.config.js"></script>
+<!--<script src="js/third_party/bootstrap.min.js"></script>-->
+<!--<script src="src/js/artTemplate.js"></script>-->
+<!--<script src="./js/testData.js"></script>-->
+<!--<script src="./js/fn.scroll.js"></script>-->
+<!--模版部分-->
+<!--一级导航模版-->
+<script type="text/html" id="tpl_firstSidebar">
+    {{each}}
+    {{if $value.tag == 'overview'}}
+    <li class="first-sidebar-nav-item active" data-tag="{{$value.tag}}" data-sub="{{$value.hasSub}}" data-title="{{$value.default.title}}" data-id="{{$value.id}}" data-url="{{$value.default.url}}">
+        <a href="javascript:;">
+            <i class="iconfont icon-{{$value.tag}}_selected first-sidebar-nav-item-icon"></i>
+            <span>{{$value.title}}</span>
+        </a>
+    </li>
+    {{else}}
+    {{if $value.tag == 'systemSetting'}}
+    <li class="first-sidebar-nav-item" style="margin-top: 80px;" data-tag="{{$value.tag}}" data-sub="{{$value.hasSub}}" data-title="{{$value.default.title}}" data-id="{{$value.id}}" data-url="{{$value.default.url}}">
+        <a href="javascript:;">
+            <i class="iconfont icon-{{$value.tag}}_normal first-sidebar-nav-item-icon"></i>
+            <span>{{$value.title}}</span>
+        </a>
+    </li>
+    {{else}}
+    <li class="first-sidebar-nav-item" data-id="{{$value.id}}" data-tag="{{$value.tag}}" data-sub="{{$value.hasSub}}" data-title="{{$value.default.title}}" data-url="{{$value.default.url}}">
+        <a href="javascript:;">
+            <i class="iconfont icon-{{$value.tag}}_normal first-sidebar-nav-item-icon"></i>
+            <span>{{$value.title}}</span>
+        </a>
+    </li>
+    {{/if}}
+    {{/if}}
+    {{/each}}
+</script>
+<!--一级导航模版-->
+<script type="text/html" id="tpl_firstSidebar_edit">
+    {{each data}}
+    {{if selected_id == $value.id}}
+    {{if $value.tag == 'systemSetting'}}
+    <li class="first-sidebar-nav-item active" style="margin-top: 80px;" data-tag="{{$value.tag}}" data-sub="{{$value.hasSub}}" data-title="{{$value.default.title}}" data-id="{{$value.id}}" data-url="{{$value.default.url}}">
+        <a href="javascript:;">
+            <i class="iconfont icon-{{$value.tag}}_normal first-sidebar-nav-item-icon"></i>
+            <span>{{$value.title}}</span>
+        </a>
+    </li>
+    {{else}}
+    <li class="first-sidebar-nav-item active" data-tag="{{$value.tag}}" data-sub="{{$value.hasSub}}" data-title="{{$value.default.title}}" data-id="{{$value.id}}" data-url="{{$value.default.url}}">
+        <a href="javascript:;">
+            <i class="iconfont icon-{{$value.tag}}_selected first-sidebar-nav-item-icon"></i>
+            <span>{{$value.title}}</span>
+        </a>
+    </li>
+    {{/if}}
+    {{else}}
+    {{if $value.tag == 'systemSetting'}}
+    <li class="first-sidebar-nav-item" style="margin-top: 80px;" data-tag="{{$value.tag}}" data-sub="{{$value.hasSub}}" data-title="{{$value.default.title}}" data-id="{{$value.id}}" data-url="{{$value.default.url}}">
+        <a href="javascript:;">
+            <i class="iconfont icon-{{$value.tag}}_normal first-sidebar-nav-item-icon"></i>
+            <span>{{$value.title}}</span>
+        </a>
+    </li>
+    {{else}}
+    <li class="first-sidebar-nav-item" data-id="{{$value.id}}" data-tag="{{$value.tag}}" data-sub="{{$value.hasSub}}" data-title="{{$value.default.title}}" data-url="{{$value.default.url}}">
+        <a href="javascript:;">
+            <i class="iconfont icon-{{$value.tag}}_normal first-sidebar-nav-item-icon"></i>
+            <span>{{$value.title}}</span>
+        </a>
+    </li>
+    {{/if}}
+    {{/if}}
+    {{/each}}
+</script>
+<script>
+    template.helper('calculateSubNavMaxHeight',function($value){
+        var $value = $value;
+//        console.log($value);
+        var sub_length = $value.sub.length;
+        var collaps = $value.collaps;
+        if (collaps == 0){
+            //展开
+            return (parseInt(sub_length) + 1) * 40 + 'px';
+        }else {
+            //合上的
+            return '40px';
+        }
+
+    });
+    template.helper('getSecondSidebarID',function(num){
+        return  'shared-second-sidebar-'+num;
+    });
+</script>
+<!--二级导航的当前模版-->
+<script type="text/html" id="tpl_secondSlidebar">
+    <nav role="sub"  data-id="{{id}}" id="shared-second-sidebar" class="shared-second-sidebar" data-pc-shared style="display: flex">
+        <h2 class="second-sidebar-title" data-pc-shared>{{title}}</h2>
+        <ul class="shared-second-sidebar-nav" data-pc-shared style="visibility: visible;">
+            {{each list}}
+            {{if $value.sub.length > 0}}
+            <li class="second-group-nav {{$value.collaps == '1'?'collapsed':''}}" data-pc-shared style="height:{{ $value | calculateSubNavMaxHeight}}">
+                <div class="second-group-title" data-pc-shared>
+                    {{if $value.sub.length > 0}}
+                    {{if $value.collaps == '1'}}
+                    <i class="dashboard-arrow-icon" data-pc-shared></i>
+                    {{else}}
+                    <i class="dashboard-arrow-icon" data-pc-shared></i>
+                    {{/if}}
+                    {{/if}}
+                    {{$value.title}}
+                </div>
+                <ul class="second-group-body" data-pc-shared>
+                    {{each $value.sub as subItem}}
+                    <li class="second-nav-item" data-id="{{subItem.id}}" data-pc-shared>
+                        <a href="javascript:;" data-id="{{subItem.id}}" data-title="{{subItem.title}}" data-href="{{subItem.url}}" class="" target="_self" data-pc-shared>{{subItem.title}}</a>
+                    </li>
+                    {{/each}}
+                </ul>
+            </li>
+            {{else}}
+            <li class="second-nav-item" data-id="{{$value.id}}" data-pc-shared style="height:{{ $value | calculateSubNavMaxHeight}}">
+                <a href="javascript:;" class="" data-id="{{$value.id}}" data-title="{{$value.title}}" data-href="{{$value.url}}" target="_self" data-pc-shared>{{$value.title}}</a>
+            </li>
+            {{/if}}
+            {{/each}}
+            <div class="has-more-indicator" data-pc-shared></div>
+        </ul>
+    </nav>
+</script>
+<!--二级导航的悬浮模版-->
+<script type="text/html" id="tpl_secondSlidebarHover">
+    <nav role="sub"  data-id="{{id}}" id="shared-second-sidebar-hover" class="shared-second-sidebar" data-pc-shared style="display: flex">
+        <h2 class="second-sidebar-title" data-pc-shared>{{title}}</h2>
+        <ul class="shared-second-sidebar-nav" data-pc-shared style="visibility: visible;">
+            {{each list}}
+            {{if $value.sub.length > 0}}
+            <li class="second-group-nav {{$value.collaps == '1'?'collapsed':''}}" data-pc-shared style="height:{{ $value | calculateSubNavMaxHeight}}">
+                <div class="second-group-title" data-pc-shared>
+                    {{if $value.sub.length > 0}}
+                    {{if $value.collaps == '1'}}
+                    <i class="dashboard-arrow-icon" data-pc-shared></i>
+                    {{else}}
+                    <i class="dashboard-arrow-icon" data-pc-shared></i>
+                    {{/if}}
+                    {{/if}}
+                    {{$value.title}}
+                </div>
+                <ul class="second-group-body" data-pc-shared>
+                    {{each $value.sub as subItem}}
+                    <li class="second-nav-item" data-id="{{subItem.id}}" data-pc-shared>
+                        <a href="javascript:;" data-id="{{subItem.id}}" data-title="{{subItem.title}}" data-href="{{subItem.url}}" class="" target="_self" data-pc-shared>{{subItem.title}}</a>
+                    </li>
+                    {{/each}}
+                </ul>
+            </li>
+            {{else}}
+            <li class="second-nav-item" data-id="{{$value.id}}" data-pc-shared style="height:{{ $value | calculateSubNavMaxHeight}}">
+                <a href="javascript:;" class="" data-id="{{$value.id}}" data-title="{{$value.title}}" data-href="{{$value.url}}" target="_self" data-pc-shared>{{$value.title}}</a>
+            </li>
+            {{/if}}
+            {{/each}}
+            <div class="has-more-indicator" data-pc-shared></div>
+        </ul>
+    </nav>
+</script>
+<script>
+    //面包屑对象数组实例
+    /*
+     {
+     isLink:'1',
+     url:'goodsStoreManage/goodsManage.html',
+     title:'商品管理'
+     },
+     {
+     isLink:'0',
+     url:'goodsStoreManage/goodsClassify.html',
+     title:'商品分类'
+     }
+     * */
+    var bread_crumbs = [];//面包屑导航数组,实例
+    //渲染面包屑导航
+    function renderBreadCrumbs(data) {
+        var html = template("tpl_breadCrumbs",data);
+//        console.log(data);
+        $("#header-bread-crumbs").html(html);
+
+    }
+    $(function () {
+        function getQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var reg_rewrite = new RegExp("(^|/)" + name + "/([^/]*)(/|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+            var q = window.location.pathname.substr(1).match(reg_rewrite);
+            if(r != null){
+                return unescape(r[2]);
+            }else if(q != null){
+                return unescape(q[2]);
+            }else{
+                return null;
+            }
+        }
+
+        //渲染用户信息
+        if (localStorage.getItem('userInfo')){
+            var userInfo = JSON.parse(localStorage.getItem('userInfo'));
+            $("#username").html(userInfo.username);
+        }
+        //退出登录
+        $("#logout").click(function () {
+            layer.confirm('确定要退出登录吗？', {
+                btn: ['取消','确定'], //按钮
+                shade: false //不显示遮罩
+            }, function(inds){
+                //点击取消
+                layer.close(inds);
+            }, function(ind){
+                //点击确定
+                layer.close(ind);
+                $.Ajax({
+                    url:api.adminLogout,
+                    is_login:true,
+                    success:function(res){
+                        if(res.code == 1){
+                            localStorage.removeItem('userInfo');
+                            localStorage.removeItem(Config.VLSAuthToken);
+                            window.location.href = './login.html'
+                        }
+                    }
+                })
+
+            })
+        });
+        // 修改密码
+        $("#setPassword").click(function () {
+            //清空原来的历史
+            $("#setPasswordModal input").val("");
+            $("#setPasswordModal").modal("show");
+        });
+        // 修改密码提交
+        $("#set-password-btn").click(function () {
+            //清空原来的历史
+           var old_password = $("#old-pass").val();
+           var new_password = $("#new-pass").val();
+           var confirm_password = $("#re-pass").val();
+           $.Ajax({
+               url:api.changePassword   ,
+               is_login:true,
+               data:{
+                   old_password:old_password,
+                   new_password:new_password,
+                   confirm_password:confirm_password
+               },
+               success:function (res) {
+                   if (res.code == 1){
+                       layer.msg("修改成功");
+                       $("#setPasswordModal").modal("hide");
+                       localStorage.removeItem('userInfo');
+                       localStorage.removeItem(Config.VLSAuthToken);
+                       window.location.href = './login.html'
+                   }else {
+                       layer.msg(res.result.msg);
+                   }
+               },
+               fail:function (res) {
+                   layer.msg(res.result.msg);
+               }
+           })
+        });
+        function GetUrlByParamName(name)
+        {
+            var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+            var URL =  decodeURI(window.location.search);
+            var r = URL.substr(1).match(reg);
+            if(r!=null){
+                //decodeURI() 函数可对 encodeURI() 函数编码过的 URI 进行解码
+                return  decodeURI(r[2]);
+                // console.log(decodeURI(r[2]));
+            };
+            return null;
+        };
+        var second_slidebar_id;//当前二级菜单的id
+        var second_slidebar_id_hover;//悬浮二级菜单的ID
+        var secondSideBarData;//二级菜单数据缓存
+        //如果是编辑页面，获取页面参数
+        var id = getQueryString("id") || '';
+        var type = getQueryString("type") || '';
+        var target_url = getQueryString("target_url") || '';
+        var target_title = GetUrlByParamName("target_title") || '';
+        var first_slidebar_id = getQueryString("first_slidebar_id") || '';
+        var receive_second_slidebar_id = getQueryString("second_slidebar_id") || '';
+
+//        console.log(type);
+//        console.log(target);
+//        console.log(id);
+//        console.log(first_sidebar_id);
+//        console.log(second_sidebar_id);
+        var edit_open_options = {
+            id:id,
+            target_url:target_url,
+            target_title:target_title,
+            first_slidebar_id:first_slidebar_id,
+            second_slidebar_id:receive_second_slidebar_id
+        };
+//        console.log(edit_open_options);
+        //编辑状态下重新整理导航
+        function editFormatRenderSlideBar(options) {
+            //渲染一级导航
+            $(".first-sidebar-nav-item").removeClass("active");
+            $('.first-sidebar-nav-item[data-id="'+options.first_slidebar_id+'"]').addClass("active");
+            var tag = $('.first-sidebar-nav-item[data-id="'+options.first_slidebar_id+'"]').attr("data-tag");
+//            console.log(tag);
+            $('.first-sidebar-nav-item[data-id="'+options.first_slidebar_id+'"]').find(".iconfont").removeClass('icon-'+tag+'_normal');
+//            console.log($('.first-sidebar-nav-item[data-id="'+options.first_slidebar_id+'"]').find(".iconfont"));
+            $('.first-sidebar-nav-item[data-id="'+options.first_slidebar_id+'"]').find(".iconfont").addClass('icon-'+tag+'_selected');
+            //渲染二级导航
+            //清空原来的二级菜单
+            $("#shared-second-sidebar").remove();
+            var receive_second_slidebar_id = edit_open_options.first_slidebar_id;
+            if ($('.first-sidebar-nav-item[data-id="'+receive_second_slidebar_id+'"]').attr("data-sub")=='1'){
+                $("body").removeClass("without-second-sidebar");
+                var secondSlidebar_html = template("tpl_secondSlidebar",secondSideBarData[receive_second_slidebar_id]);
+                $("#shared-sidebar").append(secondSlidebar_html);
+                //初始化二级菜单的下拉三角状态
+                initSecondSlideBarStatus('.shared-second-sidebar[data-id="'+receive_second_slidebar_id+'"]');
+                renderSecondSlideBarFirstItem('.shared-second-sidebar[data-id="'+receive_second_slidebar_id+'"]');
+                //增加事件监听
+                $("#shared-second-sidebar").find(".shared-second-sidebar-nav").unbind("scroll",currentSecondSlideOnScroll);
+                $("#shared-second-sidebar").find(".shared-second-sidebar-nav").bind("scroll",currentSecondSlideOnScroll);
+            }else {
+                $("body").addClass("without-second-sidebar");
+            }
+            $(".second-nav-item").removeClass("active");
+            $('.second-nav-item[data-id="'+options.second_slidebar_id+'"]').addClass("active");
+            if ($('.second-nav-item[data-id="'+options.second_slidebar_id+'"]').parents(".second-group-body").length > 0){
+                //说明是二级导航下的菜单项
+                $parents = $('.second-nav-item[data-id="'+options.second_slidebar_id+'"]').parents(".second-group-nav");
+                if ($parents.hasClass("collapsed")){
+                    //如果之前是关闭的，需要打开
+                    $parents.removeClass("collapsed");
+                    //重新结算父节点的高度
+                    var reset_height = $parents.find(".second-nav-item").length * 40 + 40;
+                    $parents.css("height",reset_height+'px');
+                    $parents.transitionEnd(function() {
+//                    $(this).remove();
+                        initSecondSlideBarStatus('.shared-second-sidebar[data-id="'+second_slidebar_id+'"]');
+                    });
+                }else{
+                    //说明之前就是打开的
+                }
+            }else {
+                //说明是单独的二级菜单项
+            }
+            //处理iframe内容
+            $("#app_iframe").attr("src",options.target_url+'?id='+options.id);
+            //处理面包屑导航
+            var back_title = $('.second-nav-item[data-id="'+options.second_slidebar_id+'"]').find("a").attr("data-title");
+            var back_url = $('.second-nav-item[data-id="'+options.second_slidebar_id+'"]').find("a").attr("data-href");
+            var current_title = $('.second-nav-item[data-id="'+options.second_slidebar_id+'"]').find("a").attr("data-title");
+            var current_url = $('.second-nav-item[data-id="'+options.second_slidebar_id+'"]').find("a").attr("data-href");
+            bread_crumbs[0] = {
+                isLink:'1',
+                title:back_title,
+                url:back_url
+            };
+            bread_crumbs[1] = {
+                isLink:'0',
+                title:options.target_title,
+                url:options.target_url
+            };
+            renderBreadCrumbs(bread_crumbs);
+        }
+        //面包屑导航的点击事件处理
+        $(document).on("click",".bread-crumb-item.link",function () {
+            var index = $(this).index();
+//            console.log(index);
+            var url = $(this).attr("data-url");
+            $("#app_iframe").attr("src",url);
+            bread_crumbs.splice(index + 1,bread_crumbs.length-1);
+            if (bread_crumbs.length == 1){
+                //只有一项，修改isLink属性
+                bread_crumbs[0].isLink = '0';
+            }
+            renderBreadCrumbs(bread_crumbs);
+        });
+        //下拉三角的显示
+        function initSecondSlideBarStatus(ele) {
+            var $ele = $(ele);
+//            console.log($ele);
+            var second_sidebar_nav_height = $ele.find(".shared-second-sidebar-nav").height();
+//            console.log(second_sidebar_nav_height);
+            var second_sidebar_nav_li_height = 0;
+            $ele.find(".shared-second-sidebar-nav .second-group-nav").map(function () {
+                second_sidebar_nav_li_height = second_sidebar_nav_li_height + $(this).height();
+            });
+            $ele.find(".shared-second-sidebar-nav").children(".second-nav-item").map(function () {
+                second_sidebar_nav_li_height = second_sidebar_nav_li_height + $(this).height();
+            });
+//            console.log(second_sidebar_nav_li_height);
+            if (second_sidebar_nav_li_height > second_sidebar_nav_height){
+//                console.log("显示")
+                //二级菜单需要显示下拉三角
+//                console.log($ele.find(".has-more-indicator"));
+                $ele.find(".has-more-indicator").addClass("visible");
+            }else {
+                //隐藏二级菜单的下拉三家
+//                console.log("隐藏")
+                $ele.find(".has-more-indicator").removeClass("visible");
+            }
+
+        };
+        function renderSecondSlideBarFirstItem(ele) {
+            var $ele = $(ele);
+            //初始化菜单项目第一个状态
+            var first_slideItem = $ele.find(".shared-second-sidebar-nav>li:first-child");
+            if (first_slideItem.hasClass("second-nav-item")){
+                //第一项没有子项目
+                first_slideItem.addClass("active");
+            }else {
+                //有子项目，给第一子项目加active
+                first_slideItem.find(".second-group-body .second-nav-item:first-child").addClass("active");
+            }
+        }
+        //当前二级导航的滚动事件
+        function currentSecondSlideOnScroll() {
+//            console.log("我滚动了吗");
+            var $this = $("#shared-sidebar").find(".shared-second-sidebar .shared-second-sidebar-nav");
+            var second_sidebar_nav_height = $this.height();//二级导航盒子的高度：shared-second-sidebar-nav
+            var second_sidebar_nav_li_height = 0;//要计算的实际的高度
+            $this.find(".second-group-nav").map(function () {
+                second_sidebar_nav_li_height = second_sidebar_nav_li_height + $(this).height();
+            });
+            $this.children(".second-nav-item").map(function () {
+                second_sidebar_nav_li_height = second_sidebar_nav_li_height + $(this).height();
+            });
+//            console.log(second_sidebar_nav_height);
+//            console.log(second_sidebar_nav_li_height);
+            if ($this.scrollTop() + second_sidebar_nav_height >= second_sidebar_nav_li_height){
+//                console.log("我没有执行吗")
+                $this.find(".has-more-indicator").removeClass("visible");
+            }else {
+//                console.log($this.scrollTop());
+//                console.log("我滚动了吗");
+                $this.find(".has-more-indicator").addClass("visible");
+            }
+        }
+        //悬浮二级导航的滚动事件
+        function hoverSecondSlideOnScroll() {
+            var $this = $("#shared-second-sidebar-hover").find(".shared-second-sidebar-nav");
+            var second_sidebar_nav_height = $this.height();//二级导航盒子的高度：shared-second-sidebar-nav
+            var second_sidebar_nav_li_height = 0;//要计算的实际的高度
+            $this.find(".second-group-nav").map(function () {
+                second_sidebar_nav_li_height = second_sidebar_nav_li_height + $(this).height();
+            });
+            $this.children(".second-nav-item").map(function () {
+                second_sidebar_nav_li_height = second_sidebar_nav_li_height + $(this).height();
+            });
+//            console.log(second_sidebar_nav_height);
+//            console.log(second_sidebar_nav_li_height);
+            if ($this.scrollTop() + second_sidebar_nav_height >= second_sidebar_nav_li_height){
+//                console.log("我没有执行吗")
+                $this.find(".has-more-indicator").removeClass("visible");
+            }else {
+//                console.log($this.scrollTop());
+//                console.log("我滚动了吗");
+                $this.find(".has-more-indicator").addClass("visible");
+            }
+        }
+        //二级菜单三角号的点击事件
+        $(document).on("click",".has-more-indicator",function () {
+            var $parents = $(this).parents('.shared-second-sidebar-nav');
+            var second_sidebar_nav_height = $parents.height();
+            var second_sidebar_nav_li_height = 0;
+            $parents.find(".second-group-nav").map(function () {
+                second_sidebar_nav_li_height = second_sidebar_nav_li_height + $(this).height();
+            });
+            $parents.children(".second-nav-item").map(function () {
+                second_sidebar_nav_li_height = second_sidebar_nav_li_height + $(this).height();
+            });
+//            console.log(second_sidebar_nav_li_height - second_sidebar_nav_height);
+            $parents.animate({
+                scrollTop:second_sidebar_nav_li_height - second_sidebar_nav_height + 40
+            });
+            $(this).removeClass("visible");
+        });
+        //计算app-container的高度
+
+        $("#app-container").css("height",$(window).height()- 56 + 'px');
+        //获取菜单项
+        $.Ajax({
+            url:api.menuIndex,
+            is_login:true,
+            success:function (res) {
+                if (res.code == 1){
+                    //渲染app_iframe的内容
+                    $("#app_iframe").attr("src",res.result.main[0].default.url);
+                    //渲染面包屑导航
+                    bread_crumbs[0] = {
+                        isLink:'0',
+                        title:res.result.main[0].default.title,
+                        url:res.result.main[0].default.url
+                    };
+                    renderBreadCrumbs(bread_crumbs);
+                    second_slidebar_id = res.result.main[0].id;
+                    var fisetSideBarHtml = template("tpl_firstSidebar",res.result.main);
+                    secondSideBarData = res.result.sub;
+                    $("#shared-first-sidebar-nav").html(fisetSideBarHtml);
+                    $('.first-sidebar-nav-item[data-id="'+second_slidebar_id+'"]').addClass("active");
+                    $('.first-sidebar-nav-item[data-id="'+second_slidebar_id+'"]').siblings().removeClass("active");
+                    //渲染二级菜单
+                    if ($('.first-sidebar-nav-item[data-id="'+second_slidebar_id+'"]').attr("data-sub")=='1'){
+                        $("body").removeClass("without-second-sidebar");
+                        var secondSlidebar_html = template("tpl_secondSlidebar",secondSideBarData[second_slidebar_id]);
+                        $("#shared-sidebar").append(secondSlidebar_html);
+                        //初始化二级菜单的下拉三角状态
+                        initSecondSlideBarStatus('.shared-second-sidebar[data-id="'+second_slidebar_id+'"]');
+                        renderSecondSlideBarFirstItem('.shared-second-sidebar[data-id="'+second_slidebar_id+'"]');
+                        //增加事件监听
+                        $("#shared-second-sidebar").find(".shared-second-sidebar-nav").bind("scroll",currentSecondSlideOnScroll);
+                    }else {
+                        $("body").addClass("without-second-sidebar");
+                    }
+                    //一级菜单鼠标悬浮处理
+                    $(".first-sidebar-nav-item").hover(function(){
+                        second_slidebar_id_hover = $(this).data("id");
+                        if (!$(this).hasClass("active")){
+                            //需要切换二级菜单的内容
+                            if($(this).attr("data-sub") == '1'){
+                                $(".hover-second-slide").css("display","block");
+                                //渲染悬浮二级导航
+                                var secondSlidebar_html = template("tpl_secondSlidebarHover",secondSideBarData[second_slidebar_id_hover]);
+                                $(".hover-second-slide").html(secondSlidebar_html);
+                                //添加事件监听
+                                $("#shared-second-sidebar-hover").find(".shared-second-sidebar-nav").bind("scroll",hoverSecondSlideOnScroll);
+                                $(".hover-second-slide").css("background-color","#FFF");
+//                    console.log($('.hover-second-slide .shared-second-sidebar[data-id="'+second_slidebar_id_hover+'"]'));
+                                initSecondSlideBarStatus('.hover-second-slide .shared-second-sidebar[data-id="'+second_slidebar_id_hover+'"]');
+                                renderSecondSlideBarFirstItem('.hover-second-slide .shared-second-sidebar[data-id="'+second_slidebar_id_hover+'"]');
+                                //渲染二级菜单的默认页面（默认是列表的第一项）
+                                $(this).addClass("hover");
+                                $(this).siblings().removeClass("hover");
+                            }else {
+                                //悬浮的一级菜单没有二级导航
+                                //清除之前的事件绑定
+                                $("#shared-second-sidebar-hover").find(".shared-second-sidebar-nav").unbind("scroll",hoverSecondSlideOnScroll);
+                                //清空悬浮二级导航的内容
+                                $(".hover-second-slide").html('');
+                                $(".hover-second-slide").css("display","none");
+                                $('.first-sidebar-nav-item').removeClass("hover");
+                            }
+                        }else {
+                            //悬浮处是一级菜单的选中项目
+                            $(".hover-second-slide").html('');
+                            $(".hover-second-slide").css("display","none");
+                            second_slidebar_id_hover = '';
+                            $('.first-sidebar-nav-item').removeClass("hover");
+                        }
+                    },function(){
+                        //二级菜单的悬浮
+                        $('.hover-second-slide .shared-second-sidebar').hover(function () {
+                        },function () {
+                            //清除事件绑定
+                            $("#shared-second-sidebar-hover").find(".shared-second-sidebar-nav").unbind("scroll",hoverSecondSlideOnScroll);
+                            $(".hover-second-slide").html('');
+                            $(".hover-second-slide").css("display","none");
+                            $('.first-sidebar-nav-item[data-id="'+second_slidebar_id_hover+'"]').removeClass("hover");
+                            second_slidebar_id_hover = '';
+                        })
+                    });
+                    if(type == 'edit'){
+                        console.log("我没有执行吗")
+                        editFormatRenderSlideBar(edit_open_options);
+//                        second_slidebar_id = first_sidebar_id;
+//                        var fisetSideBarHtml = template("tpl_firstSidebar_edit",{
+//                            data:res.result.main,
+//                            selected_id:first_sidebar_id
+//                        });
+//                        secondSideBarData = res.result.sub;
+//                        $("#shared-first-sidebar-nav").html(fisetSideBarHtml);
+//                        $('.first-sidebar-nav-item[data-id="'+second_slidebar_id+'"]').addClass("active");
+//                        $('.first-sidebar-nav-item[data-id="'+second_slidebar_id+'"]').siblings().removeClass("active");
+                    }
+
+                }
+            }
+        })
+        //点击一级菜单
+        $(document).on("click",".first-sidebar-nav-item",function () {
+            var data_id = $(this).attr("data-id");
+            var data_tag = $(this).attr("data-tag");
+            var front_tag = $(".first-sidebar-nav-item.active").attr("data-tag");
+            //切换原来选中的图标样式
+            var front_selected = $(".first-sidebar-nav-item.active");
+            front_selected.find(".iconfont").removeClass("icon-"+front_tag+'_selected');
+            front_selected.find(".iconfont").addClass("icon-"+front_tag+'_normal');
+            $(this).removeClass("hover");
+            //切换选中元素的图标样式
+            $(this).find(".iconfont").removeClass("icon-"+data_tag+'_normal');
+            $(this).find(".iconfont").addClass("icon-"+data_tag+'_selected');
+
+            $(this).addClass("active");
+            $(this).siblings().removeClass("active");
+            $(this).siblings().removeClass("active");
+
+            var data_url = $(this).attr("data-url");
+            var data_title = $(this).attr("data-title");
+//            console.log(data_title);
+            //将iframe的内容切换
+            $("#app_iframe").attr("src",data_url);
+            second_slidebar_id = data_id;
+            bread_crumbs.splice(1,1);
+            bread_crumbs[0] = {
+                isLink:'0',
+                title:data_title,
+                url:data_url
+            };
+            renderBreadCrumbs(bread_crumbs);
+            if($("#shared-second-sidebar").length > 0){
+                //移除之前的事件监听
+                $("#shared-second-sidebar").find(".shared-second-sidebar-nav").unbind("scroll",currentSecondSlideOnScroll);
+                $("#shared-second-sidebar").remove();//移除之前的二级导航
+            }
+            //存在二级悬浮导航
+            if($("#shared-second-sidebar-hover").length > 0){
+                //清除事件监听
+                $("#shared-second-sidebar-hover").find(".shared-second-sidebar-nav").unbind("scroll",hoverSecondSlideOnScroll);
+                //清除悬浮二级菜单的内容
+                $(".hover-second-slide").html('');
+                $(".hover-second-slide").css("display","none");
+                second_slidebar_id_hover = '';
+            }
+            $('.first-sidebar-nav-item').removeClass("hover");
+            //当前点击的一级菜单项存在二级菜单
+            if ($('.first-sidebar-nav-item[data-id="'+second_slidebar_id+'"]').attr("data-sub")=='1'){
+                $("body").removeClass("without-second-sidebar");
+                //重新渲染新的二级菜单
+                var secondSlidebar_html = template("tpl_secondSlidebar",secondSideBarData[second_slidebar_id]);
+                $("#shared-sidebar").append(secondSlidebar_html);
+                initSecondSlideBarStatus('#shared-second-sidebar');
+                renderSecondSlideBarFirstItem('#shared-second-sidebar');
+                //重新增加事件监听
+                $("#shared-second-sidebar").find(".shared-second-sidebar-nav").bind("scroll",currentSecondSlideOnScroll);
+            }else {
+                $("body").addClass("without-second-sidebar");
+
+            }
+        });
+
+
+
+        //点击二级菜单的菜单，项目的折叠动画
+        $(document).on("click",".second-group-title",function () {
+            var $parents = $(this).parents(".second-group-nav");
+
+            if ($parents.hasClass("collapsed")){
+                //菜单处于折叠的状态
+                $parents.removeClass("collapsed");
+                //重新结算父节点的高度
+                var reset_height = $parents.find(".second-nav-item").length * 40 + 40;
+                $parents.css("height",reset_height+'px');
+            }else {
+                //菜单处于折叠的状态
+                $parents.addClass("collapsed");
+                $parents.css("height",'40px');
+            }
+            if ($(this).parents(".hover-second-slide").length > 0){
+                //如果点击的是悬浮出来的菜单项
+                initSecondSlideBarStatus('.hover-second-slide .shared-second-sidebar[data-id="'+second_slidebar_id_hover+'"]');
+            }else {
+//                console.log("我走的这里%%%");
+                $parents.transitionEnd(function() {
+//                    $(this).remove();
+                    initSecondSlideBarStatus('.shared-second-sidebar[data-id="'+second_slidebar_id+'"]');
+                });
+//                initSecondSlideBarStatus('.shared-second-sidebar[data-id="'+second_slidebar_id+'"]');
+            }
+
+        });
+        //点击二级菜单项
+        $(document).on("click",".second-nav-item a",function () {
+            var data_href = $(this).attr("data-href");
+            var data_id = $(this).attr("data-id");
+            var data_title = $(this).attr("data-title");
+//            console.log(data_title);
+//            console.log(data_id);
+            //将iframe的内容切换
+            $("#app_iframe").attr("src",data_href);
+            bread_crumbs.splice(1,1);
+            bread_crumbs[0] = {
+                isLink:false,
+                title:data_title,
+                url:data_href
+            };
+            renderBreadCrumbs(bread_crumbs);
+            //存在二级悬浮导航,则点击的是悬浮的二级导航的二级菜单项
+            if($("#shared-second-sidebar-hover").length > 0){
+                var first_slidebar_id = $("#shared-second-sidebar-hover").attr("data-id");
+                //替换当前二级菜单的id
+                second_slidebar_id = first_slidebar_id;
+                $(".first-sidebar-nav-item").removeClass("active");
+                $(".first-sidebar-nav-item").removeClass("hover");
+                $('.first-sidebar-nav-item[data-id="'+first_slidebar_id+'"]').addClass("active");
+                //清除事件监听
+                $("#shared-second-sidebar-hover").find(".shared-second-sidebar-nav").unbind("scroll",hoverSecondSlideOnScroll);
+                //清除悬浮二级菜单的内容
+                $(".hover-second-slide").html('');
+                $(".hover-second-slide").css("display","none");
+                second_slidebar_id_hover = '';
+                //移除之前的二级菜单
+                if($("#shared-second-sidebar").length > 0){
+                    //移除之前的事件监听
+                    $("#shared-second-sidebar").find(".shared-second-sidebar-nav").unbind("scroll",currentSecondSlideOnScroll);
+                    $("#shared-second-sidebar").remove();//移除之前的二级导航
+                }
+                $("body").removeClass("without-second-sidebar");
+                //重新渲染新的二级菜单
+                var secondSlidebar_html = template("tpl_secondSlidebar",secondSideBarData[second_slidebar_id]);
+                $("#shared-sidebar").append(secondSlidebar_html);
+                //如果父级标签是合并的，要展开
+                var parent_second_group_nav = $('.second-nav-item[data-id="'+data_id+'"]').parents(".second-group-nav");
+                if (parent_second_group_nav.hasClass("collapsed")){
+                    parent_second_group_nav.removeClass("collapsed");
+                }
+                initSecondSlideBarStatus('#shared-second-sidebar');
+                renderSecondSlideBarFirstItem('#shared-second-sidebar');
+                //重新增加事件监听
+                $("#shared-second-sidebar").find(".shared-second-sidebar-nav").bind("scroll",currentSecondSlideOnScroll);
+                $('.second-nav-item').removeClass("active");
+                $('.second-nav-item[data-id="'+data_id+'"]').addClass("active");
+
+            }else {
+                //点击的是当前的二级导航的菜单项
+                $('.second-nav-item').removeClass("active");
+                $('.second-nav-item[data-id="'+data_id+'"]').addClass("active");
+                //如果父级标签是合并的，要展开
+                var parent_second_group_nav = $('.second-nav-item[data-id="'+data_id+'"]').parents(".second-group-nav");
+                if (parent_second_group_nav.hasClass("collapsed")){
+                    parent_second_group_nav.removeClass("collapsed");
+                }
+                initSecondSlideBarStatus('#shared-second-sidebar');
+            }
+        });
+
+    })
+</script>
+</body>
+</html>

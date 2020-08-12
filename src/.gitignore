@@ -1,0 +1,4 @@
+/config/config.js
+/grunt/package-lock.json
+/grunt/node_modules
+/grunt/bulid.config.json

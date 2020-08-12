@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> - 登录</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <link rel="stylesheet" href="css/dependencies.min.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/main.css">
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+    <!--<script>if(window.top !== window.self){ window.top.location = window.location;}</script>-->
+    <style>
+        .gray-bg{
+            background-image: url("./img/bg.jpg");
+            background-size: 100%;
+        }
+        .logo-avatar{
+            width: 100px;
+            height: 100px;
+            margin: 0 auto;
+        }
+        .middle-box{
+            padding-top: 80px;
+        }
+        .title-name{
+            color: #fff;
+            font-size: 18px;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body class="gray-bg">
+<!--登录内容-->
+<div class="middle-box text-center loginscreen  animated fadeInDown">
+
+    <div>
+        <div style="margin-bottom: 20px">
+            <img src="./img/jiayishou_2.png" class="logo-avatar"/>
+        </div>
+        <h3 class="title-name">欢迎使用 城市合伙人后台管理系统</h3>
+        <form class="m-t" role="form" action="index.html">
+            <div class="form-group">
+                <input type="text" class="form-control"  id="name" placeholder="用户名" required="">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" id="password" placeholder="密码" required="">
+            </div>
+            <button type="button" class="btn btn-primary block full-width m-b" id="login-btn">登 录</button>
+            <!--<p class="text-muted text-center"> <a href="login.html#"><small class="name">忘记密码了？</small></a> | <a href="register.html" class="name">注册一个新账号</a>-->
+            <!--</p>-->
+        </form>
+    </div>
+</div>
+
+<!-- 全局js -->
+<script src="js/dependencies.min.js"></script>
+<script src="js/pettyb.min.js"></script>
+<script src="config/api.config.js"></script>
+<script>
+    function keyup_submit(e) {
+        var evt = window.event || e;
+        if (evt.keyCode == 13){
+            //回车事件
+            $.UserLogin({
+                'username':$("#name").val(),
+                'password':$("#password").val()
+            },function(res) {
+                //console.log(res);
+                layer.msg(res.result.msg);
+                if(res.code == 1){
+                    var userInfo = res.result.admin;
+                    localStorage.setItem("userInfo",JSON.stringify(userInfo));
+                    layer.msg('登录成功');
+                    setTimeout(function () {
+                        window.location.href = './index.html';
+                    },500)
+
+                }
+            },function(res) {
+                layer.msg(res.result.msg);
+            });
+        }
+
+    }
+    $(function () {
+        // 回车搜索
+        $(document).on("keydown",function () {
+            keyup_submit(event);
+        });
+        $("#login-btn").click(function () {
+            $.UserLogin({
+                'username':$("#name").val(),
+                'password':$("#password").val()
+            },function(res) {
+                //console.log(res);
+                layer.msg(res.result.msg);
+                if(res.code == 1){
+                    var userInfo = res.result.admin;
+                    localStorage.setItem("userInfo",JSON.stringify(userInfo));
+                    layer.msg('登录成功');
+                    setTimeout(function () {
+                        window.location.href = './index.html';
+                    },500)
+
+                }
+            },function(res) {
+                layer.msg(res.result.msg);
+            });
+        })
+
+    })
+</script>
+</body>
+
+</html>

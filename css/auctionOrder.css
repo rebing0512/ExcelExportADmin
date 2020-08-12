@@ -1,0 +1,74 @@
+/*tabs导航样式*/
+.orderState {
+    padding: 0 15px;
+    display: flex;
+    justify-content: flex-start;
+    margin: 15px 0;
+    position: relative;
+}
+.orderState:after{
+    position: absolute;
+    content: "";
+    left: 15px;
+    right: 15px;
+    bottom: 0;
+    height: 1px;
+    background-color: #ebedf0;
+}
+.nav.nav-tabs li{
+    color: #646566;
+    color: var(--theme-stroke-2,#646566);
+    background-color: #f7f8fa;
+    background-color: var(--theme-stroke-8,#f7f8fa);
+    display: inline-block;
+    cursor: pointer;
+    border-top: 1px solid #ebedf0;
+    border-top-color: var(--theme-stroke-6,#ebedf0);
+    border-right: 1px solid #ebedf0;
+    border-right-color: var(--theme-stroke-6,#ebedf0);
+}
+.nav-tabs>li>a {
+    background-color: #f7f8fa;
+    color: rgb(100,101,102);
+    font-weight: normal;
+    border-radius: 0;
+    margin-right: 0;
+    border:none;
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus{
+    border: none;
+}
+.nav-tabs{
+    border: none;
+}
+.nav-tabs>li{
+    margin-bottom: 0;
+    position: relative;
+}
+.nav-tabs>li>a:hover, .nav-tabs>li>a:focus{
+    background-color: #f7f8fa;
+    color: #323233;
+}
+.nav-tabs>li>a:hover {
+    border: none;
+}
+.nav-tabs>li:first-child {
+    border: 1px solid #ebedf0;
+    border-color: var(--theme-stroke-6,#ebedf0);
+    border-bottom: 0;
+    border-top-left-radius: 4px;
+}
+.nav-tabs>li.active{
+    background-color: #fff;
+}
+.nav-tabs>li.active:after{
+    position: absolute;
+    content: "";
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background-color: #fff;
+    z-index: 99;
+}
+/*tabs导航样式*/

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>文章编辑</title>
+    <link rel="stylesheet" href="../../css/dependencies.min.css">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/pageTopBar.css">
+    <link rel="stylesheet" href="../../css/upload.min.css">
+    <link rel="stylesheet" href="../../css/selectmenu.css">
+    <link rel="stylesheet" href="../../css/goodsRelease.css">
+    <link rel="stylesheet" href="../../css/diy.min.css">
+    <style>
+        #phone-main{
+            margin-top: 10px;
+            padding: 20px 0;
+        }
+        .diy-img{
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+<script src="../../js/dependencies.min.js"></script>
+<script src="../../js/pettyb.min.js"></script>
+<script src="../../config/api.config.js"></script>
+<script src="../../js/upload.min.js"></script>
+<script src="../../js/selectmenu.js"></script>
+<script src="../../js/diy.min.js"></script>
+
+<div class="test1" data-debug="111"></div>
+<!-----------------------------
+主体框架信息
+------------------------------>
+<script id="tpl_diy_pettybEdit" type="text/template">
+    <div class="diy-phone">
+        <div class="phone-top {{if isIndex}}index{{/if}}" id="pageBaseTitle">
+            {{if pagebase && pagebase.params.title}}
+            {{pagebase.params.title}}
+            {{else}}
+            {{title}}
+            {{/if}}
+        </div>
+        <div id="phone-main" class="phone-main"></div>
+    </div>
+
+
+    {{if hasPageBase}}
+    <div id="diy-pagebase" class="diy-menu">
+        <div class="navs">
+            <div id="{{pageBaseId}}">
+                <div class="title">{{pageBaseTtile}}</div>
+            </div>
+        </div>
+
+        <div class="goodsContent">
+            <div class="messageItem">
+                <div class="control"><i class="xing">*</i>文章分类：</div>
+                <div class="formControls smallInput"><input type="text" name="class_id" class="start_price btnAdvert" value="{{ pagebase.params.className }}" data-id="{{pagebase.params.class_id}}"></div>
+            </div>
+            <div class="messageItem">
+                <div class="control"><i class="xing">*</i>标题：</div>
+                <div class="formControls"><input type="text" name="title" class="title" value="{{pagebase.params.title}}"  data-default="{{ pagebase.defaults?pagebase.defaults.explain:'' }}"></div>
+            </div>
+            <div class="messageItem">
+                <div class="control"><i class="xing">*</i>简介：</div>
+                <div class="formControls"><input type="text" name="brief" class="brief" value="{{pagebase.params.brief}}"  data-default="{{ pagebase.defaults?pagebase.defaults.brief:'' }}"></div>
+            </div>
+            <div class="messageItem">
+                <div class="control"><i class="xing">*</i>阅读数：</div>
+                <div class="formControls smallInput"><input  type="number" name="number" class="start_price" id="readCount" value="{{pagebase.params.number}}"  data-default="{{ pagebase.defaults?pagebase.defaults.number:'' }}"></div>
+            </div>
+            <div class="messageItem">
+                <div class="control"><i class="xing">*</i>封面图：</div>
+                <div class="pictureList">
+                    <div class="case">
+                        <div class="pettyb upload" data-value='{{pagebase.params.image}}' data-num="1" id='mainUpload'></div>
+                    </div>
+                    <div class="help-block" style="margin-left: 0px">建议尺寸：800*800像素，你可以拖拽图片调整顺序，最多上传1张</div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    {{/if}}
+
+    <div id="diy-menu" class="diy-menu">
+        <div class="navs">
+            <div id="{{menuNavsId}}">
+                <div class="title">{{menuNavsTtile}}</div>
+                <div id="components">
+                    {{each components }}
+                    <nav class="special" data-type="{{$index}}">{{$value}}</nav>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+        <div class="action clearfix">
+            <div class="actionButton">
+                <button id="{{menuActionModeSwitch}}" type="button">{{menuActionModeSwitchTitle}}</button>
+                <button id="{{menuActionButtonId}}" type="button" class="menuActionButton">{{menuActionButtonTitle}}</button>
+            </div>
+            <span class="actiontip" id="{{menuActionButtonId}}Tip">当前为：
+             <span>{{modeName}}</span>
+         </span>
+        </div>
+    </div>
+
+    <div id="diy-editor" class="diy-editor form-horizontal">
+        <div class="inner"></div>
+    </div>
+
+</script>
+
+
+
+<!-----------------------------
+显示组件
+------------------------------>
+<!-- diy元素: 文本段落 -->
+<script id="tpl_diy_text" type="text/template">
+    <div class="drag" id="diy-{{ id }}" data-itemid="{{ id }}">
+        <div class="diy-text">
+            <div class="inner">
+                <div class="articleContent">
+                    <div class="articleTitle">{{ params.title }}</div>
+                    <div class="articleInfo">{{ params.content }}</div>
+                </div>
+                <div class="module-text">
+                    {{ params.explain }}
+                </div>
+            </div>
+        </div>
+        <div class="btn-edit-del">
+            <div class="btn-edit">编辑</div>
+            <div class="btn-del">删除</div>
+        </div>
+    </div>
+</script>
+
+<script id="tpl_diy_images" type="text/template">
+    <div class="drag" id="diy-{{ id }}" data-itemid="{{ id }}">
+        <div class="diy-img">
+            <div class="inner">
+                <div class="articleContent">
+                    {{if params.images}}
+                    {{each params.images.value}}
+                    <img  class="pettybImage"  data-imgstate="0" src="../img/image-default.jpg" data-serverid="{{$value}}" width="100%;min-height:20px;"/>
+                    {{/each}}
+                    {{/if}}
+                </div>
+                <div class="module-text">
+                    {{ params.explain }}
+                </div>
+            </div>
+        </div>
+        <div class="btn-edit-del">
+            <div class="btn-edit">编辑</div>
+            <div class="btn-del">删除</div>
+        </div>
+    </div>
+</script>
+
+
+<!-----------------------------
+编辑组件
+------------------------------>
+<script id="tpl_editor_text" type="text/template">
+
+    <div class="sections itemid" data-itemid="{{ id }}">
+        <div class="goodsClassifyTitle">基本信息</div>
+        <div class="goodsContent">
+            <div class="messageItem">
+                <div class="control"><i class="xing">*</i>标题：</div>
+                <div class="formControls"><input type="text" class="title" data-bind="params.title" value="{{ params.title }}"  data-default="{{ defaults.title }}"></div>
+            </div>
+            <div class="messageItem">
+                <div class="control"><i class="xing">*</i>内容：</div>
+                <div class="formTextControls"><textarea class="content" data-bind="params.content"  data-default="{{ defaults.content }}" rows="3">{{ params.content }}</textarea></div>
+            </div>
+        </div>
+
+        <div class="goodsClassifyTitle">模块说明</div>
+        <div class="goodsContent">
+            <div class="messageItem">
+                <div class="control"><i class="xing">*</i>说明：</div>
+                <div class="formControls"><input type="text" class="brief" data-bind="params.explain" value="{{ params.explain }}"  data-default="{{ defaults.explain }}"></div>
+            </div>
+        </div>
+    </div>
+
+</script>
+
+<script id="tpl_editor_images" type="text/template">
+
+    <div class="sections itemid" data-itemid="{{ id }}">
+        <div class="goodsClassifyTitle">基本信息</div>
+        <div class="goodsContent">
+            <div class="pettyb upload" data-num="30" data-value='{{ params.dataValue }}'></div>
+        </div>
+
+        <div class="goodsClassifyTitle">模块说明</div>
+        <div class="goodsContent">
+            <div class="messageItem">
+                <div class="control"><i class="xing">*</i>说明：</div>
+                <div class="formControls"><input type="text" class="brief" data-bind="params.explain" value="{{ params.explain }}"  data-default="{{ defaults.explain }}"></div>
+            </div>
+        </div>
+    </div>
+
+</script>
+<script>
+    $(function () {
+        function getQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var reg_rewrite = new RegExp("(^|/)" + name + "/([^/]*)(/|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+            var q = window.location.pathname.substr(1).match(reg_rewrite);
+            if(r != null){
+                return unescape(r[2]);
+            }else if(q != null){
+                return unescape(q[2]);
+            }else{
+                return null;
+            }
+        }
+        var article_id = getQueryString("id");
+        //文章分类
+        $.Ajax({
+            url: api.articleCategoryLists,
+            is_login:true,
+            data: {
+                choose: 1
+            },
+            success: function (res) {
+                if (res.code == 1){
+                    var Category = res.result.data;
+                    $.Ajax({
+                        url:api.articleInfo + article_id,
+                        is_login:true,
+                        success:function (res) {
+                            console.log(res);
+                            if (res.code == 1){
+                                var title = res.result.data.title;
+                                var brief = res.result.data.brief;
+                                var readCount = res.result.data.read_counts;
+                                var content = JSON.parse(res.result.data.content).data;
+                                var category_id = res.result.data.category_id;
+                                var image = res.result.data.image;
+                                var params = {
+                                    title:title,
+                                    class_id:category_id,
+                                    brief:brief,
+                                    number:readCount,
+                                    image:image
+                                };
+                                var data = {
+                                    pagebase:{},
+                                };
+                                data.pagebase.params = params;
+                                var result = Object.assign({},content,data);
+                                $(".test1").pettybDiyEditor({
+                                    'title':'文章详情',
+                                    'isIndex':false,
+                                    'hasPageBase':true,
+                                    'categorys':Category,
+                                    'data':result,
+                                    submit:function (data) {
+                                        console.log('submit data',data);
+                                        var pagebase = data.data.pagebase;
+                                        var thisData = Object.assign({},data);
+                                        delete thisData.data.pagebase;
+                                        console.log(JSON.stringify(thisData));
+                                        var _content = JSON.stringify(thisData);
+                                        console.log(pagebase);
+                                        //商品名
+                                        var title = pagebase.params.title;
+                                        //商品描述
+                                        var brief = pagebase.params.brief;
+                                        var content = _content;
+                                        var read_counts = pagebase.params.number;
+                                        var category_id = pagebase.params.class_id;
+                                        $.Ajax({
+                                            url:api.articleAddEdit,
+                                            is_login:true,
+                                            data:{
+                                                id:article_id,
+                                                category_id:category_id,
+                                                title:title,
+                                                brief:brief,
+                                                read_counts:read_counts,
+                                                content:content,
+                                                image:pagebase.params.image
+                                            },
+                                            success:function (res) {
+                                                console.log(res);
+                                                if (res.code == 1){
+                                                    layer.msg("修改成功");
+                                                    setTimeout(function () {
+                                                        //处理面包屑导航
+                                                        parent.bread_crumbs[0].isLink = '0';//修改父级页面的可点击状态
+                                                        parent.bread_crumbs.splice(1,1);
+                                                        window.parent.renderBreadCrumbs(parent.bread_crumbs);
+                                                        //修改加载内容页
+                                                        var app_iframe=$("#app_iframe", window.parent.document);
+                                                        console.log(app_iframe);
+                                                        app_iframe.attr('src',"operation/article/articleManage.html");
+                                                    },500)
+                                                }else {
+                                                    layer.msg(res.result.msg)
+                                                }
+
+                                            },
+                                            fail:function (res) {
+                                                layer.msg(res.result.msg)
+                                            }
+                                        })
+                                    }
+                                });
+                            }
+                        }
+                    })
+
+                }
+            }
+
+        });
+    })
+</script>
+</body>
+</html>

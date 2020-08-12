@@ -1,0 +1,12 @@
+/.idea
+/grunt/package-lock.json
+/grunt/node_modules
+/grunt/dist
+/grunt/build
+/js/dependencies.min.js
+/js/pettyb.min.js
+/css/dependencies.min.css
+/css/upload.min.css
+/js/upload.min.js
+/js/diy.min.js
+/css/diy.min.css

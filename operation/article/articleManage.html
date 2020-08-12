@@ -1,0 +1,438 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>文章</title>
+    <link rel="stylesheet" href="../../css/dependencies.min.css">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/pageTopBar.css">
+    <link rel="stylesheet" href="../../css/upload.min.css">
+    <link rel="stylesheet" href="../../css/selectmenu.css">
+    <link rel="stylesheet" href="../../css/goodsManage.css">
+    <link rel="stylesheet" href="../../css/goodsRelease.css">
+
+    <style>
+      .articleTitle {
+          font-size: 16px;
+          font-weight: bold;
+          padding: 10px 0;
+      }
+        .articleBrief {
+            padding: 10px 0;
+
+        }
+
+    </style>
+</head>
+<body class="hide-help">
+<script src="../../js/dependencies.min.js"></script>
+<script src="../../js/pettyb.min.js"></script>
+<script src="../../config/api.config.js"></script>
+<script src="../../js/upload.min.js"></script>
+<script src="../../js/laydate_new/laydate/laydate.js"></script>
+<script src="../../js/selectmenu.js"></script>
+
+<div class="plublish-wrapper col-sm-12">
+    <button type="button" id="release-goods-btn" class="zent-btn-primary zent-btn">发布文章</button>
+</div>
+<div class="col-sm-12" style="display: flex;align-items: center;justify-content: space-between;">
+    <!--新增-->
+    <div class="list-filter">
+        <div class="clearfix list-filter-wrapper">
+            <div class="control-group clearfix">
+                <div class="control-label">标题名称：</div>
+                <div class="controls">
+                    <div class="zent-input-wrapper zent-input--size-normal filter-size-normal">
+                        <input class="zent-input" type="text" value="" id="goods_name_search">
+                    </div>
+                </div>
+            </div>
+            <div class="control-group clearfix">
+                <div class="controls">
+                    <button type="button" id="filter-search-btn" class="zent-btn-primary zent-btn">筛选</button>
+                    <!--<button type="button" class="zent-btn">批量下架</button>-->
+                    <a href="javascript:void(0)" class="reset-filter-groups-value" id="AllModal">清空筛选条件</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-sm-12">
+    <table id="contentTable" data-mobile-responsive="true" data-click-to-select="true" data-thead-classes="thead-light">
+        <thead>
+        <tr>
+            <th data-field="code" data-checkbox="true"></th>
+            <th data-halign="center" data-align="center" data-width="50" data-field="id">ID</th>
+            <th data-valign="middle" data-field="title" data-width="600">标题</th>
+            <th data-valign="middle" data-field="category_name">分类</th>
+            <th data-valign="middle" data-field="created_at">创建时间</th>
+            <th data-valign="middle" data-field="read_counts">阅读数</th>
+            <th data-valign="middle" data-align="center" data-width="150" data-field="status_value" data-formatter="OperationFormat">操作</th>
+        </tr>
+        </thead>
+    </table>
+</div>
+<!--查看modal-->
+<div class="modal fade bs-example-modal-lg" id="editGoodsModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="myLargeModalLabel">编辑文章信息</h4>
+            </div>
+            <div class="modal-body">
+                <div class="sections">
+
+                    <!--基本信息-->
+                    <div class="goodsClassify">
+                        <div class="goodsClassifyTitle">基本信息</div>
+                        <div class="goodsContent">
+                            <div class="messageItem">
+                                <div class="control"><i class="xing">*</i>广告分类：</div>
+                                <div class="formControls smallInput"><input type="text" class="start_price" id="btnAdvert"></div>
+                            </div>
+                            <div class="messageItem">
+                                <div class="control"><i class="xing">*</i>标题：</div>
+                                <div class="formControls"><input type="text" class="title"></div>
+                            </div>
+                            <div class="messageItem">
+                                <div class="control"><i class="xing">*</i>简介：</div>
+                                <div class="formControls"><input type="text" class="brief"></div>
+                            </div>
+                            <div class="messageItem">
+                                <div class="control"><i class="xing">*</i>内容：</div>
+                                <div style="margin-left: 10px"><textarea class="content" name="" id="" cols="70" rows="10"></textarea></div>
+                            </div>
+                            <div class="messageItem">
+                                <div class="control"><i class="xing">*</i>阅读数：</div>
+                                <div class="formControls smallInput"><input  type="number" class="start_price" id="readCount"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="preserved">
+                    <button type="button" id="sure" class="zent-btn-primary zent-btn">保存</button>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<!--查看文章-->
+<div class="modal fade bs-example-modal-lg" id="editContent" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">查看文章</h4>
+            </div>
+            <div class="modal-body">
+                <div class="articleContent">
+                    <div class="articleTitle">标题</div>
+                    <div class="articleBrief">描述</div>
+                    <div class="articleInfo">内容</div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<script>
+    function StatusFormat(value) {
+        if (value == 1){
+            return '上架'
+        }else{
+            return '下架'
+        }
+    }
+
+    //操作
+    function OperationFormat(value,row,index){
+            //正常
+            return '<div class="table-options">' +
+                '<a href="javascript:;" class="edit-btn option-item edit-goods" data-id="'+row.id+'">修改</a>' +
+                '<span class="split">|</span>' +
+                '<a href="javascript:;" class="delete-btn option-item articleDelete" data-id="'+row.id+'">删除</a>' +
+                '</div>';
+
+
+    }
+    //查看内容
+    function CheckContent(value,row,index){
+            //正常
+            return '<div class="table-options">' +
+                '<a href="javascript:;" class="edit-btn option-item" data-id="'+row.id+'">查看</a>' +
+                '</div>';
+
+
+    }
+    $(function(){
+        var selectAdvertData = [];//文章分类数据
+        //文章分类
+        $.Ajax({
+            url: api.articleCategoryLists,
+            is_login:true,
+            data: {
+                choose: 1
+            },
+            success: function (res) {
+                // 先清空原来的数组
+                selectAdvertData.splice(0, selectAdvertData.length)
+                res.result.data.map(function (item, index) {
+                    var obj = {};
+                    obj.id = item.id;
+                    obj.name = item.cate_name;
+                    selectAdvertData.push(obj);
+                });
+
+            }
+        });
+        //文章分类
+        $('#btnAdvert').click(function (e) {
+            //分类接口
+            var that = $(this);
+            that.selectMenu({
+                title: '选择分类',
+                showField: 'name',
+                keyField: 'id',
+                search: false,//关闭搜索栏
+                data: selectAdvertData,
+                eSelect: function (data) {
+                    console.log(data[0].name);
+                    $('#btnAdvert').val(data[0].name);
+                    $('#btnAdvert').attr("data-id", data[0].id);
+                }
+            });
+
+
+        });
+        var isGoToFirstPage = false;
+        //渲染表格
+        $('#contentTable').bootstrapTable({
+            method: 'post',
+            contentType: "application/x-www-form-urlencoded",//必须要有！！！！
+            url: api.articleLists,//要请求数据的文件路径
+            sidePagination: "server", //服务端处理分页
+            queryParams: function (params) {//自定义参数，这里的参数是传给后台的，我这是是分页用的
+                var page_size = params.limit;
+                var offset = params.offset;
+                var page = offset / page_size + 1;
+                if (isGoToFirstPage){
+                    isGoToFirstPage = false;
+                    return {//这里的params是table提供的
+                        page: 1//从数据库第几条记录开始
+                        , page_size: params.limit  //找多少条
+                        ,condition: 'title'
+                        ,keyword: $("#goods_name_search").val()
+                    };
+                }else {
+                    return {//这里的params是table提供的
+                        page: page//从数据库第几条记录开始
+                        , page_size: params.limit  //找多少条
+                        ,condition: 'title'
+                        ,keyword: $("#goods_name_search").val()
+                    };
+                }
+
+            },
+            ajaxOptions: {
+                headers: {
+                    'appid': Config.AppAppid,
+                    'mbcore-access-token': localStorage.getItem(Config.VLSAccessToken),
+                    'mbcore-auth-token': localStorage.getItem(Config.VLSAuthToken)
+                }
+            },
+            search: false,  //是否启用搜索框
+            //searchText:'',  //初始化搜索文字
+            showColumns: false, //是否显示内容列下拉框
+            pagination: true,  //设置为 true 会在表格底部显示分页条。
+            showRefresh: false,  //是否显示刷新按钮
+            showFullscreen: false, //是否显示全屏按钮
+            //showToggle: true,  //是否显示切换视图（table/card）按钮。
+            iconSize: 'outline',
+//            toolbar: '#contentTableToolbar',
+            clickToSelect: true,//是否启用点击选中行
+            striped: false, //是否显示行间隔色
+            dataField: "data",//bootstrap table 可以前端分页也可以后端分页，这里
+            //我们使用的是后端分页，后端分页时需返回含有total：总记录数,这个键值好像是固定的
+            //rows： 记录集合 键值可以修改  dataField 自己定义成自己想要的就好
+            pageNumber: 1, //初始化加载第一页，默认第一页
+            pageSize:20,//单页记录数
+            pageList:[5,10,20,30],//分页步进值
+            responseHandler: function (res) {
+                //在ajax获取到数据，渲染表格之前，修改数据源
+                console.log(res);
+                if (res.code) {
+                    return res.result;
+                } else {
+                    layer.msg(res.result.msg)
+                    return {
+                        data:[],
+                        total:0
+                    };
+                }
+
+            },
+            onLoadSuccess:function () {
+                console.log("onLoadSuccess");
+                //console.log($('img[data-value="6e920678-3c39-4609-ab0a-fc6888655056"]').length);
+                disposeImageUrl();
+            },
+            onResetView:function () {
+                console.log("onResetView");
+                //console.log($('img[data-value="6e920678-3c39-4609-ab0a-fc6888655056"]').length);
+                disposeImageUrl();
+            }
+        });
+        //点击编辑按钮
+        $(document).on("click",".edit-goods",function () {
+            var article_id = $(this).attr("data-id");
+            //处理面包导航
+            console.log(parent.bread_crumbs);
+            parent.bread_crumbs[0].isLink = '1';//修改父级页面的可点击状态
+            parent.bread_crumbs[1] = {
+                isLink:'0',
+                title:'文章编辑',
+                url:"operation/articleEdit.html?id="+article_id
+            };
+            window.parent.renderBreadCrumbs(parent.bread_crumbs);
+            var app_iframe=$("#app_iframe", window.parent.document);
+            console.log(app_iframe);
+            app_iframe.attr('src',"operation/article/articleEdit.html?id="+article_id);
+        });
+        //查看文章
+        $(document).on("click",".checkContent",function () {
+            $("#editContent").modal("show");
+            var id = $(this).data('id');
+            $.Ajax({
+                url:api.articleInfo + id,
+                is_login:true,
+                success:function (res) {
+                    console.log(res);
+                    if (res.code == 1){
+                        $(".articleTitle").html(res.result.data.title);//标题
+                        $(".articleBrief").html(res.result.data.brief);//简介
+                        $(".articleInfo").html(res.result.data.content);//内容
+                    }
+                }
+            })
+        });
+        //    保存
+
+        $(document).on("click","#sure",function () {
+            //商品名
+            var title = $(".title").val();
+            //商品描述
+            var brief = $(".brief").val();
+            var content = $(".content").val();
+            var read_counts = $("#readCount").val();
+            var id = $(this).attr('data-id');
+            var category_id = $("#btnAdvert").attr('data-id');
+            $.Ajax({
+                url:api.articleAddEdit,
+                is_login:true,
+                data:{
+                    category_id:category_id,
+                    id:id,
+                    title:title,
+                    brief:brief,
+                    read_counts:read_counts,
+                    content:content
+                },
+                success:function (res) {
+                    console.log(res);
+                    if (res.code == 1){
+                        layer.msg("修改成功");
+                        $("#editGoodsModal").modal("hide");
+                        $('#contentTable').bootstrapTable('refresh');
+                    }else {
+                        layer.msg(res.result.msg)
+                    }
+
+                },
+                fail:function (res) {
+                    layer.msg(res.result.msg)
+                }
+            })
+        });
+        //删除
+        $(document).on("click",".articleDelete",function () {
+            var id = $(this).data("id");
+            layer.confirm('确定要删除文章吗？', {
+                btn: ['取消','确定'], //按钮
+                shade: false //不显示遮罩
+            }, function(inds){
+                //点击取消
+                layer.close(inds);
+            }, function(){
+                //点击确定
+                $.Ajax({
+                    url:api.articleDelete + id,
+                    is_login:true,
+                    success:function (res) {
+                        console.log(res)
+                        if (res.code == 1){
+                            layer.msg("删除成功");
+                            $('#contentTable').bootstrapTable('refresh');
+                        }else {
+                            layer.msg(res.result.msg)
+                        }
+                    }
+                })
+
+            })
+        });
+        //右边条件搜索
+        $(document).on("click","#filter-search-btn",function () {
+            isGoToFirstPage = true;
+            $('#contentTable').bootstrapTable('refresh');
+        });
+        //点击发布商品
+        $("#release-goods-btn").click(function () {
+            //处理面包导航
+            console.log(parent.bread_crumbs);
+            parent.bread_crumbs[0].isLink = '1';//修改父级页面的可点击状态
+            parent.bread_crumbs[1] = {
+                isLink:'0',
+                title:'发布文章',
+                url:'operation/article/addArticle.html'
+            };
+            window.parent.renderBreadCrumbs(parent.bread_crumbs);
+            var app_iframe=$("#app_iframe", window.parent.document);
+            console.log(app_iframe);
+            app_iframe.attr('src',"operation/article/addArticle.html");
+        });
+        // 点击全部刷新
+        $(document).on("click","#AllModal",function () {
+            $("#goods_name_search").val("");
+            $('#contentTable').bootstrapTable('refresh');
+        });
+        function disposeImageUrl() {
+            var serverIds = [];
+            $('img.goodsImage[data-state="0"]').map(function (index,item) {
+                //console.log($(item));
+                serverIds.push($(item).data('value'));
+            });
+            if(serverIds.length==0){
+                console.log('无数据');
+                return true;
+            }
+            //console.log(serverIds);
+            getImageUrl(serverIds,function (res) {
+                for(var serverId in res){
+                    $('img[data-value="'+serverId+'"]').attr('src',res[serverId].url).data('state',1);
+                }
+            })
+        }
+
+    })
+
+</script>
+</body>
+</html>
+

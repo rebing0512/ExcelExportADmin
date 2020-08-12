@@ -1,0 +1,195 @@
+#app-help-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 224px;
+    background: #fff;
+    z-index: 99;
+    font-size: 12px;
+    -webkit-transform: translateX(224px);
+    -moz-transform: translateX(224px);
+    transform: translateX(224px);
+    -webkit-transition: -webkit-transform .2s;
+    transition: -webkit-transform .2s;
+    -moz-transition: transform .2s,-moz-transform .2s;
+    transition: transform .2s;
+    transition: transform .2s,-webkit-transform .2s,-moz-transform .2s;
+    -webkit-box-shadow: -2px -2px 8px 0 rgba(0,0,0,.1);
+    box-shadow: -2px -2px 8px 0 rgba(0,0,0,.1);
+    font-family: -apple-system,BlinkMacSystemFont,Helvetica Neue,Helvetica,Arial,PingFang SC,Hiragino Sans GB,Microsoft Yahei,STHeiti,SimSun,sans-serif;
+}
+@media only screen and (min-width: 1281px){
+    #app-help-container {
+        -webkit-transform: translateX(0);
+        -moz-transform: translateX(0);
+        transform: translateX(0);
+        border-left: 1px solid #e5e5e5;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+}
+#app-help-container.show-help {
+    -webkit-transform: translateX(0);
+    -moz-transform: translateX(0);
+    transform: translateX(0);
+}
+@media only screen and (min-width: 1281px){
+    body.show-help #app-help-container {
+        z-index: 1;
+    }
+}
+
+#app-help-container .help-container-head {
+    line-height: 56px;
+    height: 56px;
+    padding: 0 16px;
+    font-size: 14px;
+    border-bottom: 1px solid #e5e5e5;
+}
+#app-help-container .help-container-body {
+    padding: 14px 16px 60px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 100%;
+}
+#app-help-button .app-help-icon, #app-help-container .app-help-icon, .page-help-inner[data-pc-shared] .app-help-icon[data-pc-shared] {
+    display: inline-block;
+    background: url('../img/icon_144_3.png') no-repeat;
+    vertical-align: middle;
+    background-size: 72px 270px;
+}
+#app-help-button .app-help-icon-help, #app-help-container .app-help-icon-help, .page-help-inner[data-pc-shared] .app-help-icon-help[data-pc-shared] {
+    width: 16px;
+    height: 16px;
+    background-position: 0 -180px;
+    margin-top: -2px;
+    margin-right: 8px;
+}
+#app-help-button .app-help-icon-close, #app-help-container .app-help-icon-close, .page-help-inner[data-pc-shared] .app-help-icon-close[data-pc-shared] {
+    width: 13px;
+    height: 10px;
+    position: absolute;
+    background: url('../img/double_arrow_right.png') no-repeat;
+    background-size: cover;
+    right: 16px;
+    top: 23px;
+    cursor: pointer;
+}
+#app-help-container .help-body-title {
+    color: #323233;
+    border-left: 2px solid #155bd4;
+    padding-left: 4px;
+    line-height: 14px;
+    font-size: 14px;
+    margin: 10px 0 19px;
+}
+.pull-right[data-pc-shared] {
+    float: right;
+}
+#app-help-container .help-container-body a {
+    color: #155bd4;
+    text-decoration: none;
+}
+
+#app-help-button .app-help-icon-more, #app-help-container .app-help-icon-more, .page-help-inner[data-pc-shared] .app-help-icon-more[data-pc-shared] {
+    width: 6px;
+    height: 14px;
+    background-position: -28px -218px;
+}
+#app-help-container .help-body-content {
+    padding: 0 0 10px;
+    margin-bottom: -20px;
+}
+#app-help-container .help-body-content p {
+    margin-bottom: .5em;
+    line-height: 1.8em;
+    font-size: 14px;
+}
+#app-help-container .help-body-content hr {
+    border: none;
+    border-top: 1px solid #e5e5e5;
+    margin: 24px 0;
+}
+#app-help-container .help-body-content span {
+    white-space: normal!important;
+}
+#app-help-container .help-body-content p {
+    margin-bottom: .5em;
+    line-height: 1.8em;
+    font-size: 14px;
+}
+#app-help-container .help-container-body a {
+    color: #155bd4;
+    text-decoration: none;
+}
+#app-help-container .help-body-split-line {
+    border-top: 1px solid #e5e5e5;
+    margin: 24px 0;
+}
+#app-help-container .help-body-service {
+    position: relative;
+}
+#app-help-container .help-body-service .customer-contact-block {
+    display: block;
+    border-top: 2px solid #fff;
+    background-color: #f7f8fa;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+}
+#app-help-container .help-body-service .panama-customer-block {
+    position: relative;
+    display: block;
+    padding: 8px 0;
+}
+#app-help-container .help-body-service .wsc-panama-customer-block {
+    padding: 20px 0;
+    margin-bottom: 0;
+}
+#app-help-container .help-body-service .service-hotline {
+    padding: 14px 0;
+    margin: 0 0 30px;
+    font-size: 12px;
+    text-align: center;
+    border-top: 2px solid #fff;
+    color: #333;
+}
+#app-help-container .help-body-service .wsc-service-hotline {
+    border: 0;
+}
+#app-help-container .help-body-service .panama-customer-block .panama-customer-button {
+    display: block;
+    margin: 0 15px;
+    border: 1px solid #bbb;
+    background: #fff;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    text-align: center;
+    line-height: 24px;
+    color: #333;
+}
+#app-help-container .help-body-service .panama-customer-block .panama-customer-button .panama-customer-inner {
+    position: relative;
+    display: inline-block;
+    padding-left: 20px;
+    margin: 0 auto;
+    background: url('../img/chat.png') no-repeat 0;
+    background-size: 15px;
+}
+body.hide-help #app-help-container {
+    position: fixed;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+@media only screen and (min-width: 1281px){
+    body.hide-help #app-help-container {
+        -webkit-transform: translateX(224px);
+        -moz-transform: translateX(224px);
+        transform: translateX(224px);
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+}
+body.hide-help #app-container {
+    margin-right: 0;
+}
