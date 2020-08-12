@@ -15,6 +15,7 @@ var api = {
     adminAdd:baseUrl+'admin/partner/adminAdd',//新增管理员
     adminLog:baseUrl+'admin/partner/adminLog',//管理员操作列表
     adminLogDel:baseUrl+'admin/partner/adminLogDelete',//操作日志删除
+    overviewIndex:baseUrl+'admin/partner/overview',//概况
 
     partnerList:baseUrl+'admin/partner/list',//城市合伙人列表
     inviteSearch:baseUrl+'admin/partner/inviteSearch',//邀请搜索
@@ -24,7 +25,6 @@ var api = {
     financeRefuse:baseUrl+'admin/finance/refuse',//提现申请拒绝
     userData:baseUrl+'admin/statistics/userData',//统计 按用户
     platformData:baseUrl+'admin/statistics/platformData',//统计 全平台
-    overviewIndex:baseUrl+'admin/overview/index',//概况
     articleLists:baseUrl + 'admin/article/lists',//文章列表
     articleCategoryLists: baseUrl + 'admin/article/category/lists',//文章分类
     articleInfo: baseUrl + 'admin/article/info/',//文章单条信息
