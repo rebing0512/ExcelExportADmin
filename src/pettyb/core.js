@@ -786,10 +786,11 @@
     //登录处理
     $.UserLogin = function (data,success,fail) {
         DebugLog("****UserLogin*****");
-        var thisData =  $.extend(data,{});console.log(thisData);return false;
+        var thisData =  $.extend(data,{});
         //基础成功处理函数
         var baseSuccessFun = function (res,callback) {
             DebugLog("***baseSuccessFun****");
+            console.log("***baseSuccessFun****");
             console.log(res);
             return false;
             if(res.code == 1){
@@ -830,6 +831,8 @@
         DebugLog(is_successfun_exist);
         var successFun;
         if(is_successfun_exist){
+            console.log("***is_successfun_exist****");
+            return false;
             var thisSuccessFun = success;
             successFun = function (res) {
                 baseSuccessFun(res,thisSuccessFun);
