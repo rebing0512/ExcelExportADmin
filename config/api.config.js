@@ -17,29 +17,37 @@ var api = {
     adminLogDel:baseUrl+'admin/partner/adminLogDelete',//操作日志删除
     overviewIndex:baseUrl+'admin/partner/overview',//概况
 
-    partnerList:baseUrl+'admin/partner/list',//城市合伙人列表
+    partnerList:baseUrl+'admin/partner/partnerLists',//城市合伙人列表
     inviteSearch:baseUrl+'admin/partner/inviteSearch',//邀请搜索
     partnerInvite:baseUrl+'admin/partner/invite',//邀请用户
-    financeList:baseUrl+'admin/finance/list',//财务列表
-    financeAgree:baseUrl+'admin/finance/agree',//提现申请同意
-    financeRefuse:baseUrl+'admin/finance/refuse',//提现申请拒绝
-    userData:baseUrl+'admin/statistics/userData',//统计 按用户
-    platformData:baseUrl+'admin/statistics/platformData',//统计 全平台
-    articleLists:baseUrl + 'admin/article/lists',//文章列表
-    articleCategoryLists: baseUrl + 'admin/article/category/lists',//文章分类
-    articleInfo: baseUrl + 'admin/article/info/',//文章单条信息
-    articleAddEdit: baseUrl + 'admin/article/addEdit',//文章增加修改
-    articleDelete: baseUrl + 'admin/article/delete/',//删除文章
-    articleCategoryInfo: baseUrl + 'admin/article/category/info/',// 获取文章单条信息
-    articleCategoryDelete: baseUrl + 'admin/article/category/delete/',//文章分类删除
-    articleCategoryAddEdit: baseUrl + 'admin/article/category/addEdit',//文章分类增加修改
-    advertCategoryLists: baseUrl + 'admin/advert/category/lists',//广告分类
-    advertAddEdit: baseUrl + 'admin/advert/addEdit',//广告增加修改
-    advertTypeLists: baseUrl + 'admin/advert/type/lists',//广告分类
-    advertCategoryAddEdit: baseUrl + 'admin/advert/category/addEdit',//广告分类增加修改
-    advertCategoryInfo: baseUrl + 'admin/advert/category/info/',//广告分类单条信息
-    advertCategoryDelete: baseUrl + 'admin/advert/category/delete/',//广告分类删除
-    advertLists: baseUrl + 'admin/advert/lists',//广告列表
-    advertInfo: baseUrl + 'admin/advert/info/',//获取单条广告信息
-    advertDelete: baseUrl + 'admin/advert/delete/',//删除广告
+
+    financeList:baseUrl+'admin/partner/finance/financeLists',//财务列表
+    financeAgree:baseUrl+'admin/partner/finance/agree',//提现申请同意
+    financeRefuse:baseUrl+'admin/partner/finance/refuse',//提现申请拒绝
+
+    userData:baseUrl+'admin/partner/statistics/userData',//统计 按用户
+    platformData:baseUrl+'admin/partner/statistics/platformData',//统计 全平台
+
+    articleLists:baseUrl + 'admin/partner/article/articleLists',//文章列表
+    articleInfo: baseUrl + 'admin/partner/article/articleInfo/',//文章单条信息
+    articleAdd: baseUrl + 'admin/partner/article/articleAdd',//文章增加
+    articleEdit: baseUrl + 'admin/partner/article/articleEdit',//文章编辑
+    articleDelete: baseUrl + 'admin/partner/article/articleDelete/',//删除文章
+    articleCategoryLists: baseUrl + 'admin/partner/article/category/articleCategoryLists',//文章分类
+    articleCategoryInfo: baseUrl + 'admin/partner/article/category/articleCategoryInfo/',// 获取文章单条信息
+    articleCategoryAdd: baseUrl + 'admin/partner/article/category/articleCategoryAdd',//文章分类增加
+    articleCategoryEdit: baseUrl + 'admin/partner/article/category/articleCategoryEdit',//文章分类编辑
+    articleCategoryDelete: baseUrl + 'admin/partner/article/category/articleCategoryDelete/',//文章分类删除
+
+    advertCategoryLists: baseUrl + 'admin/partner/advert/category/advertCategoryLists',//广告分类
+    advertCategoryAdd: baseUrl + 'admin/partner/advert/category/advertCategoryAdd',//广告分类增加
+    advertCategoryEdit: baseUrl + 'admin/partner/advert/category/advertCategoryEdit',//广告分类编辑
+    advertCategoryInfo: baseUrl + 'admin/partner/advert/category/advertCategoryInfo/',//广告分类单条信息
+    advertCategoryDelete: baseUrl + 'admin/partner/advert/category/advertCategoryDelete/',//广告分类删除
+    advertLists: baseUrl + 'admin/partner/advert/advertTypeLists',//广告列表
+    advertAdd: baseUrl + 'admin/partner/advert/advertAdd',//广告增加
+    advertEdit: baseUrl + 'admin/partner/advert/advertEdit',//广告编辑
+    advertInfo: baseUrl + 'admin/partner/advert/advertInfo/',//获取单条广告信息
+    advertDelete: baseUrl + 'admin/partner/advert/advertDelete/',//删除广告
+    advertTypeLists: baseUrl + 'admin/partner/advert/type/advertTypeLists',//广告类型
 }
