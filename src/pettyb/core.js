@@ -792,7 +792,6 @@
             DebugLog("***baseSuccessFun****");
             console.log("***baseSuccessFun****");
             console.log(res);
-            return false;
             if(res.code == 1){
                 //存储auth_token
                 var auth_token_value = res.result.auth_token;
