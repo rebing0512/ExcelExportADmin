@@ -1,1 +1,2 @@
 This is MBCore Partner test file;
+Test auth update;
