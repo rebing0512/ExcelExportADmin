@@ -831,9 +831,10 @@
         var successFun;
         if(is_successfun_exist){
             console.log("***is_successfun_exist****");
-            return false;
             var thisSuccessFun = success;
             successFun = function (res) {
+                console.log(res);
+                return false;
                 baseSuccessFun(res,thisSuccessFun);
             }
         }else{
