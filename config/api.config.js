@@ -1,5 +1,5 @@
 /**
- * Created by wangjian on 2020/08/12.
+ * Created by Jenson on 2020/08/12.
  */
 var baseUrl = domainConfig.baseUrl;
 var pmCore = domainConfig.pmCore;
