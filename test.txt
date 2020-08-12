@@ -1,1 +1,1 @@
-this is test activity file
+This is MBCore Partner test file;
