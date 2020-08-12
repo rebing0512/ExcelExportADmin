@@ -63,7 +63,6 @@
 <script src="config/api.config.js"></script>
 <script>
     function keyup_submit(e) {
-        console.log('Partner Login');
         var evt = window.event || e;
         if (evt.keyCode == 13){
             //回车事件
@@ -71,7 +70,7 @@
                 'username':$("#name").val(),
                 'password':$("#password").val()
             },function(res) {
-                console.log(res);
+                // console.log(res);
                 layer.msg(res.result.msg);
                 if(res.code == 1){
                     var userInfo = res.result.admin;
@@ -94,11 +93,12 @@
             keyup_submit(event);
         });
         $("#login-btn").click(function () {
+            console.log('Partner Login click');
             $.UserLogin({
                 'username':$("#name").val(),
                 'password':$("#password").val()
             },function(res) {
-                //console.log(res);
+                console.log(res);
                 layer.msg(res.result.msg);
                 if(res.code == 1){
                     var userInfo = res.result.admin;
