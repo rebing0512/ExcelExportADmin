@@ -36,5 +36,5 @@ var ApiUrl = {
     'refreshAccessToken': domainConfig.pmCore +'core/oauth/refreshAccessToken',
     'getImageUri':domainConfig.pmStorage +'getImageUri',
     'getUploadImageToken':domainConfig.pmStorage +'getUploadImageToken',
-    LoginApi:domainConfig.baseUrl + 'admin/login', // 登录接口
+    LoginApi:domainConfig.baseUrl + 'admin/partner/login', // 登录接口
 };

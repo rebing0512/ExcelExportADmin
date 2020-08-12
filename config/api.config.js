@@ -5,9 +5,17 @@ var baseUrl = domainConfig.baseUrl;
 var pmCore = domainConfig.pmCore;
 var TplDefaults = domainConfig.baseUrl + 'PartnerAdmin/';
 var api = {
-    menuIndex:baseUrl+'admin/menu/index',//后台菜单
-    adminLogout:baseUrl+'admin/logout',//退出登录
-    changePassword:baseUrl+'admin/change/password',//修改密码
+    menuIndex:baseUrl+'admin/partner/menu', // 后台菜单
+    adminLogout:baseUrl+'admin/partner/logout', // 退出登录
+    changePassword:baseUrl+'admin/partner/changePassword', // 修改密码
+    adminList:baseUrl+'admin/partner/adminList',//管理员列表
+    adminShow:baseUrl+'admin/partner/adminDetail',//管理员详情
+    adminEdit:baseUrl+'admin/partner/adminEdit',//管理员编辑
+    adminFrozen:baseUrl+'admin/partner/adminFrozen',//管理员冻结
+    adminAdd:baseUrl+'admin/partner/adminAdd',//新增管理员
+    adminLog:baseUrl+'admin/partner/adminLog',//管理员操作列表
+    adminLogDel:baseUrl+'admin/partner/adminLogDelete',//操作日志删除
+
     partnerList:baseUrl+'admin/partner/list',//城市合伙人列表
     inviteSearch:baseUrl+'admin/partner/inviteSearch',//邀请搜索
     partnerInvite:baseUrl+'admin/partner/invite',//邀请用户
@@ -16,13 +24,6 @@ var api = {
     financeRefuse:baseUrl+'admin/finance/refuse',//提现申请拒绝
     userData:baseUrl+'admin/statistics/userData',//统计 按用户
     platformData:baseUrl+'admin/statistics/platformData',//统计 全平台
-    adminList:baseUrl+'admin/admin/list',//管理员列表
-    adminShow:baseUrl+'admin/admin/show',//管理员详情
-    adminEdit:baseUrl+'admin/admin/edit',//管理员编辑
-    adminFrozen:baseUrl+'admin/admin/frozen',//管理员冻结
-    adminAdd:baseUrl+'admin/admin/add',//新增管理员
-    adminLog:baseUrl+'admin/admin/adminLog',//管理员操作列表
-    adminLogDel:baseUrl+'admin/admin/adminLogDel',//操作日志删除
     overviewIndex:baseUrl+'admin/overview/index',//概况
     articleLists:baseUrl + 'admin/article/lists',//文章列表
     articleCategoryLists: baseUrl + 'admin/article/category/lists',//文章分类
