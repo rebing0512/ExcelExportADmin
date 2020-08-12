@@ -787,12 +787,11 @@
     $.UserLogin = function (data,success,fail) {
         DebugLog("****UserLogin*****");
         var thisData =  $.extend(data,{});
-
-
-
         //基础成功处理函数
         var baseSuccessFun = function (res,callback) {
             DebugLog("***baseSuccessFun****");
+            console.log(res);
+            return false;
             if(res.code == 1){
                 //存储auth_token
                 var auth_token_value = res.result.auth_token;
@@ -801,14 +800,11 @@
                 if(is_ios_client){
                     sessionStorage.setItem(auth_token_key, auth_token_value);
                 }
-
                 // 写入old机制的登录第一次状态
                 localStorage.setItem('isLoginFirstPostMessage', '1'); //0
                 if(is_ios_client){
                     sessionStorage.setItem('isLoginFirstPostMessage', '1');
                 }
-
-
                 //存储后的处理流程
                 if(typeof(callback)==='function'){
                     callback(res);
