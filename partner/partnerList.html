@@ -302,7 +302,7 @@
             iconSize: 'outline',
 //            toolbar: '#contentTableToolbar',
             clickToSelect: true,//是否启用点击选中行
-            striped: false, //是否显示行间隔色
+            striped: true, //是否显示行间隔色
             dataField: "partner_list",//bootstrap table 可以前端分页也可以后端分页，这里
             //我们使用的是后端分页，后端分页时需返回含有total：总记录数,这个键值好像是固定的
             //rows： 记录集合 键值可以修改  dataField 自己定义成自己想要的就好
@@ -337,7 +337,7 @@
 
         var goodsSearchTypeData = [
             {id: 'username', name: '用户昵称'},
-            {id: 'user_id', name: '用户ID'},
+            {id: 'id', name: '用户ID'},
         ];
         //select列表实例
         $(document).on("click", "#goods-search-type", function () {
@@ -358,7 +358,7 @@
                     }
                 }
             });
-        })
+        });
         //右边条件搜索
         $(document).on("click","#filter-search-btn",function () {
             isGoToFirstPage = true;
