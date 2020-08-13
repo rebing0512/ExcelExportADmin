@@ -3,7 +3,7 @@
  */
 var baseUrl = domainConfig.baseUrl;
 var pmCore = domainConfig.pmCore;
-var TplDefaults = domainConfig.baseUrl + 'PartnerAdmin/';
+var TplDefaults = domainConfig.baseUrlClient + 'PartnerAdmin/';
 var api = {
     menuIndex:baseUrl+'admin/partner/menu', // 后台菜单
     adminLogout:baseUrl+'admin/partner/logout', // 退出登录

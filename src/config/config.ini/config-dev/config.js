@@ -6,6 +6,7 @@ var domainConfig = {
     pmCore:'https://mbdev-pettyb.pettyb.com/',  //【*】
     pmStorage:'https://mbdev-pettyb-storage.pettyb.com/',
     groupName:'dev_pz_pca_',
+    baseUrlClient:'https://mbdev-purezen.pettyb.com/',
     baseUrl:'https://mbdev-purezen-api.pettyb.com/'
 };
 
@@ -25,8 +26,8 @@ var Config = {
 };
 
 var AppUrl = {
-    Index:domainConfig.baseUrl + 'PartnerAdmin/index.html',
-    Login:domainConfig.baseUrl+'PartnerAdmin/login.html',
+    Index:domainConfig.baseUrlClient + 'PartnerAdmin/index.html',
+    Login:domainConfig.baseUrlClient+'PartnerAdmin/login.html',
 };
 
 // Token、图片以及登录接口
