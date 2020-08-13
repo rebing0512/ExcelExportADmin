@@ -112,13 +112,13 @@
             return '<div class="table-options">' +
                 '<a href="javascript:;" class="edit-btn option-item edit-goods" data-id="'+value+'">编辑</a>' +
                 '<span class="split">|</span>' +
-                '<a href="javascript:;" class="delete-btn option-item statusChange" data-id="'+value+'">禁用</a>' +
+                '<a href="javascript:;" class="delete-btn option-item statusChange" data-id="'+value+'"><span style="color: red;"> 禁用</span>a>' +
                 '</div>';
         }else{
             return '<div class="table-options">' +
                 '<a href="javascript:;" class="edit-btn option-item edit-goods" data-id="'+value+'">编辑</a>' +
                 '<span class="split">|</span>' +
-                '<a href="javascript:;" class="delete-btn option-item statusChange" data-id="'+value+'">启用</a>' +
+                '<a href="javascript:;" class="delete-btn option-item statusChange" data-id="'+value+'"><span style="color: green;"> 启用</span></a>' +
                 '</div>';
         }
 
