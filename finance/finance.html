@@ -97,7 +97,7 @@
                 <th data-valign="middle" data-field="updated_at">处理时间</th>
                 <th data-valign="middle" data-field="reason">处理原因</th>
                 <th data-valign="middle" data-field="status" data-width="100" >提现状态</th>
-                <th data-valign="middle" data-align="center" data-width="200" data-field="status_value" data-formatter="OperationFormat">操作</th>
+                <th data-valign="middle" data-align="center" data-width="200" data-field="operation" data-formatter="OperationFormat">操作</th>
             </tr>
             </thead>
         </table>
@@ -216,9 +216,6 @@
                     //如果不是在筛选的条件下，需要记录一下返回的页面
                     back_page = page;
                 }
-                if(order_status == 1){
-                    $('tr').find('th:eq(9)').hide(); $('tr').find('td:eq(9)').hide();
-                }
                 if (isGoToFirstPage){
                     isGoToFirstPage = false;
                     return {//这里的params是table提供的
@@ -269,7 +266,7 @@
                 if (res.code) {
                     return res.result;
                 } else {
-                    layer.msg(res.result.msg)
+                    layer.msg(res.result.msg);
                     return {
                         data:[],
                         total:0
@@ -405,13 +402,22 @@
             order_status = $(this).attr("data-status");
             isGoToFirstPage = true;
             console.log(order_status);
-            if(order_status == 1){
-                $('tr').find('th:eq(9)').hide(); $('tr').find('td:eq(9)').hide();
-            }
             $('#contentTable').bootstrapTable('refresh',{
                 pageNumber: 1
             });
+            if(order_status == 1){
+                $(function () {
+                    LoadingDataListOrderRealItems();
+                    $('#tableOrderRealItems').bootstrapTable('hideColumn', 'operation');
+                });
+            }else{
+                $(function () {
+                    LoadingDataListOrderRealItems();
+                    $('#tableOrderRealItems').bootstrapTable('showColumn', 'operation');
+                });
+            }
         });
+
         //右边条件搜索
         $(document).on("click","#filter-search-btn",function () {
             isGoToFirstPage = true;
