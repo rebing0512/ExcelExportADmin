@@ -272,9 +272,13 @@
             }, function(){
                 //点击确定
                 $.Ajax({
-                    url:api.advertCategoryStatusChange+id,
+                    url:api.advertCategoryStatusChange,
                     is_login:true,
+                    data:{
+                        id:id,
+                    },
                     success:function (res) {
+                        console.log(res);
                         if (res.code == 1){
                             layer.msg("删操作成功");
                             $('#contentTable').bootstrapTable('refresh');
