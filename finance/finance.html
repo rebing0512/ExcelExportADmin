@@ -163,7 +163,9 @@
 </div>
 </div>
 <script>
-
+    /**
+     * @return {string}
+     */
     function GoodsFormat(value, row, index) {
         var serverId = value;
         var default_image = domainConfig.baseUrl + domainConfig.AppNameAlias + '/img/image-default.jpg';
@@ -180,10 +182,12 @@
                 '</div>' +
                 '</div>';
         }
-
     }
 
     //操作
+    /**
+     * @return {string}
+     */
     function OperationFormat(value,row,index){
         if(value == '0'){
             return '<div class="table-options">' +
@@ -192,9 +196,7 @@
                 '<a href="javascript:;" class="edit-address-btn option-item financeRefuse" data-id="'+row.id+'">拒绝</a>' +
                 '</div>';
         }
-
     }
-
     $(function(){
         var isGoToFirstPage = false;
         var isFilter = false;//是否在筛选的条件下
@@ -251,7 +253,7 @@
             iconSize: 'outline',
 //            toolbar: '#contentTableToolbar',
             clickToSelect: true,//是否启用点击选中行
-            striped: false, //是否显示行间隔色
+            striped: true, //是否显示行间隔色
             dataField: "data",//bootstrap table 可以前端分页也可以后端分页，这里
             //我们使用的是后端分页，后端分页时需返回含有total：总记录数,这个键值好像是固定的
             //rows： 记录集合 键值可以修改  dataField 自己定义成自己想要的就好
@@ -394,7 +396,7 @@
                     }
                 }
             });
-        })
+        });
         //点击订单分类
         $(".order-tap").click(function () {
             order_status = $(this).attr("data-status");
@@ -446,9 +448,7 @@
                 }
             })
         }
-
     })
-
 </script>
 </body>
 </html>
