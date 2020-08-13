@@ -7,7 +7,8 @@ var domainConfig = {
     pmStorage:'https://mbdev-pettyb-storage.pettyb.com/',
     groupName:'dev_pz_pca_',
     baseUrl:'https://mbdev-purezen.pettyb.com/',
-    baseUrlApi:'https://mbdev-purezen-api.pettyb.com/'
+    baseUrlApi:'https://mbdev-purezen-api.pettyb.com/',
+    AppNameAlias:'PartnerAdmin',
 };
 
 //验证机制

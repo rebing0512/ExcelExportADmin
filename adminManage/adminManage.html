@@ -144,10 +144,10 @@
     function GoodsFormat(value, row, index) {
         var serverId = value;
         //console.log(row);
-
+        var default_image = domainConfig.baseUrl + domainConfig.AppNameAlias + '/img/image-default.jpg';
         return '<div class="goods-container">' +
             '<div class="goods-image">' +
-            '<img style="width:60px;" class="goodsImage" data-state="0" data-value="'+serverId+'" src="../../img/image-default.jpg"/>'+
+            '<img style="width:60px;" class="goodsImage" data-state="0" data-value="'+serverId+'" src="'+default_image+'"/>'+
             '</div>'+
             '</div>';
     }
