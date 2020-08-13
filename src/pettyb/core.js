@@ -628,11 +628,13 @@
     };
 
 
+    /**
+     * @return {boolean}
+     */
     var AjaxAccessToken = function (cfg) {
         DebugLog("----AjaxAccessToken-----");
         DebugLog("AjaxAccessToken cfg:");
         DebugLog(cfg);
-
         var access_token = localStorageAccessToken();
         // 如果access_token不存在
         if(!access_token){
@@ -642,16 +644,13 @@
             });
             return true;
         }
-
         // 头文件
         var headers = {
             'appid': Config.AppAppid,
             'mbcore-access-token': access_token
         };
-
         // 错误处理机制
         var errorFun = MiddlewareErrorProcessor;
-
         var is_errfun_exist = typeof(cfg.error) === 'function' ?  true : false;
         DebugLog("AjaxAccessToken : is_errfun_exist(是否存在错误处理函数):");
         DebugLog(is_errfun_exist);
@@ -670,11 +669,9 @@
                 });
             }
         }
-
         var thisConfig =  $.extend(cfg, {'headers':headers,'error':error});
         DebugLog("AjaxAccessToken thisConfig");
         DebugLog(thisConfig);
-
         // 请求ajax
         ajaxBase(thisConfig);
     };
@@ -683,28 +680,22 @@
         DebugLog("----AjaxAuthToken-----");
         DebugLog("AjaxAuthToken cfg:");
         DebugLog(cfg);
-
         // 如果auth_token不存在
         var auth_token = localStorageAuthToken();
         var access_token = localStorageAccessToken();
-
         //任何一个不存在，都踢出到登录
         if(!auth_token || !access_token){
             goToLogin();
             return false; //终止处理
         }
-
         // 头文件
         var headers = {
             'appid': Config.AppAppid,
             'mbcore-access-token': access_token,
             'mbcore-auth-token': auth_token
         };
-
-
         // 错误处理机制
         var errorFun = MiddlewareErrorProcessor;
-
         var is_errfun_exist = typeof(cfg.error) === 'function' ?  true : false;
         DebugLog("AjaxAuthToken : is_errfun_exist(是否存在错误处理函数):");
         DebugLog(is_errfun_exist);
@@ -723,7 +714,6 @@
                 });
             }
         }
-
         var thisConfig =  $.extend(cfg, {'headers':headers,'error':error});
         DebugLog("AjaxAccessToken thisConfig");
         DebugLog(thisConfig);
@@ -731,7 +721,6 @@
         // 请求ajax
         ajaxBase(thisConfig);
     };
-
 
     //登录相关处理
     var goToLogin = function () {
@@ -821,9 +810,7 @@
                 // layer.msg(res.result.msg);
                 // $.toast(res.result.msg,"text");
             }
-
         };
-
         // 成功处理函数
         var is_successfun_exist = typeof(success) === 'function' ?  true : false;
         DebugLog("UserLogin : is_successfun_exist(是否存在成功处理函数):");
@@ -842,13 +829,11 @@
                 baseSuccessFun(res);
             }
         }
-
         var thisConfig = {
             url:ApiUrl.LoginApi,
             data:thisData,
             success:successFun,
             error:fail
-
         };
         DebugLog(thisConfig);
         AjaxAccessToken(thisConfig);
@@ -858,9 +843,6 @@
     $.pwdLogin = function (data,success) {
         DebugLog("****UserLogin*****");
         var thisData =  $.extend(data,{});
-
-
-
         //基础成功处理函数
         var baseSuccessFun = function (res,callback) {
             DebugLog("***baseSuccessFun****");
