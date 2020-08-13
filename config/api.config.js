@@ -44,6 +44,7 @@ var api = {
     advertCategoryEdit: baseUrl + 'admin/partner/advert/category/advertCategoryEdit',//广告分类编辑
     advertCategoryInfo: baseUrl + 'admin/partner/advert/category/advertCategoryInfo/',//广告分类单条信息
     advertCategoryDelete: baseUrl + 'admin/partner/advert/category/advertCategoryDelete/',//广告分类删除
+    advertCategoryStatusChange: baseUrl + 'admin/partner/advert/category/advertCategoryStatusChange/',//更改状态广告分类
     advertLists: baseUrl + 'admin/partner/advert/advertTypeLists',//广告列表
     advertAdd: baseUrl + 'admin/partner/advert/advertAdd',//广告增加
     advertEdit: baseUrl + 'admin/partner/advert/advertEdit',//广告编辑

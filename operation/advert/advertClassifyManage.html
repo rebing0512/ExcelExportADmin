@@ -234,10 +234,36 @@
                 }
             })
         });
+        // // 删除分类
+        // $(document).on("click",".deleteClassify",function () {
+        //     var id = $(this).data("id");
+        //     layer.confirm('确定要删除分类吗？', {
+        //         btn: ['取消','确定'], //按钮
+        //         shade: false //不显示遮罩
+        //     }, function(inds){
+        //         //点击取消
+        //         layer.close(inds);
+        //     }, function(){
+        //         //点击确定
+        //         $.Ajax({
+        //             url:api.advertCategoryDelete+id,
+        //             is_login:true,
+        //             success:function (res) {
+        //                 if (res.code == 1){
+        //                     layer.msg("删除成功");
+        //                     $('#contentTable').bootstrapTable('refresh');
+        //                 }else {
+        //                     layer.msg(res.result.msg)
+        //                 }
+        //
+        //             }
+        //         })
+        //     })
+        // });
         // 删除分类
-        $(document).on("click",".deleteClassify",function () {
+        $(document).on("click",".statusChange",function () {
             var id = $(this).data("id");
-            layer.confirm('确定要删除分类吗？', {
+            layer.confirm('确定要执行此操作吗？', {
                 btn: ['取消','确定'], //按钮
                 shade: false //不显示遮罩
             }, function(inds){
@@ -246,16 +272,15 @@
             }, function(){
                 //点击确定
                 $.Ajax({
-                    url:api.advertCategoryDelete+id,
+                    url:api.advertCategoryStatusChange+id,
                     is_login:true,
                     success:function (res) {
                         if (res.code == 1){
-                            layer.msg("删除成功");
+                            layer.msg("删操作成功");
                             $('#contentTable').bootstrapTable('refresh');
                         }else {
                             layer.msg(res.result.msg)
                         }
-
                     }
                 })
             })
