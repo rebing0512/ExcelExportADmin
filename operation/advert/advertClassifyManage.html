@@ -52,6 +52,7 @@
             <th data-field="code" data-checkbox="true"></th>
             <th data-halign="center" data-align="center" data-width="50" data-field="id">ID</th>
             <th data-valign="middle" data-align="center" data-field="category_name">分类名称</th>
+            <th data-valign="middle" data-align="center" data-field="status" data-formatter="StatusFormat">状态</th>
             <th data-valign="middle" data-align="center" data-field="created_at">时间</th>
             <th data-valign="middle" data-align="center" data-width="200" data-field="id" data-formatter="OperationFormat">操作</th>
         </tr>
@@ -89,7 +90,28 @@
     </div><!-- /.modal-dialog -->
 </div>
 <script>
-    //操作
+
+    /**
+     * 状态
+     * @return {string}
+     */
+    function StatusFormat(value,row,index){
+        if(value == 1){
+            return '<span style="color: green;"> 正常</span>>'
+        }else{
+            return '<span style="color: red;"> 禁用</span>>'
+        }
+        return '<div class="table-options">' +
+            '<a href="javascript:;" class="edit-btn option-item edit-goods" data-id="'+value+'">编辑</a>' +
+            '<span class="split">|</span>' +
+            '<a href="javascript:;" class="delete-btn option-item deleteClassify" data-id="'+value+'">删除</a>' +
+            '</div>';
+    }
+
+    /**
+     * 操作
+     * @return {string}
+     */
     function OperationFormat(value,row,index){
         return '<div class="table-options">' +
             '<a href="javascript:;" class="edit-btn option-item edit-goods" data-id="'+value+'">编辑</a>' +
