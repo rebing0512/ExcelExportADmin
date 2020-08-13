@@ -189,7 +189,7 @@
      * @return {string}
      */
     function OperationFormat(value,row,index){
-        if(value == '0'){
+        if(row.status_value == '0'){
             return '<div class="table-options">' +
                 '<a href="javascript:;" class="look-btn option-item financeAgree" data-id="'+row.id+'">同意</a>' +
                 '<span class="split">|</span>' +
@@ -413,7 +413,7 @@
             }else{
                 // $(function () {
                 //     // LoadingDataListOrderRealItems();
-                //     $('#contentTable').bootstrapTable('showColumn', 'operation');
+                    $('#contentTable').bootstrapTable('showColumn', 'operation');
                 // });
             }
         });
