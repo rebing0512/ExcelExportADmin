@@ -166,11 +166,11 @@
 
     function GoodsFormat(value, row, index) {
         var serverId = value;
-        //console.log(row);
+        var default_image = domainConfig.baseUrl + domainConfig.AppNameAlias + '/img/image-default.jpg';
         if (row.avatar == null) {
             return '<div class="goods-container">' +
                 '<div class="goods-image">' +
-                '<img style="width:60px;" class="goodsImage" data-state="0"  src="../img/image-default.jpg"/>' +
+                '<img style="width:60px;" class="goodsImage" data-state="0"  src="'+default_image+'"/>' +
                 '</div>' +
                 '</div>';
         } else {
@@ -200,7 +200,6 @@
         var isFilter = false;//是否在筛选的条件下
         var back_page = 1;//需要还原的页码数
         var order_status = 'all';//订单状态
-
         //渲染表格
         $('#contentTable').bootstrapTable({
             method: 'post',
