@@ -216,6 +216,9 @@
                     //如果不是在筛选的条件下，需要记录一下返回的页面
                     back_page = page;
                 }
+                if(order_status == 1){
+                    $('tr').find('th:eq(9)').hide(); $('tr').find('td:eq(9)').hide();
+                }
                 if (isGoToFirstPage){
                     isGoToFirstPage = false;
                     return {//这里的params是table提供的
