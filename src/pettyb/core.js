@@ -42,8 +42,10 @@
         //alert(str);
         // console.warn(str);
     };
-
-    // 生成随机字符串
+    /**
+     * 生成随机字符串
+     * @return {string}
+     */
     $.RandomString = RandomString = function (len){
         len = typeof len !== 'undefined' ?  len : 32;
         var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -73,8 +75,6 @@
             }
         }
     })();
-
-
 
     //【Funciton】
     /**
