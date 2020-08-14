@@ -77,7 +77,7 @@
                         <div class="goodsContent">
                             <div class="messageItem">
                                 <div class="control"><i class="xing">*</i>分类名称：</div>
-                                <div class="formControls"><input type="text" class="cate_name"></div>
+                                <div class="formControls"><input type="text" class="category_name"></div>
                             </div>
                         </div>
                     </div>
@@ -115,14 +115,14 @@
                     return {//这里的params是table提供的
                         page: 1//从数据库第几条记录开始
                         , page_size: params.limit  //找多少条
-                        ,condition: 'cate_name'
+                        ,condition: 'category_name'
                         ,keyword: $("#goods_name_search").val()
                     };
                 }else {
                     return {//这里的params是table提供的
                         page: page//从数据库第几条记录开始
                         , page_size: params.limit  //找多少条
-                        ,condition: 'cate_name'
+                        ,condition: 'category_name'
                         ,keyword: $("#goods_name_search").val()
                     };
                 }
@@ -203,7 +203,7 @@
                 success:function (res) {
                     console.log(res);
                     if (res.code == 1){
-                        $('.cate_name').val(res.result.data.cate_name);//标题
+                        $('.category_name').val(res.result.data.category_name);//标题
 
                     }
                 }
@@ -238,14 +238,14 @@
         });
         //    保存
         $(document).on("click","#sure",function () {
-            var cate_name = $(".cate_name").val();//标题
+            var category_name = $(".category_name").val();//标题
             var id = $(this).attr('data-id');
             $.Ajax({
                 url:api.articleCategoryAddEdit,
                 is_login:true,
                 data:{
                     id:id,
-                    cate_name:cate_name,
+                    category_name:category_name,
                 },
                 success:function (res) {
                     console.log(res);
