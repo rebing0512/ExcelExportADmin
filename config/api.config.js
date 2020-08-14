@@ -17,9 +17,9 @@ var api = {
     adminLogDel:baseUrl+'admin/partner/adminLogDelete',//操作日志删除
     overviewIndex:baseUrl+'admin/partner/overview',//概况
 
-    partnerList:baseUrl+'admin/partner/partnerLists',//城市合伙人列表
-    inviteSearch:baseUrl+'admin/partner/inviteSearch',//邀请搜索
-    partnerInvite:baseUrl+'admin/partner/invite',//邀请用户
+    partnerList:baseUrl+'admin/partner/partnerLists',//合伙人列表
+    partnerAdd:baseUrl+'admin/partner/partnerAdd',//邀请合伙人
+    partnerEdit:baseUrl+'admin/partner/partnerEdit',//编辑合伙人信息
 
     financeList:baseUrl+'admin/partner/finance/financeLists',//财务列表
     financeAgree:baseUrl+'admin/partner/finance/agree',//提现申请同意
