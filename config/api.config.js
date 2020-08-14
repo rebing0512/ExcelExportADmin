@@ -45,10 +45,10 @@ var api = {
     advertCategoryInfo: baseUrl + 'admin/partner/advert/category/advertCategoryInfo/',//广告分类单条信息
     advertCategoryDelete: baseUrl + 'admin/partner/advert/category/advertCategoryDelete/',//广告分类删除
     advertCategoryStatusChange: baseUrl + 'admin/partner/advert/category/advertCategoryStatusChange',//更改状态广告分类
-    advertLists: baseUrl + 'admin/partner/advert/advertTypeLists',//广告列表
+    advertLists: baseUrl + 'admin/partner/advert/advertLists',//广告列表
     advertAdd: baseUrl + 'admin/partner/advert/advertAdd',//广告增加
     advertEdit: baseUrl + 'admin/partner/advert/advertEdit',//广告编辑
     advertInfo: baseUrl + 'admin/partner/advert/advertInfo/',//获取单条广告信息
     advertDelete: baseUrl + 'admin/partner/advert/advertDelete/',//删除广告
     advertTypeLists: baseUrl + 'admin/partner/advert/type/advertTypeLists',//广告类型
-}
+};
