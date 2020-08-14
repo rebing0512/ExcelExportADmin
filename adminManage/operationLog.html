@@ -54,7 +54,7 @@
         <tr>
             <th data-field="code" data-checkbox="true"></th>
             <th data-halign="center" data-align="center" data-width="50" data-field="id">ID</th>
-            <th data-valign="middle" data-field="admin_name">管理员名称</th>
+            <th data-valign="middle" data-field="username">管理员名称</th>
             <th data-valign="middle" data-field="operation">行为</th>
             <th data-valign="middle" data-field="ip">IP地址</th>
             <th data-valign="middle" data-field="created_at">操作时间</th>
@@ -64,15 +64,13 @@
     </table>
 </div>
 <script>
-    //操作
-    function OperationFormat(value,row,index){
-
-        return '<div class="table-options">' +
-            '<a href="javascript:;" class="delete-btn option-item categoryDelete" data-id="'+row.id+'">删除</a>' +
-            '</div>';
-
-
-    }
+    // //操作
+    // function OperationFormat(value,row,index){
+    //
+    //     return '<div class="table-options">' +
+    //         '<a href="javascript:;" class="delete-btn option-item categoryDelete" data-id="'+row.id+'">删除</a>' +
+    //         '</div>';
+    // }
 
     $(function(){
         var isGoToFirstPage = false;
@@ -91,14 +89,14 @@
                     return {//这里的params是table提供的
                         page: 1//从数据库第几条记录开始
                         , page_size: params.limit  //找多少条
-                        ,condition: 'admin_name'
+                        ,condition: 'username'
                         ,keyword: $("#goods_name_search").val()
                     };
                 }else {
                     return {//这里的params是table提供的
                         page: page//从数据库第几条记录开始
                         , page_size: params.limit  //找多少条
-                        ,condition: 'admin_name'
+                        ,condition: 'username'
                         ,keyword: $("#goods_name_search").val()
                     };
                 }
