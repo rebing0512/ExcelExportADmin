@@ -30,15 +30,15 @@
                 <div class="control-label">分类名称：</div>
                 <div class="controls">
                     <div class="zent-input-wrapper zent-input--size-normal filter-size-normal">
-                        <input class="zent-input" type="text" value="" id="goods_name_search">
+                        <input class="zent-input" type="text" value="" id="goods_name_search" placeholder="请输入分类名称">
                     </div>
                 </div>
             </div>
             <div class="control-group clearfix">
                 <div class="controls">
                     <button type="button" id="filter-search-btn" class="zent-btn-primary zent-btn">筛选</button>
-                    <!--<button type="button" class="zent-btn">批量下架</button>-->
-                    <a href="javascript:void(0)" class="reset-filter-groups-value" id="AllModal">清空筛选条件</a>
+                    <!--                    <a href="javascript:void(0)" class="reset-filter-groups-value" id="AllModal">清空筛选条件</a>-->
+                    <button type="button" class="reset-filter-groups-value zent-btn-primary zent-btn" id="AllModal">重置</button>
                 </div>
             </div>
         </div>
@@ -51,7 +51,8 @@
         <tr>
             <th data-field="code" data-checkbox="true"></th>
             <th data-halign="center" data-align="center" data-width="50" data-field="id">ID</th>
-            <th data-valign="middle" data-field="cate_name">分类名称</th>
+            <th data-valign="middle" data-field="category_name">分类名称</th>
+            <th data-valign="middle" data-field="sort">排序</th>
             <th data-valign="middle" data-field="created_at">时间</th>
             <th data-valign="middle" data-align="center" data-width="200" data-field="id" data-formatter="OperationFormat">操作</th>
         </tr>
