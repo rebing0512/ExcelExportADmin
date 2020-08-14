@@ -78,7 +78,7 @@
         <tr>
             <th data-field="code" data-checkbox="true"></th>
             <th data-halign="center" data-align="center" data-width="50" data-field="id">ID</th>
-            <th data-field="avatar" data-class="goods_filed" data-width="150" data-formatter="GoodsFormat">头像</th>
+            <th data-field="avatar" data-class="goods_filed" data-width="150" data-formatter="avatarFormat">头像</th>
             <th data-valign="middle" data-field="username" data-width="150" data-formatter="userNameFormat">用户名称</th>
             <th data-valign="middle" data-field="phone">手机号</th>
             <th data-valign="middle" data-field="total_income">总收益</th>
@@ -226,7 +226,7 @@
     /**
      * @return {string}
      */
-    function GoodsFormat(value, row, index) {
+    function avatarFormat(value, row, index) {
         var serverId = value;
         //console.log(row);
         if (row.avatar == null ){
@@ -238,7 +238,7 @@
         } else {
             return '<div class="goods-container">' +
                 '<div class="goods-image">' +
-                '<img style="width:60px;" class="goodsImage" data-state="0"  src="'+row.avatar+'"/>'+
+                '<img style="width:60px;" class="goodsImage" data-state="0"  src="'+row.serverId+'"/>'+
                 '</div>'+
                 '</div>';
         }
