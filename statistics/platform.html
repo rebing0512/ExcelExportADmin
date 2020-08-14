@@ -38,8 +38,6 @@
 <script src="../js/upload.min.js"></script>
 <script src="../js/selectmenu.js"></script>
 <div class="sections">
-
-
     <div class="col-sm-12" style="margin-top: 16px">
         <table id="contentTable" data-mobile-responsive="true" data-click-to-select="true" data-thead-classes="thead-light">
             <thead>
@@ -48,21 +46,14 @@
                 <th data-valign="middle" data-width="25%" data-field="total_income_total">总收益</th>
                 <th data-valign="middle" data-width="25%" data-field="sub_total">下线人数</th>
                 <th data-valign="middle" data-width="25%" data-field="date">日期</th>
-
-
             </tr>
             </thead>
         </table>
     </div>
 </div>
-
 <script>
-
-
-
     $(function(){
         var isGoToFirstPage = false;
-
         //渲染表格
         $('#contentTable').bootstrapTable({
             method: 'post',
