@@ -38,7 +38,7 @@
 <script src="../js/upload.min.js"></script>
 <script src="../js/selectmenu.js"></script>
 <div class="plublish-wrapper col-sm-12">
-    <button type="button" id="release-goods-btn" class="zent-btn-primary zent-btn">邀请</button>
+    <button type="button" id="release-goods-btn" class="zent-btn-primary zent-btn">邀请用户</button>
 </div>
 <div class="col-sm-12" style="display: flex;align-items: center;justify-content: space-between;">
     <!--搜索条件-->
@@ -242,17 +242,13 @@
                 '</div>'+
                 '</div>';
         }
-
     }
-
     function userNameFormat(value, row, index) {
         if (value == null){
             value = '未授权用户';
         }
         return value;
     }
-
-
     $(function(){
         var isGoToFirstPage = false;
 
@@ -357,12 +353,26 @@
                 }
             });
         });
+        // 点击新增
+        $("#release-goods-btn").click(function () {
+            //处理面包导航
+            console.log(parent.bread_crumbs);
+            parent.bread_crumbs[0].isLink = '1';//修改父级页面的可点击状态
+            parent.bread_crumbs[1] = {
+                isLink:'0',
+                title:'邀请用户',
+                url:'partner/addPartner.html'
+            };
+            window.parent.renderBreadCrumbs(parent.bread_crumbs);
+            var app_iframe=$("#app_iframe", window.parent.document);
+            console.log(app_iframe);
+            app_iframe.attr('src',"partner/addPartner.html");
+        });
         //右边条件搜索
         $(document).on("click","#filter-search-btn",function () {
             isGoToFirstPage = true;
             $('#contentTable').bootstrapTable('refresh');
         });
-
         // 点击全部刷新
         $(document).on("click","#AllModal",function () {
             isGoToFirstPage = true;//回到第一页
@@ -391,9 +401,7 @@
                 }
             })
         }
-
     });
-
 </script>
 </body>
 </html>
