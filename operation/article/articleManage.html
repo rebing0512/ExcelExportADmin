@@ -43,10 +43,10 @@
     <div class="list-filter">
         <div class="clearfix list-filter-wrapper">
             <div class="control-group clearfix">
-                <div class="control-label">标题名称：</div>
+                <div class="control-label">文章标题：</div>
                 <div class="controls">
                     <div class="zent-input-wrapper zent-input--size-normal filter-size-normal">
-                        <input class="zent-input" type="text" value="" id="goods_name_search">
+                        <input class="zent-input" type="text" value="" id="goods_name_search" placeholder="请输入文章标题">
                     </div>
                 </div>
             </div>
@@ -54,7 +54,8 @@
                 <div class="controls">
                     <button type="button" id="filter-search-btn" class="zent-btn-primary zent-btn">筛选</button>
                     <!--<button type="button" class="zent-btn">批量下架</button>-->
-                    <a href="javascript:void(0)" class="reset-filter-groups-value" id="AllModal">清空筛选条件</a>
+                    <!--<a href="javascript:void(0)" class="reset-filter-groups-value" id="AllModal">清空筛选条件</a>-->
+                    <button type="button" class="reset-filter-groups-value zent-btn-primary zent-btn" id="AllModal">重置</button>
                 </div>
             </div>
         </div>
@@ -65,13 +66,13 @@
     <table id="contentTable" data-mobile-responsive="true" data-click-to-select="true" data-thead-classes="thead-light">
         <thead>
         <tr>
-            <th data-field="code" data-checkbox="true"></th>
-            <th data-halign="center" data-align="center" data-width="50" data-field="id">ID</th>
-            <th data-valign="middle" data-field="title" data-width="600">标题</th>
-            <th data-valign="middle" data-field="category_name">分类</th>
-            <th data-valign="middle" data-field="created_at">创建时间</th>
-            <th data-valign="middle" data-field="read_counts">阅读数</th>
-            <th data-valign="middle" data-align="center" data-width="150" data-field="status_value" data-formatter="OperationFormat">操作</th>
+            <th data-field="code" data-checkbox="true" data-width="5%"></th>
+            <th data-halign="center" data-align="center" data-width="5%" data-field="id">ID</th>
+            <th data-valign="middle" data-field="title" data-width="30%">标题</th>
+            <th data-valign="middle" data-field="category_name" data-width="15%">分类</th>
+            <th data-valign="middle" data-field="read_counts" data-width="10%">阅读数</th>
+            <th data-valign="middle" data-field="created_at" data-width="15%">创建时间</th>
+            <th data-valign="middle" data-align="center" data-width="20%" data-field="status_value" data-formatter="OperationFormat">操作</th>
         </tr>
         </thead>
     </table>
