@@ -97,6 +97,9 @@
     <div class="pettyb upload" data-value='' data-num="1" id='download'></div>
 </script>
 <script>
+    /**
+     * @return {string}
+     */
     function GoodsFormat(value, row, index) {
         var serverId = value;
         //console.log(row);
@@ -173,7 +176,7 @@
 //            toolbar: '#contentTableToolbar',
             clickToSelect: true,//是否启用点击选中行
             striped: false, //是否显示行间隔色
-            dataField: "userDate",//bootstrap table 可以前端分页也可以后端分页，这里
+            dataField: "data",//bootstrap table 可以前端分页也可以后端分页，这里
             //我们使用的是后端分页，后端分页时需返回含有total：总记录数,这个键值好像是固定的
             //rows： 记录集合 键值可以修改  dataField 自己定义成自己想要的就好
             pageNumber: 1, //初始化加载第一页，默认第一页
