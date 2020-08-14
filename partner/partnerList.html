@@ -78,8 +78,8 @@
         <tr>
             <th data-field="code" data-checkbox="true"></th>
             <th data-halign="center" data-align="center" data-width="50" data-field="id">ID</th>
-            <th data-field="avatar" data-class="goods_filed" data-width="150" data-formatter="avatarFormat">头像</th>
             <th data-valign="middle" data-field="username" data-width="150" data-formatter="userNameFormat">用户名称</th>
+            <th data-field="avatar" data-class="goods_filed" data-width="150" data-formatter="avatarFormat">头像</th>
             <th data-valign="middle" data-field="phone">手机号</th>
             <th data-valign="middle" data-field="total_income">总收益</th>
             <th data-valign="middle" data-field="withdrawn_income">已提现</th>
@@ -228,6 +228,12 @@
      */
     function avatarFormat(value, row, index) {
         var serverId = value;
+        // var serverId = value;
+        // return '<div class="goods-container">' +
+        //     '<div class="goods-image">' +
+        //     '<img style="width:60px;" class="goodsImage" data-state="0" data-value="'+serverId+'" src="../../img/image-default.jpg"/>'+
+        //     '</div>'+
+        //     '</div>';
         //console.log(row);
         if (row.avatar == null ){
             return '<div class="goods-container">' +
@@ -238,7 +244,7 @@
         } else {
             return '<div class="goods-container">' +
                 '<div class="goods-image">' +
-                '<img style="width:60px;" class="goodsImage" data-state="0"  src="'+serverId+'"/>'+
+                '<img style="width:60px;" class="goodsImage" data-state="0"  data-value="'+serverId+'" src="../../img/image-default.jpg"/>'+
                 '</div>'+
                 '</div>';
         }
