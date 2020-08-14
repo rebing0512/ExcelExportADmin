@@ -37,63 +37,62 @@
 <script src="../config/api.config.js"></script>
 <script src="../js/upload.min.js"></script>
 <script src="../js/selectmenu.js"></script>
-<div class="sections">
-    <div class="plublish-wrapper col-sm-12">
-        <button type="button" id="release-goods-btn" class="zent-btn-primary zent-btn">邀请</button>
-    </div>
-    <div class="col-sm-12" style="display: flex;align-items: center;justify-content: space-between;">
-        <!--搜索条件-->
-        <form class="zent-form zent-form--horizontal filter-container">
-            <div class="filter-fields-wrap">
-                <div class="filter-item">
-                    <div class="filter-item__field">
-                        <div class="form__control-group order-label">
-                            <label class="form__control-label">用户搜索：</label>
-                            <div class="form__controls">
-                                <div class="select-wrapper select--size-normal">
-                                    <div class="select-text" data-value="username" id="goods-search-type">用户昵称</div>
-                                </div>
+<!--<div class="sections">-->
+<div class="plublish-wrapper col-sm-12">
+    <button type="button" id="release-goods-btn" class="zent-btn-primary zent-btn">邀请</button>
+</div>
+<div class="col-sm-12" style="display: flex;align-items: center;justify-content: space-between;">
+    <!--搜索条件-->
+    <form class="zent-form zent-form--horizontal filter-container">
+        <div class="filter-fields-wrap">
+            <div class="filter-item">
+                <div class="filter-item__field">
+                    <div class="form__control-group order-label">
+                        <label class="form__control-label">用户搜索：</label>
+                        <div class="form__controls">
+                            <div class="select-wrapper select--size-normal">
+                                <div class="select-text" data-value="username" id="goods-search-type">用户昵称</div>
                             </div>
                         </div>
-                        <div class="form__control-group search-value">
-                            <label class="form__control-label"></label>
-                            <div class="form__controls">
-                                <div class="input-wrapper input--size-normal">
-                                    <input name="keyword" type="text" class="input-common" id="goods-search-value">
-                                </div>
+                    </div>
+                    <div class="form__control-group search-value">
+                        <label class="form__control-label"></label>
+                        <div class="form__controls">
+                            <div class="input-wrapper input--size-normal">
+                                <input name="keyword" type="text" class="input-common" id="goods-search-value">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="form-actions">
-                <button type="button" class="buttonn-primary btn-common" id="filter-search-btn">搜索</button>
+        </div>
+        <div class="form-actions">
+            <button type="button" class="buttonn-primary btn-common" id="filter-search-btn">搜索</button>
 <!--                <a href="javascript:;" class="reset-form margin-left-8" id="AllModal">清空筛选条件</a>-->
-                <button type="button" class="reset-filter-groups-value zent-btn-primary zent-btn" id="AllModal">重置</button>
-            </div>
-        </form>
-    </div>
-
-    <div class="col-sm-12">
-        <table id="contentTable" data-mobile-responsive="true" data-click-to-select="true" data-thead-classes="thead-light">
-            <thead>
-            <tr>
-                <th data-field="code" data-checkbox="true"></th>
-                <th data-halign="center" data-align="center" data-width="50" data-field="id">ID</th>
-                <th data-field="avatar" data-class="goods_filed" data-width="150" data-formatter="GoodsFormat">头像</th>
-                <th data-valign="middle" data-field="username" data-width="150" data-formatter="userNameFormat">用户名称</th>
-                <th data-valign="middle" data-field="phone">手机号</th>
-                <th data-valign="middle" data-field="total_income">总收益</th>
-                <th data-valign="middle" data-field="withdrawn_income">已提现</th>
-                <th data-valign="middle" data-field="freeze_income">提现中</th>
-                <th data-valign="middle" data-field="income">待提现</th>
-                <th data-valign="middle" data-field="sub">总下线</th>
-                <th data-valign="middle" data-field="created_at">邀请日期</th>
-            </tr>
-            </thead>
-        </table>
-    </div>
+            <button type="button" class="reset-filter-groups-value zent-btn-primary zent-btn" id="AllModal">重置</button>
+        </div>
+    </form>
 </div>
+<div class="col-sm-12">
+    <table id="contentTable" data-mobile-responsive="true" data-click-to-select="true" data-thead-classes="thead-light">
+        <thead>
+        <tr>
+            <th data-field="code" data-checkbox="true"></th>
+            <th data-halign="center" data-align="center" data-width="50" data-field="id">ID</th>
+            <th data-field="avatar" data-class="goods_filed" data-width="150" data-formatter="GoodsFormat">头像</th>
+            <th data-valign="middle" data-field="username" data-width="150" data-formatter="userNameFormat">用户名称</th>
+            <th data-valign="middle" data-field="phone">手机号</th>
+            <th data-valign="middle" data-field="total_income">总收益</th>
+            <th data-valign="middle" data-field="withdrawn_income">已提现</th>
+            <th data-valign="middle" data-field="freeze_income">提现中</th>
+            <th data-valign="middle" data-field="income">待提现</th>
+            <th data-valign="middle" data-field="sub">总下线</th>
+            <th data-valign="middle" data-field="created_at">邀请日期</th>
+        </tr>
+        </thead>
+    </table>
+</div>
+<!--</div>-->
 <!--编辑余额排序的modal-->
 <div class="modal fade bs-example-modal-lg" id="editBalance" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog" role="document">
@@ -141,7 +140,6 @@
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
-</div>
 </div>
 <!--编辑积分排序的modal-->
 <div class="modal fade bs-example-modal-lg" id="editIntegral" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
@@ -191,7 +189,6 @@
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
-</div>
 </div>
 <!--查看用户认证信息-->
 <div class="modal fade bs-example-modal-lg" id="checkUserInfo" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
