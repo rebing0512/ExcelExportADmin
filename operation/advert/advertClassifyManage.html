@@ -141,7 +141,9 @@
      */
     $(document).on("click",".edit-sort",function () {
         var id = $(this).data('id');
+        console.log(id);
         var value = $(this).attr("data-value");
+        console.log(value);
         //清空历史
         $("#edit-sort").val(value);
         $("#editSortModal").modal("show");
