@@ -78,7 +78,7 @@
         <tr>
             <th data-field="code" data-checkbox="true" data-width="5%" ></th>
             <th data-halign="center" data-align="center" data-width="5%" data-field="id">ID</th>
-            <th data-valign="middle" data-align="center"  data-field="username" data-width="15%" data-formatter="userNameFormat">用户名称</th>
+            <th data-valign="middle" data-align="center"   data-field="username" data-width="15%" data-formatter="userNameFormat">用户名称</th>
             <th data-field="avatar"  data-class="goods_filed" data-width="10%" data-formatter="avatarFormat">头像</th>
             <th data-valign="middle" data-field="phone" data-width="10%">手机号</th>
             <th data-valign="middle" data-align="center"  data-field="total_income" data-width="5%">总收益</th>
@@ -92,56 +92,8 @@
         </thead>
     </table>
 </div>
-<!--编辑余额排序的modal-->
-<div class="modal fade bs-example-modal-lg" id="editBalance" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h4 class="modal-title">用户信息</h4>
-            </div>
-            <div class="modal-body">
-                <div class="sections">
-                    <div class="messageItem">
-                        <div class="control"><i class="xing">*</i>用户昵称：</div>
-                        <div class="formControls smallInput"><input type="text" readonly class="start_price"  id="name"></div>
-                    </div>
-                    <div class="messageItem">
-                        <div class="control"><i class="xing">*</i>当前账户余额：</div>
-                        <div class="formControls smallInput"><input class="start_price" readonly type="text"  id="price"></div>
-                    </div>
-                    <div class="messageItem">
-                        <div class="control"><i class="xing">*</i>类型：</div>
-                        <div class="integralType">
-                            <div class="integralItem">
-                                <input data-id="1" class="integral" name="btSelect" checked type="radio"  id="integral-goods">
-                                <label class="input-label" for="integral-goods">增加</label>
-                            </div>
-                            <div class="integralItem">
-                                <input data-id="2" class="integral" name="btSelect"  type="radio" id="auction-goods">
-                                <label class="input-label" for="auction-goods">减少</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="messageItem">
-                        <div class="control"><i class="xing">*</i>数量：</div>
-                        <div class="formControls smallInput"><input type="number" class="start_price"  id="number"></div>
-                    </div>
-                    <div class="messageItem">
-                        <div class="control"><i class="xing">*</i>原因：</div>
-                        <div class="formControls smallInput"><input type="text" class="start_price"  id="reason"></div>
-                    </div>
-
-                </div>
-                <div class="preserved">
-                    <button type="button" id="edit-Balance-btn" class="zent-btn-primary zent-btn">保存</button>
-                </div>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div>
-<!--编辑积分排序的modal-->
-<div class="modal fade bs-example-modal-lg" id="editIntegral" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+<!--编辑的modal-->
+<div class="modal fade bs-example-modal-lg" id="editPartner" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
 
@@ -153,75 +105,45 @@
                 <div class="sections">
                     <div class="messageItem">
                         <div class="control"><i class="xing">*</i>用户昵称：</div>
-                        <div class="formControls smallInput"><input class="start_price" readonly  id="integralname"></div>
+                        <div class="formControls smallInput"><input   id="user_name" placeholder="请输入用户昵称"></div>
                     </div>
                     <div class="messageItem">
-                        <div class="control"><i class="xing">*</i>当前剩余积分：</div>
-                        <div class="formControls smallInput"><input  class="start_price" readonly  id="integralprice"></div>
-                    </div>
-                    <div class="messageItem">
-                        <div class="control"><i class="xing">*</i>类型：</div>
-                        <div class="integralType">
-                            <div class="integralItem">
-                                <input data-id="1" class="integral" name="integralRadio" checked type="radio"  id="integralGoods">
-                                <label class="input-label" for="integral-goods">增加</label>
+                        <div class="control"><i class="xing">*</i>用户头像：</div>
+                        <div class="pictureList">
+                            <div class="case" id="mainAdvertImg">
+
                             </div>
-                            <div class="integralItem">
-                                <input data-id="2" class="integral" name="integralRadio"  type="radio" id="auctionGoods">
-                                <label class="input-label" for="auction-goods">减少</label>
+                            <div class="help-block" style="margin-left: 0px">建议尺寸：800*800像素，最多上传1张
                             </div>
                         </div>
                     </div>
+<!--                    <div class="messageItem">-->
+<!--                        <div class="control"><i class="xing">*</i>用户头像：</div>-->
+<!--                        <div class="pictureList">-->
+<!--                            <div class="case">-->
+<!--                                <div class="pettyb upload" data-value='' data-num="1" id='mainUploadWrapper'></div>-->
+<!--                            </div>-->
+<!--                            <div class="help-block" style="margin-left: 0px">建议尺寸：800*800像素，最多上传1张</div>-->
+<!--                        </div>-->
+<!--                    </div>-->
                     <div class="messageItem">
-                        <div class="control"><i class="xing">*</i>数量：</div>
-                        <div class="formControls smallInput"><input type="number" class="start_price"  id="integralnumber"></div>
-                    </div>
-                    <div class="messageItem">
-                        <div class="control"><i class="xing">*</i>原因：</div>
-                        <div class="formControls smallInput"><input type="text" class="start_price"  id="integralreason"></div>
+                        <div class="control"><i class="xing">*</i>手机号：</div>
+                        <div class="formControls smallInput"><input type="text"  id="phone" placeholder="请输入手机号"></div>
                     </div>
 
                 </div>
                 <div class="preserved">
-                    <button type="button" id="edit-Integral-btn" class="zent-btn-primary zent-btn">保存</button>
+                    <button type="button" id="edit-partner-btn" class="zent-btn-primary zent-btn">保存</button>
                 </div>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div>
-<!--查看用户认证信息-->
-<div class="modal fade bs-example-modal-lg" id="checkUserInfo" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h4 class="modal-title">实名信息</h4>
-            </div>
-            <div class="modal-body">
-                <div class="sections">
-                    <div class="messageItem">
-                        <div class="control"><i class="xing">*</i>用户姓名：</div>
-                        <div class="formControls smallInput"><input class="start_price" readonly  id="userName"></div>
-                    </div>
-                    <div class="messageItem">
-                        <div class="control"><i class="xing">*</i>身份证号：</div>
-                        <div class="formControls smallInput"><input  class="start_price" readonly  id="userNum"></div>
-                    </div>
-                    <div class="preserved">
-                        <button type="button" id="edit-auth-btn" class="zent-btn-primary zent-btn">清除</button>
-                    </div>
-                </div>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div>
-</div>
-<script type="text/html" id="tpl_idCardUp">
+<script type="text/html" id="tpl_partner">
     <div class="pettyb upload" data-value='' data-num="1" id='Upload'></div>
 </script>
-<script type="text/html" id="tpl_idCardDown">
-    <div class="pettyb upload" data-value='' data-num="1" id='download'></div>
+<script type="text/html" id="advertImg">
+    <div class="pettyb upload" data-value='' data-num="1" id='mainUpload'></div>
 </script>
 <script>
     /**
@@ -255,7 +177,7 @@
      */
     function OperationFormat(value,row,index){
         return '<div class="table-options">' +
-            '<a href="javascript:;" class="edit-btn option-item edit-info" data-id="'+value+'">编辑</a>' +
+            '<a href="javascript:;" class="edit-btn option-item edit-info" data-id="'+row.id+'">编辑</a>' +
             '</div>';
 
     }
@@ -392,7 +314,41 @@
             $('#is_auth-selcet').selectMenuClear();
             $('#contentTable').bootstrapTable('refresh');
         });
-
+        //点击编辑按钮
+        $(document).on("click", ".edit-info", function () {
+            var btnPartner_hml = template("tpl_partner", {});
+            $(".btnAdvertWrapper").find(".multiple-select").html(btnPartner_hml);
+            var btnMenu_hml = template("tpl_selectBtnMenu", {});
+            $(".btnMenuWrapper").find(".multiple-select").html(btnMenu_hml);
+            $("#editPartner").modal("show");
+            $("#mainUpload").html('');// 商品主图
+            var id = $(this).data('id');
+            $('#sure').attr('data-id', id);
+            $.Ajax({
+                url: api.partnerInfo,
+                data: {
+                    id: id
+                },
+                is_login: true,
+                success: function (res) {
+                    console.log('合伙人信息接口');
+                    console.log(res);
+                    if (res.code == 1) {
+                        var main_upload_html = template("advertImg", {});
+                        $("#mainAdvertImg").html(main_upload_html);
+                        $('.user_name').val(res.result.data.title);
+                        $("#mainUpload").attr('data-value', res.result.data.avatar);// 头像
+                        $('.phone').val(res.result.data.phone);
+                        //主图上传
+                        $("#mainUpload").upload(
+                            function (_this, data) {
+                                previewImage(data.serverId);
+                            }
+                        );
+                    }
+                }
+            })
+        });
         function disposeImageUrl() {
             var serverIds = [];
             $('img.goodsImage[data-state="0"]').map(function (index,item) {

@@ -20,6 +20,7 @@ var api = {
     partnerList:baseUrl+'admin/partner/partnerLists',//合伙人列表
     partnerAdd:baseUrl+'admin/partner/partnerAdd',//邀请合伙人
     partnerEdit:baseUrl+'admin/partner/partnerEdit',//编辑合伙人信息
+    partnerInfo:baseUrl+'admin/partner/partnerInfo',//合伙人信息
 
     financeList:baseUrl+'admin/partner/finance/financeLists',//财务列表
     financeAgree:baseUrl+'admin/partner/finance/agree',//提现申请同意
