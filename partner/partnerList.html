@@ -249,9 +249,18 @@
         }
         return value;
     }
+    /**
+     * 操作
+     * @return {string}
+     */
+    function OperationFormat(value,row,index){
+        return '<div class="table-options">' +
+            '<a href="javascript:;" class="edit-btn option-item edit-info" data-id="'+value+'">编辑</a>' +
+            '</div>';
+
+    }
     $(function(){
         var isGoToFirstPage = false;
-
         //渲染表格
         $('#contentTable').bootstrapTable({
             method: 'post',
