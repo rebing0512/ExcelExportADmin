@@ -199,7 +199,9 @@
             console.log(app_iframe);
             app_iframe.attr('src',"operation/article/addClassify.html");
         });
-        //点击编辑按钮
+        /**
+         *点击编辑按钮
+         */
         $(document).on("click",".edit-goods",function () {
             $("#editGoodsModal").modal("show");
             var id = $(this).data('id');
