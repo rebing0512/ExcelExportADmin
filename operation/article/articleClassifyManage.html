@@ -201,8 +201,11 @@
             var id = $(this).data('id');
             $('#sure').attr('data-id',id);
             $.Ajax({
-                url:api.articleCategoryInfo + id,
+                url:api.articleCategoryInfo,
                 is_login:true,
+                data:{
+                    id:id,
+                },
                 success:function (res) {
                     console.log(res);
                     if (res.code == 1){
