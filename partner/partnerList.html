@@ -110,7 +110,7 @@
                     <div class="messageItem">
                         <div class="control"><i class="xing">*</i>用户头像：</div>
                         <div class="pictureList">
-                            <div class="case" id="mainAdvertImg">
+                            <div class="case" id="mainAvatar">
 
                             </div>
                             <div class="help-block" style="margin-left: 0px">建议尺寸：800*800像素，最多上传1张
@@ -335,10 +335,10 @@
                     console.log(res);
                     if (res.code == 1) {
                         var main_upload_html = template("advertImg", {});
-                        $("#mainAdvertImg").html(main_upload_html);
-                        $('.user_name').val(res.result.data.title);
+                        $("#mainAvatar").html(main_upload_html);
+                        $('#user_name').val(res.result.data.username);
                         $("#mainUpload").attr('data-value', res.result.data.avatar);// 头像
-                        $('.phone').val(res.result.data.phone);
+                        $('#phone').val(res.result.data.phone);
                         //主图上传
                         $("#mainUpload").upload(
                             function (_this, data) {
