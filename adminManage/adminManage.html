@@ -154,16 +154,16 @@
             '</div>'+
             '</div>';
     }
-    //状态
     /**
+     * 状态
      * @return {string}
      */
     function UserStatus(value, row, index) {
 
         if (value == 1){
-            return '<div class="table-options">正常 </div>';
+            return '<div class="table-options" style="color: green;">正常 </div>';
         } else if (value == 2) {
-            return '<div class="table-options">禁用 </div>';
+            return '<div class="table-options" style="color: red;">禁用 </div>';
         }
     }
     //验证邮箱
