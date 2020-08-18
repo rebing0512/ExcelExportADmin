@@ -67,7 +67,7 @@
 
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h4 class="modal-title" id="myLargeModalLabel">编辑广告分类</h4>
+                <h4 class="modal-title" id="myLargeModalLabel">编辑文章分类</h4>
             </div>
             <div class="modal-body">
                 <div class="sections">
@@ -83,6 +83,21 @@
                             <div class="messageItem">
                                 <div class="control">排序：</div>
                                 <div class="formControls"><input type="text" class="sort"></div>
+                            </div>
+
+                            <div class="messageItem">
+                                <div class="control"><i class="xing">*</i>状态：</div>
+                                <div class="integralType">
+                                    <div class="integralItem">
+                                        <input data-value="2" class="status" id="status-able" name="status" checked
+                                               type="radio">
+                                        <label class="input-label" for="status-able">否</label>
+                                    </div>
+                                    <div class="integralItem">
+                                        <input data-value="1" class="status" id="status-disable" name="status" type="radio">
+                                        <label class="input-label" for="status-disable">是</label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -212,7 +227,7 @@
                 disposeImageUrl();
             }
         });
-        //点击发布商品
+        //点击新增
         $("#release-goods-btn").click(function () {
             //处理面包导航
             console.log(parent.bread_crumbs);
@@ -245,12 +260,12 @@
                     if (res.code == 1){
                         $('.category_name').val(res.result.data.category_name);//标题
                         $('.sort').val(res.result.data.sort);
-
+                        $('input[name ="recommend"][data-value="' + res.result.data.status + '"]').prop("checked", true);
                     }
                 }
             })
         });
-// 更改分类状态
+        // 更改分类状态
         $(document).on("click",".statusChange",function () {
             var id = $(this).data("id");
             layer.confirm('确定要执行此操作吗？', {

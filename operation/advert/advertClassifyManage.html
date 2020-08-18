@@ -149,30 +149,6 @@
         $("#editSortModal").modal("show");
         $('#edit-sort-btn').attr('data-id',id);
     });
-    //点击保存排序
-    $(document).on("click","#edit-sort-btn",function () {
-        var id = $(this).attr("data-id");
-        var sort = $("#edit-sort").val();
-        $.Ajax({
-            url:api.consultantChangeSort,
-            data:{
-                consultant_id:id,
-                sort:sort
-            },
-            is_login:true,
-            success:function (res) {
-                if (res.code == 1){
-                    layer.msg("修改成功");
-                    setTimeout(function () {
-                        $("#editSortModal").modal("hide");
-                        $('#contentTable').bootstrapTable('refresh',{
-                            pageNumber: current_page
-                        });
-                    },500);
-                }
-            }
-        })
-    });
     /**
      * 状态
      * @return {string}
