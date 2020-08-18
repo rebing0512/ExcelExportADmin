@@ -66,7 +66,7 @@
 
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h4 class="modal-title" id="myLargeModalLabel">编辑广告信息</h4>
+                <h4 class="modal-title" id="myLargeModalLabel">编辑广告分类</h4>
             </div>
             <div class="modal-body">
                 <div class="sections">
@@ -78,6 +78,10 @@
                             <div class="messageItem">
                                 <div class="control"><i class="xing">*</i>分类名称：</div>
                                 <div class="formControls"><input type="text" class="category_name"></div>
+                            </div>
+                            <div class="messageItem">
+                                <div class="control">排序：</div>
+                                <div class="formControls"><input type="text" class="sort"></div>
                             </div>
                         </div>
                     </div>
@@ -246,14 +250,14 @@
         });
         //    保存
         $(document).on("click","#sure",function () {
-            var category_name = $(".category_name").val();//标题
             var id = $(this).attr('data-id');
             $.Ajax({
-                url:api.articleCategoryAddEdit,
+                url:api.articleCategoryEdit,
                 is_login:true,
                 data:{
                     id:id,
-                    category_name:category_name,
+                    category_name:$(".category_name").val(),
+                    sort:$(".sort").val(),
                 },
                 success:function (res) {
                     console.log(res);
@@ -264,7 +268,6 @@
                     }else {
                         layer.msg(res.result.msg)
                     }
-
                 },
                 fail:function (res) {
                     layer.msg(res.result.msg)
