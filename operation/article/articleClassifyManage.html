@@ -225,8 +225,11 @@
             }, function(){
                 //点击确定
                 $.Ajax({
-                    url:api.articleCategoryDelete+id,
+                    url:api.articleCategoryDelete,
                     is_login:true,
+                    data:{
+                        id:id,
+                    },
                     success:function (res) {
                         if (res.code == 1){
                             layer.msg("删除成功");
@@ -234,7 +237,6 @@
                         }else {
                             layer.msg(res.result.msg)
                         }
-
                     }
                 })
             })
