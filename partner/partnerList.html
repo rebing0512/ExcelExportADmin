@@ -96,7 +96,6 @@
 <div class="modal fade bs-example-modal-lg" id="editPartner" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                 <h4 class="modal-title">用户信息</h4>
@@ -117,15 +116,6 @@
                             </div>
                         </div>
                     </div>
-<!--                    <div class="messageItem">-->
-<!--                        <div class="control"><i class="xing">*</i>用户头像：</div>-->
-<!--                        <div class="pictureList">-->
-<!--                            <div class="case">-->
-<!--                                <div class="pettyb upload" data-value='' data-num="1" id='mainUploadWrapper'></div>-->
-<!--                            </div>-->
-<!--                            <div class="help-block" style="margin-left: 0px">建议尺寸：800*800像素，最多上传1张</div>-->
-<!--                        </div>-->
-<!--                    </div>-->
                     <div class="messageItem">
                         <div class="control"><i class="xing">*</i>手机号：</div>
                         <div class="formControls smallInput"><input type="text"  id="phone" placeholder="请输入手机号"></div>
@@ -365,7 +355,7 @@
                     console.log(res);
                     if (res.code == 1) {
                         layer.msg("修改成功");
-                        $("#editGoodsModal").modal("hide");
+                        $("#editPartner").modal("hide");
                         $('#contentTable').bootstrapTable('refresh');
                     } else {
                         layer.msg(res.result.msg)
