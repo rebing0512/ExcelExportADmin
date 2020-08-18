@@ -22,7 +22,11 @@
         <div class="goodsContent">
             <div class="messageItem">
                 <div class="control"><i class="xing">*</i>分类名称：</div>
-                <div class="formControls"><input type="text" class="cate_name"></div>
+                <div class="formControls"><input type="text" class="category_name"></div>
+            </div>
+            <div class="messageItem">
+                <div class="control">排序：</div>
+                <div class="formControls"><input type="text" class="sort"></div>
             </div>
         </div>
     </div>
@@ -32,15 +36,16 @@
 </div>
 <script>
     $(function(){
-        //    保存
+        /**
+         * 保存
+         */
         $(document).on("click","#filter-search-btn",function () {
-
-            var cate_name = $(".cate_name").val();
             $.Ajax({
-                url:api.articleCategoryAddEdit,
+                url:api.articleCategoryAdd,
                 is_login:true,
                 data:{
-                    cate_name:cate_name,
+                    category_name:$(".category_name").val(),
+                    sort:$(".sort").val()
                 },
                 success:function (res) {
                     console.log(res);
