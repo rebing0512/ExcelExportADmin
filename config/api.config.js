@@ -38,6 +38,7 @@ var api = {
     articleCategoryInfo: baseUrl + 'admin/partner/article/category/articleCategoryInfo/',// 获取文章单条信息
     articleCategoryAdd: baseUrl + 'admin/partner/article/category/articleCategoryAdd',//文章分类增加
     articleCategoryEdit: baseUrl + 'admin/partner/article/category/articleCategoryEdit',//文章分类编辑
+    articleCategoryStatusChange: baseUrl + 'admin/partner/advert/category/articleCategoryStatusChange',//更改状态文分类
     articleCategoryDelete: baseUrl + 'admin/partner/article/category/articleCategoryDelete/',//文章分类删除
 
     advertCategoryLists: baseUrl + 'admin/partner/advert/category/advertCategoryLists',//广告分类

@@ -113,11 +113,25 @@
      * @return {string}
      */
     function OperationFormat(value,row,index){
-        return '<div class="table-options">' +
-            '<a href="javascript:;" class="edit-btn option-item edit-goods" data-id="'+value+'">编辑</a>' +
-            '<span class="split">|</span>' +
-            '<a href="javascript:;" class="delete-btn option-item deleteClassify" data-id="'+value+'">删除</a>' +
-            '</div>';
+
+        if(row.status == 1){
+            return '<div class="table-options">' +
+                '<a href="javascript:;" class="edit-btn option-item edit-goods" data-id="'+value+'">编辑</a>' +
+                '<span class="split">|</span>' +
+                '<a href="javascript:;" class="delete-btn option-item statusChange" data-id="'+value+'"><span style="color: red;"> 禁用</span></a>' +
+                '</div>';
+        }else{
+            return '<div class="table-options">' +
+                '<a href="javascript:;" class="edit-btn option-item edit-goods" data-id="'+value+'">编辑</a>' +
+                '<span class="split">|</span>' +
+                '<a href="javascript:;" class="delete-btn option-item statusChange" data-id="'+value+'"><span style="color: green;"> 启用</span></a>' +
+                '</div>';
+        }
+        // return '<div class="table-options">' +
+        //     '<a href="javascript:;" class="edit-btn option-item edit-goods" data-id="'+value+'">编辑</a>' +
+        //     '<span class="split">|</span>' +
+        //     '<a href="javascript:;" class="delete-btn option-item deleteClassify" data-id="'+value+'">删除</a>' +
+        //     '</div>';
     }
     $(function(){
         var isGoToFirstPage = false;
@@ -236,11 +250,10 @@
                 }
             })
         });
-
-        // 删除分类
-        $(document).on("click",".deleteClassify",function () {
+// 更改分类状态
+        $(document).on("click",".statusChange",function () {
             var id = $(this).data("id");
-            layer.confirm('确定要删除分类吗？', {
+            layer.confirm('确定要执行此操作吗？', {
                 btn: ['取消','确定'], //按钮
                 shade: false //不显示遮罩
             }, function(inds){
@@ -249,14 +262,15 @@
             }, function(){
                 //点击确定
                 $.Ajax({
-                    url:api.articleCategoryDelete,
+                    url:api.articleCategoryStatusChange,
                     is_login:true,
                     data:{
                         id:id,
                     },
                     success:function (res) {
+                        console.log(res);
                         if (res.code == 1){
-                            layer.msg("删除成功");
+                            layer.msg("操作成功");
                             $('#contentTable').bootstrapTable('refresh');
                         }else {
                             layer.msg(res.result.msg)
@@ -265,6 +279,34 @@
                 })
             })
         });
+        // // 删除分类
+        // $(document).on("click",".deleteClassify",function () {
+        //     var id = $(this).data("id");
+        //     layer.confirm('确定要删除分类吗？', {
+        //         btn: ['取消','确定'], //按钮
+        //         shade: false //不显示遮罩
+        //     }, function(inds){
+        //         //点击取消
+        //         layer.close(inds);
+        //     }, function(){
+        //         //点击确定
+        //         $.Ajax({
+        //             url:api.articleCategoryDelete,
+        //             is_login:true,
+        //             data:{
+        //                 id:id,
+        //             },
+        //             success:function (res) {
+        //                 if (res.code == 1){
+        //                     layer.msg("删除成功");
+        //                     $('#contentTable').bootstrapTable('refresh');
+        //                 }else {
+        //                     layer.msg(res.result.msg)
+        //                 }
+        //             }
+        //         })
+        //     })
+        // });
         //    保存
         $(document).on("click","#sure",function () {
             var id = $(this).attr('data-id');
