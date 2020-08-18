@@ -142,7 +142,7 @@
 <script type="text/html" id="tpl_partner">
     <div class="pettyb upload" data-value='' data-num="1" id='Upload'></div>
 </script>
-<script type="text/html" id="advertImg">
+<script type="text/html" id="AvatarImg">
     <div class="pettyb upload" data-value='' data-num="1" id='mainUpload'></div>
 </script>
 <script>
@@ -323,7 +323,7 @@
             $("#editPartner").modal("show");
             $("#mainUpload").html('');// 商品主图
             var id = $(this).data('id');
-            $('#sure').attr('data-id', id);
+            $('#edit-partner-btn').attr('data-id', id);
             $.Ajax({
                 url: api.partnerInfo,
                 data: {
@@ -334,7 +334,7 @@
                     console.log('合伙人信息接口');
                     console.log(res);
                     if (res.code == 1) {
-                        var main_upload_html = template("advertImg", {});
+                        var main_upload_html = template("AvatarImg", {});
                         $("#mainAvatar").html(main_upload_html);
                         $('#user_name').val(res.result.data.username);
                         $("#mainUpload").attr('data-value', res.result.data.avatar);// 头像
@@ -346,6 +346,34 @@
                             }
                         );
                     }
+                }
+            })
+        });
+        // 保存
+        $(document).on("click", "#edit-partner-btn", function () {
+            var id = $(this).attr('data-id');
+            $.Ajax({
+                url: api.partnerEdit,
+                is_login: true,
+                data: {
+                    id: id,
+                    username: $("#user_name").val(),
+                    avatar: $("#mainUpload").data("value"),
+                    phone: $("#phone").val(),
+                },
+                success: function (res) {
+                    console.log(res);
+                    if (res.code == 1) {
+                        layer.msg("修改成功");
+                        $("#editGoodsModal").modal("hide");
+                        $('#contentTable').bootstrapTable('refresh');
+                    } else {
+                        layer.msg(res.result.msg)
+                    }
+
+                },
+                fail: function (res) {
+                    layer.msg(res.result.msg)
                 }
             })
         });
