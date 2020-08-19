@@ -94,7 +94,7 @@
                         <div class="goodsClassifyTitle">基本信息</div>
                         <div class="goodsContent">
                             <div class="messageItem">
-                                <div class="control"><i class="xing">*</i>广告分类：</div>
+                                <div class="control"><i class="xing">*</i>文章分类：</div>
                                 <div class="formControls smallInput"><input type="text" class="start_price" id="btnAdvert"></div>
                             </div>
                             <div class="messageItem">
@@ -364,7 +364,7 @@
         //删除
         $(document).on("click",".articleDelete",function () {
             var id = $(this).data("id");
-            layer.confirm('确定要删除文章吗？', {
+            layer.confirm('确定要删除改文章吗？', {
                 btn: ['取消','确定'], //按钮
                 shade: false //不显示遮罩
             }, function(inds){
@@ -373,8 +373,11 @@
             }, function(){
                 //点击确定
                 $.Ajax({
-                    url:api.articleDelete + id,
+                    url:api.articleDelete,
                     is_login:true,
+                    data:{
+                        id:id,
+                    },
                     success:function (res) {
                         console.log(res)
                         if (res.code == 1){
