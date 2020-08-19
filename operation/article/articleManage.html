@@ -311,7 +311,7 @@
             $("#editContent").modal("show");
             var id = $(this).data('id');
             $.Ajax({
-                url:api.articleInfo + id,
+                url:api.articleInfo,
                 is_login:true,
                 data:{
                     id:id,
