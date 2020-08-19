@@ -239,8 +239,11 @@
                 if (res.code == 1){
                     var Category = res.result.data;
                     $.Ajax({
-                        url:api.articleInfo + article_id,
+                        url:api.articleInfo,
                         is_login:true,
+                        data:{
+                            id:article_id,
+                        },
                         success:function (res) {
                             console.log(res);
                             if (res.code == 1){
