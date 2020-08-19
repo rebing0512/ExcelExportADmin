@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>文章编辑</title>
-    <link rel="stylesheet" href="../../css/dependencies.min.css">
-    <link rel="stylesheet" href="../../css/base.css">
-    <link rel="stylesheet" href="../../css/main.css">
-    <link rel="stylesheet" href="../../css/pageTopBar.css">
-    <link rel="stylesheet" href="../../css/upload.min.css">
-    <link rel="stylesheet" href="../../css/selectmenu.css">
-    <link rel="stylesheet" href="../../css/goodsRelease.css">
-    <link rel="stylesheet" href="../../css/diy.min.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/third_party/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/pageTopBar.css">
+    <link rel="stylesheet" href="../css/upload.min.css">
+    <link rel="stylesheet" href="../css/selectmenu.css">
+    <link rel="stylesheet" href="../css/goodsRelease.css">
+    <link rel="stylesheet" href="../css/diy.min.css">
     <style>
         #phone-main{
             margin-top: 10px;
@@ -23,12 +23,12 @@
     </style>
 </head>
 <body>
-<script src="../../js/dependencies.min.js"></script>
-<script src="../../js/pettyb.min.js"></script>
-<script src="../../config/api.config.js"></script>
-<script src="../../js/upload.min.js"></script>
-<script src="../../js/selectmenu.js"></script>
-<script src="../../js/diy.min.js"></script>
+<script src="../js/dependencies.min.js"></script>
+<script src="../js/pettyb.min.js"></script>
+<script src="../config/api.config.js"></script>
+<script src="../js/upload.min.js"></script>
+<script src="../js/selectmenu.js"></script>
+<script src="../js/diy.min.js"></script>
 
 <div class="test1" data-debug="111"></div>
 <!-----------------------------
@@ -58,7 +58,7 @@
         <div class="goodsContent">
             <div class="messageItem">
                 <div class="control"><i class="xing">*</i>文章分类：</div>
-                <div class="formControls smallInput"><input type="text" name="class_id" class="start_price btnAdvert" value="{{ pagebase.params.className }}" data-id="{{pagebase.params.class_id}}"></div>
+                <div class="formControls smallInput"><input type="text" name="class_id" autocomplete="off" readonly class="start_price btnAdvert" value="{{ pagebase.params.className }}" data-id="{{pagebase.params.class_id}}"></div>
             </div>
             <div class="messageItem">
                 <div class="control"><i class="xing">*</i>标题：</div>
@@ -69,18 +69,8 @@
                 <div class="formControls"><input type="text" name="brief" class="brief" value="{{pagebase.params.brief}}"  data-default="{{ pagebase.defaults?pagebase.defaults.brief:'' }}"></div>
             </div>
             <div class="messageItem">
-                <div class="control"><i class="xing">*</i>阅读数：</div>
+                <div class="control">阅读数：</div>
                 <div class="formControls smallInput"><input  type="number" name="number" class="start_price" id="readCount" value="{{pagebase.params.number}}"  data-default="{{ pagebase.defaults?pagebase.defaults.number:'' }}"></div>
-            </div>
-            <div class="messageItem">
-                <div class="control"><i class="xing">*</i>封面图：</div>
-                <div class="pictureList">
-                    <div class="case">
-                        <div class="pettyb upload" data-value='{{pagebase.params.image}}' data-num="1" id='mainUpload'></div>
-                    </div>
-                    <div class="help-block" style="margin-left: 0px">建议尺寸：800*800像素，你可以拖拽图片调整顺序，最多上传1张</div>
-                </div>
-
             </div>
         </div>
 
@@ -228,37 +218,19 @@
             }
         }
         var article_id = getQueryString("id");
-        /**
-         * 文章分类
-         */
-        var category_data = [];
+        //文章分类
         $.Ajax({
             url: api.articleCategoryLists,
             is_login:true,
-            data: {
-                choose: 1
-            },
             success: function (res) {
                 if (res.code == 1){
                     var Category = res.result.data;
-                    // 先清空原来的数组
-                    category_data.splice(0, category_data.length);
-                    console.log(category_data);
-                    Category.map(function (item, index) {
-                        var obj = {};
-                        obj.id = item.id;
-                        obj.name = item.category_name;
-                        category_data.push(obj);
-                    });
-                    /**
-                     * 文章信息
-                     */
                     $.Ajax({
-                        url:api.articleInfo,
-                        is_login:true,
+                        url:api.articleCategoryInfo,
                         data:{
-                            id:article_id,
+                            id:article_id
                         },
+                        is_login:true,
                         success:function (res) {
                             console.log(res);
                             if (res.code == 1){
@@ -267,13 +239,11 @@
                                 var readCount = res.result.data.read_counts;
                                 var content = JSON.parse(res.result.data.content).data;
                                 var category_id = res.result.data.category_id;
-                                var image = res.result.data.image;
                                 var params = {
                                     title:title,
                                     class_id:category_id,
                                     brief:brief,
-                                    number:readCount,
-                                    image:image
+                                    number:readCount
                                 };
                                 var data = {
                                     pagebase:{},
@@ -305,13 +275,12 @@
                                             url:api.articleEdit,
                                             is_login:true,
                                             data:{
-                                                id:article_id,
+                                                article_id:article_id,
                                                 category_id:category_id,
                                                 title:title,
                                                 brief:brief,
                                                 read_counts:read_counts,
-                                                content:content,
-                                                image:pagebase.params.image
+                                                content:content
                                             },
                                             success:function (res) {
                                                 console.log(res);
@@ -325,7 +294,7 @@
                                                         //修改加载内容页
                                                         var app_iframe=$("#app_iframe", window.parent.document);
                                                         console.log(app_iframe);
-                                                        app_iframe.attr('src',"operation/article/articleManage.html");
+                                                        app_iframe.attr('src',"Operation/articleManage.html");
                                                     },500)
                                                 }else {
                                                     layer.msg(res.result.msg)
