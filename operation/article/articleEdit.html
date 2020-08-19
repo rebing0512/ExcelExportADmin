@@ -228,7 +228,10 @@
             }
         }
         var article_id = getQueryString("id");
-        //文章分类
+        /**
+         * 文章分类
+         */
+        var category_data = [];
         $.Ajax({
             url: api.articleCategoryLists,
             is_login:true,
@@ -238,6 +241,18 @@
             success: function (res) {
                 if (res.code == 1){
                     var Category = res.result.data;
+                    // 先清空原来的数组
+                    category_data.splice(0, category_data.length);
+                    console.log(category_data);
+                    Category.map(function (item, index) {
+                        var obj = {};
+                        obj.id = item.id;
+                        obj.name = item.category_name;
+                        category_data.push(obj);
+                    });
+                    /**
+                     * 文章信息
+                     */
                     $.Ajax({
                         url:api.articleInfo,
                         is_login:true,
@@ -287,7 +302,7 @@
                                         var read_counts = pagebase.params.number;
                                         var category_id = pagebase.params.class_id;
                                         $.Ajax({
-                                            url:api.articleAddEdit,
+                                            url:api.articleEdit,
                                             is_login:true,
                                             data:{
                                                 id:article_id,
