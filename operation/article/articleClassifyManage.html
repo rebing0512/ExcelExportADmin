@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../../css/pageTopBar.css">
     <link rel="stylesheet" href="../../css/upload.min.css">
     <link rel="stylesheet" href="../../css/goodsManage.css">
+    <link rel="stylesheet" href="../../css/integralGoodsRelease.css">
     <link rel="stylesheet" href="../../css/goodsRelease.css">
 
 </head>
@@ -91,11 +92,11 @@
                                     <div class="integralItem">
                                         <input data-value="2" class="status" id="status-able" name="status" checked
                                                type="radio">
-                                        <label class="input-label" for="status-able">否</label>
+                                        <label class="input-label" for="status-able">禁用</label>
                                     </div>
                                     <div class="integralItem">
                                         <input data-value="1" class="status" id="status-disable" name="status" type="radio">
-                                        <label class="input-label" for="status-disable">是</label>
+                                        <label class="input-label" for="status-disable">正常</label>
                                     </div>
                                 </div>
                             </div>
@@ -260,7 +261,7 @@
                     if (res.code == 1){
                         $('.category_name').val(res.result.data.category_name);//标题
                         $('.sort').val(res.result.data.sort);
-                        $('input[name ="recommend"][data-value="' + res.result.data.status + '"]').prop("checked", true);
+                        $('input[name ="status"][data-value="' + res.result.data.status + '"]').prop("checked", true);
                     }
                 }
             })
