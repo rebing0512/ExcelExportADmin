@@ -313,6 +313,9 @@
             $.Ajax({
                 url:api.articleInfo + id,
                 is_login:true,
+                data:{
+                    id:id,
+                },
                 success:function (res) {
                     console.log(res);
                     if (res.code == 1){
@@ -335,7 +338,7 @@
             var id = $(this).attr('data-id');
             var category_id = $("#btnAdvert").attr('data-id');
             $.Ajax({
-                url:api.articleAddEdit,
+                url:api.articleEdit,
                 is_login:true,
                 data:{
                     category_id:category_id,
