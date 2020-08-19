@@ -90,13 +90,13 @@
                                 <div class="control"><i class="xing">*</i>状态：</div>
                                 <div class="integralType">
                                     <div class="integralItem">
+                                        <input data-value="1" class="status" id="status-disable" name="status" type="radio">
+                                        <label class="input-label" for="status-disable">正常</label>
+                                    </div>
+                                    <div class="integralItem">
                                         <input data-value="2" class="status" id="status-able" name="status" checked
                                                type="radio">
                                         <label class="input-label" for="status-able">禁用</label>
-                                    </div>
-                                    <div class="integralItem">
-                                        <input data-value="1" class="status" id="status-disable" name="status" type="radio">
-                                        <label class="input-label" for="status-disable">正常</label>
                                     </div>
                                 </div>
                             </div>
@@ -266,7 +266,9 @@
                 }
             })
         });
-        // 更改分类状态
+        /**
+         *更改分类状态
+         */
         $(document).on("click",".statusChange",function () {
             var id = $(this).data("id");
             layer.confirm('确定要执行此操作吗？', {
@@ -323,7 +325,9 @@
         //         })
         //     })
         // });
-        //    保存
+        /**
+         * 编辑保存
+         */
         $(document).on("click","#sure",function () {
             var id = $(this).attr('data-id');
             $.Ajax({
@@ -333,6 +337,7 @@
                     id:id,
                     category_name:$(".category_name").val(),
                     sort:$(".sort").val(),
+                    status:$("input[name='status']:checked").attr("data-value"),
                 },
                 success:function (res) {
                     console.log(res);
