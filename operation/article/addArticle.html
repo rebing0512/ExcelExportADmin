@@ -245,7 +245,7 @@
                            var category_id = pagebase.params.class_id;
                            var image = pagebase.params.image;
                            $.Ajax({
-                               url:api.articleAddEdit,
+                               url:api.articleAdd,
                                is_login:true,
                                data:{
                                    category_id:category_id,
@@ -272,7 +272,6 @@
                                    }else {
                                        layer.msg(res.result.msg)
                                    }
-
                                },
                                fail:function (res) {
                                    layer.msg(res.result.msg)
