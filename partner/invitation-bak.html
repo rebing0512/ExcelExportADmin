@@ -101,6 +101,13 @@
 </script>
 <script>
 
+    /**
+     * @param value
+     * @param row
+     * @param index
+     * @returns {string}
+     * @constructor
+     */
     function GoodsFormat(value, row, index) {
         var serverId = value;
         //console.log(row);
@@ -121,7 +128,14 @@
     }
 
 
-    //操作
+    /**
+     * 操作
+     * @param value
+     * @param row
+     * @param index
+     * @returns {string}
+     * @constructor
+     */
     function OperationFormat(value, row, index) {
         if (value == 0){
             return '<div class="table-options">' +

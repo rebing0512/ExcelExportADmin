@@ -54,11 +54,10 @@
                 <div class="title">{{pageBaseTtile}}</div>
             </div>
         </div>
-
         <div class="goodsContent">
             <div class="messageItem">
                 <div class="control"><i class="xing">*</i>文章分类：</div>
-                <div class="formControls smallInput"><input type="text" autocomplete="off" name="class_id" class="start_price btnAdvert" value="{{ pagebase.params.className }}" data-id="{{pagebase.params.class_id}}"></div>
+                <div class="formControls smallInput"><input type="text" autocomplete="off" name="class_id" class="btnAdvert" value="{{ pagebase.params.className }}" data-id="{{pagebase.params.class_id}}" readonly></div>
             </div>
             <div class="messageItem">
                 <div class="control"><i class="xing">*</i>标题：</div>
@@ -80,13 +79,11 @@
                     </div>
                     <div class="help-block" style="margin-left: 0px">建议尺寸：800*800像素，你可以拖拽图片调整顺序，最多上传1张</div>
                 </div>
-
             </div>
         </div>
 
     </div>
     {{/if}}
-
     <div id="diy-menu" class="diy-menu">
         <div class="navs">
             <div id="{{menuNavsId}}">
@@ -148,7 +145,7 @@
                 <div class="articleContent">
                     {{if params.images}}
                     {{each params.images.value}}
-                    <img  class="pettybImage"  data-imgstate="0" src="../img/image-default.jpg" data-serverid="{{$value}}" width="100%;min-height:20px;"/>
+                    <img  class="pettybImage"  data-imgstate="0" src="../../img/image-default.jpg" data-serverid="{{$value}}" width="100%;min-height:20px;"/>
                     {{/each}}
                     {{/if}}
                 </div>
