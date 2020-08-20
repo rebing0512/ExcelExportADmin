@@ -239,6 +239,8 @@
             },
             success: function (res) {
                 if (res.code == 1){
+                    console.log('articleCategoryLists');
+                    console.log(res);
                     var Category = res.result.data;
                     $.Ajax({
                         url:api.articleInfo,
@@ -247,6 +249,7 @@
                         },
                         is_login:true,
                         success:function (res) {
+                            console.log('articleInfo');
                             console.log(res);
                             if (res.code == 1){
                                 var title = res.result.data.title;
