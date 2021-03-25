@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>新增管理员</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/third_party/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/pageTopBar.css">
+    <link rel="stylesheet" href="../css/upload.min.css">
+    <link rel="stylesheet" href="../css/goodsManage.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/goodsRelease.css">
+    <link rel="stylesheet" href="../css/integralGoodsRelease.css">
+
+</head>
+<body class="hide-help">
+<script src="../js/dependencies.min.js"></script>
+<script src="../js/pettyb.min.js"></script>
+<script src="../config/api.config.js"></script>
+<script src="../js/upload.min.js"></script>
+<div class="sections">
+
+    <!--基本信息-->
+    <div class="goodsClassify">
+        <div class="goodsClassifyTitle">基本信息</div>
+        <div class="goodsContent">
+            <div class="messageItem">
+                <div class="control"><i class="xing">*</i>头像：</div>
+                <div class="pictureList">
+                    <div class="case">
+                        <div class="pettyb upload" data-value='' data-num="1" id='mainUpload'></div>
+                    </div>
+                    <div class="help-block" style="margin-left: 0px">建议尺寸：800*800像素，你可以拖拽图片调整顺序，最多上传1张</div>
+                </div>
+            </div>
+            <div class="messageItem">
+                <div class="control"><i class="xing">*</i>账号：</div>
+                <div class="formControls"><input type="text" class="username"></div>
+            </div>
+            <div class="messageItem">
+                <div class="control"><i class="xing">*</i>密码：</div>
+                <div class="formControls"><input type="text" class="password"></div>
+            </div>
+
+            <div class="messageItem">
+                <div class="control"><i class="xing">*</i>名称：</div>
+                <div class="formControls"><input type="text" class="fullName"></div>
+            </div>
+            <div class="messageItem">
+                <div class="control"><i class="xing">*</i>邮箱：</div>
+                <div class="formControls"><input type="text" class="email"></div>
+            </div>
+            <div class="messageItem" id="status">
+                <div class="control">状态：</div>
+                <div class="integralType">
+                    <div class="integralItem">
+                        <input data-value="1" class="recommend" name="recommend" checked type="radio">
+                        <label class="input-label" for="sure">正常</label>
+                    </div>
+                    <div class="integralItem">
+                        <input data-value="2" class="recommend" name="recommend"  type="radio">
+                        <label class="input-label" for="auction-goods">冻结</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="preserved">
+    <button type="button" id="filter-search-btn" class="zent-btn-primary zent-btn">保存</button>
+</div>
+<script>
+    $(function(){
+        //主图上传
+        $("#mainUpload").upload(
+            function(_this,data){
+                previewImage(data.serverId);
+            }
+        );
+        //    保存
+        $(document).on("click","#filter-search-btn",function () {
+            //商品名
+            var username = $(".username").val();
+            var password = $(".password").val();
+            var fullName = $(".fullName").val();
+            var email = $(".email").val();
+            var status = $("input[name='recommend']:checked").attr("data-value");
+            var user_avatar = $("#mainUpload").data("value");//头像
+
+            $.Ajax({
+                url:api.adminAdd,
+                is_login:true,
+                data:{
+                    user_avatar:user_avatar,
+                    username:username,
+                    password:password,
+                    fullName:fullName,
+                    email:email,
+                    status:status
+                },
+                success:function (res) {
+                    console.log(res);
+                    if (res.code == 1){
+                        layer.msg("发布成功");
+                        setTimeout(function () {
+                            //处理面包屑导航
+                            parent.bread_crumbs[0].isLink = '0';//修改父级页面的可点击状态
+                            parent.bread_crumbs.splice(1,1);
+                            window.parent.renderBreadCrumbs(parent.bread_crumbs);
+                            //修改加载内容页
+                            var app_iframe=$("#app_iframe", window.parent.document);
+                            console.log(app_iframe);
+                            app_iframe.attr('src',"adminManage/adminManage.html");
+                        },500)
+                    }else {
+                        layer.msg(res.result.msg)
+                    }
+
+                },
+                fail:function (res) {
+                    layer.msg(res.result.msg)
+                }
+            })
+        });
+
+
+
+    })
+</script>
+</body>
+</html>
+

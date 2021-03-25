@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>新增文章分类</title>
+    <link rel="stylesheet" href="../../css/dependencies.min.css">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/pageTopBar.css">
+    <link rel="stylesheet" href="../../css/goodsRelease.css">
+</head>
+<body class="hide-help">
+<script src="../../js/dependencies.min.js"></script>
+<script src="../../js/pettyb.min.js"></script>
+<script src="../../config/api.config.js"></script>
+<div class="sections">
+    <!--基本信息-->
+    <div class="goodsClassify">
+        <div class="goodsClassifyTitle">基本信息</div>
+        <div class="goodsContent">
+            <div class="messageItem">
+                <div class="control"><i class="xing">*</i>分类名称：</div>
+                <div class="formControls"><input type="text" class="category_name"></div>
+            </div>
+            <div class="messageItem">
+                <div class="control">排序：</div>
+                <div class="formControls"><input type="text" class="sort"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="preserved">
+    <button type="button" id="filter-search-btn" class="zent-btn-primary zent-btn">保存</button>
+</div>
+<script>
+    $(function(){
+        /**
+         * 保存
+         */
+        $(document).on("click","#filter-search-btn",function () {
+            $.Ajax({
+                url:api.articleCategoryAdd,
+                is_login:true,
+                data:{
+                    category_name:$(".category_name").val(),
+                    sort:$(".sort").val()
+                },
+                success:function (res) {
+                    console.log(res);
+                    if (res.code == 1){
+                        layer.msg("添加成功");
+                        setTimeout(function () {
+                            //处理面包屑导航
+                            parent.bread_crumbs[0].isLink = '0';//修改父级页面的可点击状态
+                            parent.bread_crumbs.splice(1,1);
+                            window.parent.renderBreadCrumbs(parent.bread_crumbs);
+                            //修改加载内容页
+                            var app_iframe=$("#app_iframe", window.parent.document);
+                            console.log(app_iframe);
+                            app_iframe.attr('src',"operation/article/articleClassifyManage.html");
+                        },500)
+                    }else {
+                        layer.msg(res.result.msg)
+                    }
+                },
+                fail:function (res) {
+                    layer.msg(res.result.msg)
+                }
+            })
+        });
+    })
+</script>
+</body>
+</html>
+

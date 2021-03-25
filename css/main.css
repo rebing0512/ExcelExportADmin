@@ -1,0 +1,229 @@
+html,body{
+    width: 100%;
+    overflow-x: hidden;
+}
+.container {
+    zoom: 1;
+    margin: 0 auto;
+    padding: 0;
+    width: 1000px;
+}
+#app-container {
+    background: #f2f2f2;
+    width: auto;
+    margin: 0 0 0 200px;
+    -webkit-transition: margin-right .5s;
+    -moz-transition: margin-right .5s;
+    transition: margin-right .5s;
+    padding: 10px;
+    /*padding-bottom: 50px;*/
+    box-sizing: border-box;
+}
+body #app-container {
+    -webkit-transition: all .2s;
+    -moz-transition: all .2s;
+    transition: all .2s;
+    background: #f2f2f2;
+    width: auto;
+    margin-left: 224px;
+    /*padding-bottom: 50px;*/
+    min-width: 810px;
+}
+@media only screen and (min-width: 1281px){
+    body.show-help.theme-new-ui.show-help #app-container {
+        margin-right: 224px;
+    }
+}
+@media only screen and (min-width: 1281px){
+    body.hide-help #app-container {
+        margin-right: 0;
+    }
+}
+
+
+body.without-second-sidebar #app-container {
+    margin-left: 92px;
+}
+@media only screen and (min-width: 1281px){
+    body #app-container {
+        margin-right: 224px;
+    }
+}
+@media only screen and (min-width: 1281px){
+    body.hide-help #app-container {
+        margin-right: 0;
+    }
+}
+.style__dashboard--1wm5T {
+    position: relative;
+    min-height: 100vh;
+    font-size: 12px;
+}
+.style__style--10z9_, .style__style--10z9_ .panel {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.style__style--10z9_ {
+    position: relative;
+    height: 56px;
+    background-color: #fff;
+    padding: 0 20px;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+.style__style--10z9_ .panel {
+    cursor: pointer;
+    margin-left: 20px;
+}
+.style__style--10z9_, .style__style--10z9_ .panel {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+}
+.style__style--10z9_ .title {
+    font-size: 20px;
+    color: #333;
+    font-weight: 700;
+}
+
+.zent-tag {
+    display: inline-block;
+    font-size: 12px;
+    color: #fff;
+    line-height: 1;
+    padding: .084em .417em;
+    border: 1px solid #fff;
+}
+.custom-tag__style--LJFFx {
+    margin-left: 5px;
+    line-height: 1.2;
+}
+.zent-tag.zent-tag-rounded {
+    border-radius: .167em;
+}
+.zent-tag.zent-tag-style-blue-outline {
+    color: #38f;
+    border-color: #38f;
+}
+.content{
+    width: 100%;
+    background-color: #fff;
+}
+/*头部登录样式*/
+.js-app-help-button{
+    box-sizing: border-box;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+    width: 152px;
+    float: right;
+    right: 0;
+    padding: 0;
+    z-index: 200;
+    padding-left: 15px !important;
+    margin-right: -16px;
+}
+.js-app-help-button:hover {
+    background-color: #ffffff;
+    border-left: 1px solid #e5e5e5;
+    border-right: 1px solid #e5e5e5;
+}
+.js-app-help-button .loaded_common_ {
+    box-sizing: border-box;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+    width: 152px;
+    position: relative;
+    padding: 0;
+    z-index: 200;
+    padding-left: 15px !important;
+    margin-right: -16px;
+}
+.js-app-help-button  #avatar_common_ {
+    width: 16px;
+    height: 16px;
+    margin-right: 3px;
+    display: inline-block;
+    border-radius: 50%;
+    vertical-align: text-bottom;
+    background-size: 16px 16px;
+    background-image: url('../img/user-login.png');
+}
+.js-app-help-button #mobile_common_ {
+    color: #3388ff;
+    font-size: 14px;
+}
+.js-app-help-button .caret-custome {
+    position: relative;
+    display: inline-block;
+}
+.js-app-help-button .caret-custome:after,.js-app-help-button .caret-custome:before {
+    content: " ";
+    height: 0;
+    width: 0;
+    top: 100px;
+    position: absolute;
+    left: 5px;
+    border: 5px solid transparent;
+}
+.js-app-help-button .caret-custome:before {
+    border-top-color: #ffffff;
+    top: -5px;
+    z-index: 2;
+}
+.js-app-help-button .caret-custome:after {
+    border-top-color: #333;
+    top: -3px;
+    z-index: 1;
+}
+.js-app-help-button .caret-custome:after {
+    border-top-color: #3388ff;
+}
+/*头部登录样式*/
+/*头部登录下拉框*/
+.js-app-help-button .loaded-menu_ {
+    display: none;
+    width: 152px;
+    margin-left: -16px;
+    height: 101px;
+    box-sizing: border-box;
+    background: #ffffff;
+    border: 1px solid #e5e5e5;
+    border-top: 0;
+    position: absolute;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.js-app-help-button:hover .loaded-menu_ {
+    display: block;
+}
+.js-app-help-button .loaded-menu_ li {
+    height: 40px;
+    width: 150px;
+    padding: 0;
+}
+.js-app-help-button .loaded-menu_ li a {
+    height: 40px;
+    width: 150px;
+    text-align: center;
+    display: block;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: #666666;
+    line-height: 40px;
+}
+
+/*头部登录下拉框*/
+.modal-title{
+    font-size: 16px;
+    color: #333;
+    font-weight: bold;
+}
+.plublish-wrapper{
+    margin-top: 20px;
+    margin-bottom: 16px;
+}

@@ -1,0 +1,10 @@
+.integralType {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+.integralItem {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}

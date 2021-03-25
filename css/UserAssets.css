@@ -1,0 +1,55 @@
+body {
+    background: white;
+}
+.statistics {
+    padding: 10px;
+}
+.userAssets {
+    height: 120px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f5f5f5;
+    padding: 0 25px;
+    color: #000;
+}
+.balance-title {
+    font-size: 14px;
+    color: #333;
+}
+.amount {
+    margin-top: 20px;
+    font-size: 24px;
+}
+.block-header {
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f7f8fa;
+    min-height: 40px;
+    box-sizing: border-box;
+}
+.block-header__title {
+    display: flex;
+    align-items: center;
+}
+.block-header__title:before {
+    content: "";
+    width: 3px;
+    height: 14px;
+    background: #155bd4;
+}
+.block-header__title h3 {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    padding-left: 8px;
+    color: #000;
+}
+.record-link{
+    font-size: 12px;
+    display: inline-block;
+    margin-left: 10px;
+}

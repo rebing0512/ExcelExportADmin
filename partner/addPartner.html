@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>邀请用户</title>
+    <link rel="stylesheet" href="../css/dependencies.min.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/pageTopBar.css">
+    <link rel="stylesheet" href="../css/upload.min.css">
+    <link rel="stylesheet" href="../css/selectmenu.css">
+    <link rel="stylesheet" href="../css/goodsRelease.css">
+</head>
+<body class="hide-help">
+<script src="../js/dependencies.min.js"></script>
+<script src="../js/pettyb.min.js"></script>
+<script src="../config/api.config.js"></script>
+<script src="../js/upload.min.js"></script>
+<script src="../js/selectmenu.js"></script>
+<div class="sections">
+
+    <!--基本信息-->
+    <div class="goodsClassify">
+        <div class="goodsClassifyTitle">基本信息</div>
+        <div class="goodsContent">
+            <div class="messageItem">
+                <div class="control"><i class="xing">*</i>用户昵称：</div>
+                <div class="formControls"><input type="text" class="username"></div>
+            </div>
+            <div class="messageItem">
+                <div class="control"><i class="xing">*</i>用户头像：</div>
+                <div class="pictureList">
+                    <div class="case">
+                        <div class="pettyb upload" data-value='' data-num="1" id='mainUpload'></div>
+                    </div>
+                    <div class="help-block" style="margin-left: 0px">建议尺寸：800*800像素，你可以拖拽图片调整顺序，最多上传1张</div>
+                </div>
+            </div>
+            <div class="messageItem">
+                <div class="control"><i class="xing">*</i>手机号：</div>
+                <div class="formControls smallInput"><input  type="text" class="phone"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="preserved">
+    <button type="button" id="filter-search-btn" class="zent-btn-primary zent-btn">保存</button>
+</div>
+<script>
+    $(function(){
+        /**
+         * 头像上传
+         */
+        $("#mainUpload").upload(
+            function(_this,data){
+                previewImage(data.serverId);
+            }
+        );
+        /**
+         * 保存
+         */
+        $(document).on("click","#filter-search-btn",function () {
+            $.Ajax({
+                url:api.partnerAdd,
+                is_login:true,
+                data:{
+                    username:$(".username").val(),
+                    avatar:$("#mainUpload").data("value"),
+                    phone:$(".phone").val(),
+                },
+                success:function (res) {
+                    // console.log(res);
+                    if (res.code == 1){
+                        layer.msg("操作成功");
+                        setTimeout(function () {
+                            //处理面包屑导航
+                            parent.bread_crumbs[0].isLink = '0';//修改父级页面的可点击状态
+                            parent.bread_crumbs.splice(1,1);
+                            window.parent.renderBreadCrumbs(parent.bread_crumbs);
+                            //修改加载内容页
+                            var app_iframe=$("#app_iframe", window.parent.document);
+                            console.log(app_iframe);
+                            app_iframe.attr('src',"partner/partnerList.html");
+                        },500)
+                    }else {
+                        layer.msg(res.result.msg)
+                    }
+                },
+                fail:function (res) {
+                    layer.msg(res.result.msg)
+                }
+            })
+        });
+    })
+</script>
+</body>
+</html>
+

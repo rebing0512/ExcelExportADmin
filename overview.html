@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta name="referrer" content="always">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport"
+          content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>概况</title>
+    <link rel="stylesheet" href="css/dependencies.min.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/UserAssets.css">
+</head>
+<body>
+
+<script src="js/dependencies.min.js"></script>
+<script src="js/pettyb.min.js"></script>
+<script src="config/api.config.js"></script>
+<script src="js/echarts.js"></script>
+<div class="statistics statisticsUserAssets">
+
+</div>
+
+<script type="text/html" id="userAssets">
+    <div class="block-header">
+        <div class="block-header__title">
+            <h3>用户资产</h3>
+        </div>
+    </div>
+    <div class="userAssets">
+        <div>
+            <div class="balance-title">总收益(元)</div>
+            <div class="amount">{{partnerTotalIncome}}</div>
+        </div>
+        <div>
+            <div class="balance-title">总线下</div>
+            <div class="amount">{{partner_sub}}</div>
+        </div>
+        <div>
+            <div class="balance-title">总合伙人数</div>
+            <div class="amount">{{partnerTotal}}</div>
+        </div>
+    </div>
+</script>
+
+<div class="statistics">
+    <div class="block-header">
+        <div class="block-header__title">
+            <h3>线下统计（近一周）</h3>
+        </div>
+    </div>
+    <div id="auctionChart" style="width: 1000px;height:400px;"></div>
+</div>
+<div class="statistics">
+    <div class="block-header">
+        <div class="block-header__title">
+            <h3>收益（近一周）</h3>
+        </div>
+    </div>
+    <div id="moneyChart" style="width: 1000px;height:400px;"></div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $.Ajax({
+            url:api.overviewIndex,
+            is_login:true,
+            success:function (res) {
+                //console.log(res)
+                if (res.code == 1){
+                    var userAssets = 'userAssets';
+                    var tem_userAssets = template(userAssets,res.result);
+                    $(".statisticsUserAssets").html(tem_userAssets);
+
+                        var myChart = echarts.init(document.getElementById('auctionChart'));
+                        var  option = {
+                            tooltip : {
+                                trigger: 'axis',
+                                axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                                    type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                                }
+                            },
+                            legend: {
+                                data:['直接线下数','间接下线数',]
+                            },
+                            grid: {
+                                left: '3%',
+                                right: '4%',
+                                bottom: '3%',
+                                containLabel: true
+                            },
+                            xAxis : [
+                                {
+                                    type : 'category',
+                                    data : res.result.date
+                                }
+                            ],
+                            yAxis : [
+                                {
+                                    type : 'value'
+                                }
+                            ],
+                            series : [
+                                {
+                                    name:'直接线下数',
+                                    type:'bar',
+                                    stack: '次数',
+                                    barWidth:30,
+                                    data:res.result.direct_offline
+                                },
+                                {
+                                    name:'间接下线数',
+                                    type:'bar',
+                                    stack: '次数',
+                                    barWidth:30,
+                                    data:res.result.indirect_offline
+                                }
+                            ]
+                        };
+                        myChart.setOption(option);
+                    var myChart1 = echarts.init(document.getElementById('moneyChart'));
+                    var  option = {
+                        tooltip : {
+                            trigger: 'axis',
+                            axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                                type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                            }
+                        },
+                        legend: {
+                            data:['收益',]
+                        },
+                        grid: {
+                            left: '3%',
+                            right: '4%',
+                            bottom: '3%',
+                            containLabel: true
+                        },
+                        xAxis : [
+                            {
+                                type : 'category',
+                                data : res.result.date
+                            }
+                        ],
+                        yAxis : [
+                            {
+                                type : 'value'
+                            }
+                        ],
+                        series : [
+                            {
+                                name:'收益',
+                                type:'bar',
+                                stack: '次数',
+                                barWidth:30,
+                                data:res.result.income
+
+                            }
+                        ]
+                    };
+                    myChart1.setOption(option);
+                } else {
+
+                }
+
+            }
+        });
+
+
+    })
+</script>
+</body>
+</html>

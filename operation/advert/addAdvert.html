@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>新增广告</title>
+    <link rel="stylesheet" href="../../css/dependencies.min.css">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/pageTopBar.css">
+    <link rel="stylesheet" href="../../css/upload.min.css">
+    <link rel="stylesheet" href="../../css/selectmenu.css">
+    <link rel="stylesheet" href="../../css/goodsRelease.css">
+
+
+</head>
+<body class="hide-help">
+<script src="../../js/dependencies.min.js"></script>
+<script src="../../js/pettyb.min.js"></script>
+<script src="../../config/api.config.js"></script>
+<script src="../../js/upload.min.js"></script>
+<script src="../../js/selectmenu.js"></script>
+<div class="sections">
+
+    <!--基本信息-->
+    <div class="goodsClassify">
+        <div class="goodsClassifyTitle">基本信息</div>
+        <div class="goodsContent">
+            <div class="messageItem">
+                <div class="control"><i class="xing">*</i>广告分类：</div>
+                <div class="formControls smallInput"><input type="text" class="start_price" id="btnAdvert" autocomplete="off"></div>
+            </div>
+            <div class="messageItem">
+                <div class="control"><i class="xing">*</i>标题：</div>
+                <div class="formControls"><input type="text" class="title"></div>
+            </div>
+            <div class="messageItem">
+                <div class="control"><i class="xing">*</i>简介：</div>
+                <div class="formControls"><input type="text" class="brief"></div>
+            </div>
+            <div class="messageItem">
+                <div class="control"><i class="xing">*</i>广告图片：</div>
+                <div class="pictureList">
+                    <div class="case">
+                        <div class="pettyb upload" data-value='' data-num="1" id='mainUpload'></div>
+                    </div>
+                    <div class="help-block" style="margin-left: 0px">建议尺寸：800*800像素，你可以拖拽图片调整顺序，最多上传1张</div>
+                </div>
+            </div>
+            <div class="messageItem">
+                <div class="control"><i class="xing">*</i>广告类型：</div>
+                <div class="formControls smallInput"><input type="text" class="start_price" id="btnMenu" autocomplete="off"></div>
+            </div>
+            <div class="messageItem">
+                <div class="control"><i class="xing">*</i>广告信息id：</div>
+                <div class="formControls smallInput"><input  type="number" class="info_id"></div>
+            </div>
+            <div class="messageItem">
+                <div class="control"><i class="xing">*</i>排序：</div>
+                <div class="formControls smallInput"><input  type="number" class="start_price" id="start_price"></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="preserved">
+    <button type="button" id="filter-search-btn" class="zent-btn-primary zent-btn">保存</button>
+</div>
+<script>
+    $(function(){
+        var selectMenuData = [];//缓存分类数据
+        var selectAdvertData = [];//广告分类数据
+        //分类
+        $.Ajax({
+            url: api.advertTypeLists,
+            is_login:true,
+            data: {
+                choose: 1
+            },
+            success: function (res) {
+                // 先清空原来的数组
+                selectMenuData.splice(0, selectMenuData.length)
+                console.log(selectMenuData);
+                res.result.data.map(function (item, index) {
+                    var obj = {};
+                    obj.id = item.id;
+                    obj.tag = item.tag;
+                    obj.name = item.type_name;
+                    selectMenuData.push(obj);
+                });
+
+            }
+        });
+        //广告分类
+        $.Ajax({
+            url: api.advertCategoryLists,
+            is_login:true,
+            data: {
+                choose: 1
+            },
+            success: function (res) {
+                // 先清空原来的数组
+                selectAdvertData.splice(0, selectAdvertData.length)
+                res.result.data.map(function (item, index) {
+                    var obj = {};
+                    obj.id = item.id;
+                    obj.name = item.cate_name;
+                    selectAdvertData.push(obj);
+                });
+
+            }
+        });
+        //广告分类
+        $('#btnAdvert').click(function (e) {
+            //分类接口
+            var that = $(this);
+            that.selectMenu({
+                title: '选择分类',
+                showField: 'name',
+                keyField: 'id',
+                search: false,//关闭搜索栏
+                data: selectAdvertData,
+                eSelect: function (data) {
+                    console.log(data[0].name);
+                    $('#btnAdvert').val(data[0].name);
+                    $('#btnAdvert').attr("data-id", data[0].id);
+                }
+            });
+
+
+        });
+        $('#btnMenu').click(function (e) {
+            //分类接口
+            var that = $(this);
+            that.selectMenu({
+                title: '选择分类',
+                showField: 'name',
+                keyField: 'id',
+                search: false,//关闭搜索栏
+                data: selectMenuData,
+                eSelect: function (data) {
+                    console.log(data[0].name);
+                    $('#btnMenu').val(data[0].name);
+                    $('#btnMenu').attr("data-tag", data[0].tag);
+                }
+            });
+
+
+        });
+        //主图上传
+        $("#mainUpload").upload(
+            function(_this,data){
+                previewImage(data.serverId);
+            }
+        );
+        //    保存
+        $(document).on("click","#filter-search-btn",function () {
+            //商品名
+            var title = $(".title").val();
+            //商品描述
+            var brief = $(".brief").val();
+            var image = $("#mainUpload").data("value");//图片
+            var sort = $("#start_price").val();//排序
+            var info_type = $("#btnMenu").attr('data-tag');
+            var info_id = $(".info_id").val();//广告信息id
+            var category_id = $("#btnAdvert").attr('data-id');
+//            console.log(api.libraryAdd)
+            $.Ajax({
+                url:api.advertAddEdit,
+                is_login:true,
+                data:{
+                    category_id:category_id,
+                    title:title,
+                    brief:brief,
+                    image:image,
+                    sort:sort,
+                    info_id:info_id,
+                    info_type:info_type
+                },
+                success:function (res) {
+                    console.log(res);
+                    if (res.code == 1){
+                        layer.msg("发布成功");
+                        setTimeout(function () {
+                            //处理面包屑导航
+                            parent.bread_crumbs[0].isLink = '0';//修改父级页面的可点击状态
+                            parent.bread_crumbs.splice(1,1);
+                            window.parent.renderBreadCrumbs(parent.bread_crumbs);
+                            //修改加载内容页
+                            var app_iframe=$("#app_iframe", window.parent.document);
+                            console.log(app_iframe);
+                            app_iframe.attr('src',"operation/advert/advertManage.html");
+                        },500)
+                    }else {
+                        layer.msg(res.result.msg)
+                    }
+
+                },
+                fail:function (res) {
+                    layer.msg(res.result.msg)
+                }
+            })
+        });
+
+
+
+    })
+</script>
+</body>
+</html>
+

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>编辑器</title>
+    <script src="../../../js/dependencies.min.js"></script>
+    <script src="../../../js/pettyb.min.js"></script>
+    <script src="../../../config/api.config.js"></script>
+
+    <link rel="stylesheet" href="../../../css/upload.min.css">
+    <script src="../../../js/upload.min.js"></script>
+
+
+
+    <link rel="stylesheet" href="../css/diy.css">
+    <link rel="stylesheet" href="../css/jquery.dad.css">
+    <style>
+        .jq22 { width: 1000px; margin: 0 auto; font-family: arial,SimSun; font-size: 0;}
+        .jq22 .item { width: 100%; margin-bottom: 20px;}
+        .jq22 .item1 { background-color: #1faeff;}
+        .jq22 .item2 { background-color: #ff2e12;}
+        .jq22 .item3 { background-color: #00c13f;}
+        .jq22 .item4 { background-color: #e1b700;}
+        .jq22 .item5 { background-color: #7200ac;}
+        .jq22 span { display: block; height: 50px; line-height: 50px; font-size: 2rem; text-align: center; color: #fff;}
+    </style>
+</head>
+
+<body>
+
+<div class="test1" data-debug="111"></div>
+<div style="clear: both;"></div>
+<div class="test1" data-debug="222"></div>
+
+
+
+<!-----------------------------
+主体框架信息
+------------------------------>
+<script id="tpl_diy_pettybEdit" type="text/template">
+    <div class="diy-phone">
+        <div class="phone-top {{if isIndex}}index{{/if}}" id="pageBaseTitle">
+            {{if pagebase && pagebase.params.title}}
+            {{pagebase.params.title}}
+            {{else}}
+            {{title}}
+            {{/if}}
+        </div>
+        <div id="phone-main" class="phone-main"></div>
+    </div>
+
+
+    {{if hasPageBase}}
+    <div id="diy-pagebase" class="diy-menu">
+        <div class="navs">
+            <div id="{{pageBaseId}}">
+                <div class="title">{{pageBaseTtile}}</div>
+            </div>
+        </div>
+
+        <div class="goodsContent">
+            <div class="messageItem">
+                <div class="control"><i class="xing">*</i>文章分类：</div>
+                <div class="formControls smallInput"><input type="text" name="class_id" class="start_price btnAdvert" value="{{ pagebase.params.className }}" data-id="{{pagebase.params.class_id}}"></div>
+            </div>
+            <div class="messageItem">
+                <div class="control"><i class="xing">*</i>标题：</div>
+                <div class="formControls"><input type="text" name="title" class="title" value="{{pagebase.params.title}}"  data-default="{{ pagebase.defaults?pagebase.defaults.explain:'' }}"></div>
+            </div>
+            <div class="messageItem">
+                <div class="control"><i class="xing">*</i>简介：</div>
+                <div class="formControls"><input type="text" name="brief" class="brief" value="{{pagebase.params.brief}}"  data-default="{{ pagebase.defaults?pagebase.defaults.brief:'' }}"></div>
+            </div>
+            <div class="messageItem">
+                <div class="control"><i class="xing">*</i>阅读数：</div>
+                <div class="formControls smallInput"><input  type="number" name="number" class="start_price" id="readCount" value="{{pagebase.params.number}}"  data-default="{{ pagebase.defaults?pagebase.defaults.number:'' }}"></div>
+            </div>
+        </div>
+
+    </div>
+    {{/if}}
+
+    <div id="diy-menu" class="diy-menu">
+        <div class="navs">
+            <div id="{{menuNavsId}}">
+                <div class="title">{{menuNavsTtile}}</div>
+                <div id="components">
+                    {{each components }}
+                    <nav class="special" data-type="{{$index}}">{{$value}}</nav>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+        <div class="action">
+            <div class="actionButton">
+                <button id="{{menuActionModeSwitch}}" type="button">{{menuActionModeSwitchTitle}}</button>
+                <button id="{{menuActionButtonId}}" type="button" class="menuActionButton">{{menuActionButtonTitle}}</button>
+            </div>
+            <span class="actiontip" id="{{menuActionButtonId}}Tip">当前为：
+             <span>{{modeName}}</span>
+         </span>
+        </div>
+    </div>
+
+    <div id="diy-editor" class="diy-editor form-horizontal">
+        <div class="inner"></div>
+    </div>
+
+</script>
+
+
+
+<!-----------------------------
+显示组件
+------------------------------>
+<!-- diy元素: 文本段落 -->
+<script id="tpl_diy_text" type="text/template">
+    <div class="drag" id="diy-{{ id }}" data-itemid="{{ id }}">
+        <div class="diy-text">
+            <div class="inner">
+                <div class="articleContent">
+                    <div class="articleTitle">{{ params.title }}</div>
+                    <div class="articleInfo">{{ params.content }}</div>
+                </div>
+                <div class="module-text">
+                    {{ params.explain }}
+                </div>
+            </div>
+        </div>
+        <div class="btn-edit-del">
+            <div class="btn-edit">编辑</div>
+            <div class="btn-del">删除</div>
+        </div>
+    </div>
+</script>
+
+<script id="tpl_diy_images" type="text/template">
+    <div class="drag" id="diy-{{ id }}" data-itemid="{{ id }}">
+        <div class="diy-text">
+            <div class="inner">
+                <div class="articleContent">
+                    {{if params.images}}
+                    {{each params.images.value}}
+                    <img  class="pettybImage"  data-imgstate="0" src="./img/image-default.jpg" data-serverid="{{$value}}" width="100%;min-height:20px;"/>
+                    {{/each}}
+                    {{/if}}
+                </div>
+                <div class="module-text">
+                    {{ params.explain }}
+                </div>
+            </div>
+        </div>
+        <div class="btn-edit-del">
+            <div class="btn-edit">编辑</div>
+            <div class="btn-del">删除</div>
+        </div>
+    </div>
+</script>
+
+
+<!-----------------------------
+编辑组件
+------------------------------>
+<script id="tpl_editor_text" type="text/template">
+
+    <div class="sections itemid" data-itemid="{{ id }}">
+        <div class="goodsClassifyTitle">基本信息</div>
+        <div class="goodsContent">
+            <div class="messageItem">
+                <div class="control"><i class="xing">*</i>标题：</div>
+                <div class="formControls"><input type="text" class="title" data-bind="params.title" value="{{ params.title }}"  data-default="{{ defaults.title }}"></div>
+            </div>
+            <div class="messageItem">
+                <div class="control"><i class="xing">*</i>内容：</div>
+                <div class="formTextControls"><textarea class="content" data-bind="params.content"  data-default="{{ defaults.content }}" rows="3">{{ params.content }}</textarea></div>
+            </div>
+        </div>
+
+        <div class="goodsClassifyTitle">模块说明</div>
+        <div class="goodsContent">
+            <div class="messageItem">
+                <div class="control"><i class="xing">*</i>说明：</div>
+                <div class="formControls"><input type="text" class="brief" data-bind="params.explain" value="{{ params.explain }}"  data-default="{{ defaults.explain }}"></div>
+            </div>
+        </div>
+    </div>
+
+</script>
+
+<script id="tpl_editor_images" type="text/template">
+
+    <div class="sections itemid" data-itemid="{{ id }}">
+        <div class="goodsClassifyTitle">基本信息</div>
+        <div class="goodsContent">
+            <div class="pettyb upload" data-num="30" data-value='{{ params.dataValue }}'></div>
+        </div>
+
+        <div class="goodsClassifyTitle">模块说明</div>
+        <div class="goodsContent">
+            <div class="messageItem">
+                <div class="control"><i class="xing">*</i>说明：</div>
+                <div class="formControls"><input type="text" class="brief" data-bind="params.explain" value="{{ params.explain }}"  data-default="{{ defaults.explain }}"></div>
+            </div>
+        </div>
+    </div>
+
+</script>
+
+
+
+
+
+
+<!--<div class="jq22">-->
+    <!--<div class="item item1"><span>1</span></div>-->
+    <!--<div class="item item2"><span>2</span></div>-->
+    <!--<div class="item item3"><span>3</span></div>-->
+    <!--<div class="item item4"><span>4</span></div>-->
+    <!--<div class="item item5"><span>5</span></div>-->
+<!--</div>-->
+
+
+<script src="../js/ddsort.js"></script>
+<script src="../js/diy.js"></script>
+<script>
+    $(function(){
+//        $(".diy-pettyb-editor").pettybDiyEditor();
+        $.pettybDiyEditorDefaults({
+            'title':'test',
+            "data":{"p990896436269665":{"id":"p990896436269665","type":"text","params":{"explain":"1"},"defaults":{"explain":"请输入模块说明信息"}},"p866717040853342":{"id":"p866717040853342","type":"text","params":{"explain":"2"},"defaults":{"explain":"请输入模块说明信息"}}},
+            'submit':function (data) {
+                console.log('submit data',data);
+                console.log(JSON.stringify(data))
+            }
+        });
+        $(".test1").pettybDiyEditor();
+//        $('.jq22').dad();
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+<!-- 以下信息与演示无关，可不必理会 -->
+<style>
+
+    .jq22 { width: 1000px; margin: 0 auto;}
+
+</style>
+
+
+
+</body>
+</html>
